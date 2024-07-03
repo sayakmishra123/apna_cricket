@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/login/login.dart';
 import 'package:flutter/material.dart';
@@ -212,6 +213,39 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: const Text(
                           'Sign up',
                           style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(() => LoginPage(),
+                              transition: Transition.leftToRight);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              // alignment: Alignment,
+                              width: MediaQuery.sizeOf(context).width - 50,
+                              child: const Text.rich(
+                                  textAlign: TextAlign.center,
+                                  TextSpan(
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 12),
+                                      text:
+                                          "By registering, i agree to Apna cricket's",
+                                      children: [
+                                        TextSpan(
+                                            text: " Terms & Consitions",
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14))
+                                      ])),
+                            )
+                          ],
                         ),
                       ),
                     ),

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/login/signup.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   Getx getx = Get.put(Getx());
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: TextFormField(
+                      controller: username,
                       decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(vertical: 10),
                           hintText: 'Email or mobile no',
@@ -89,6 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                     () => Padding(
                       padding: const EdgeInsets.only(top: 10, bottom: 15),
                       child: TextFormField(
+                        controller: password,
                         obscureText: getx.loginvisible.value,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(vertical: 10),
@@ -106,8 +111,8 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             filled: true,
-                            fillColor: Color.fromARGB(255, 238, 237, 237),
-                            border: OutlineInputBorder(
+                            fillColor: const Color.fromARGB(255, 238, 237, 237),
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide.none,
                             )),
                       ),
@@ -120,7 +125,9 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.all(10),
                       // shape: ContinuousRectangleBorder(
                       //     borderRadius: BorderRadius.circular(80)),
-                      onPressed: () {},
+                      onPressed: () {
+                        loginApi(context, username.text, password.text);
+                      },
                       child: const Text(
                         'Login',
                         style: TextStyle(color: Colors.white, fontSize: 20),
