@@ -42,37 +42,43 @@ List<Widget> pages = [
     // Important: Remove any padding from the ListView.
     padding: EdgeInsets.zero,
     children: [
-       DrawerHeader(
-        decoration: const BoxDecoration(
-          color: Colors.red,
-        ),
-        child: Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-     
-            children: [
-              SizedBox(
-                height: 60,
-                child: ClipRRect(
-                  
-                  borderRadius: BorderRadius.circular(100),
-                  child: 
-                  Image.asset('assets/nodp.jpg',fit: BoxFit.cover,)),
-              ),
-              const SizedBox(width: 5,),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Sayak Mishra',style: profilestyle,),
-                  Text('Sayak@gmail.com',style: profilestyle),
-                        
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
-       ListTile(
+       Column(
+         children: [
+           DrawerHeader(
+            decoration: const BoxDecoration(
+              color: Colors.red,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    
+                    children: [
+                      SizedBox(
+                        height: 60,
+                        child: ClipRRect(
+                          
+                          borderRadius: BorderRadius.circular(100),
+                          child: 
+                          Image.asset('assets/nodp.jpg',fit: BoxFit.cover,)),
+                      ),
+                      const SizedBox(width: 5,),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Sayak Mishra',style: profilestyle,),
+                          Text('Sayak@gmail.com',style: profilestyle),
+                                
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+                 ),
+                  ListTile(
 
         title: const Row(
           children: [
@@ -126,6 +132,9 @@ List<Widget> pages = [
       ),
     ],
   ),
+         ],
+       ),
+      
 ),
  appBar: AppBar(
 shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(8)),
