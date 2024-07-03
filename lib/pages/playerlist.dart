@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class PlayerList extends StatefulWidget {
   const PlayerList({super.key});
@@ -63,17 +64,28 @@ class _PlayerListState extends State<PlayerList> {
                         children: [
                           Expanded(
                             child: Container(
-                              // color: Colors.grey,
+                              color: Colors.grey,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Text('A1')],
                               ),
                             ),
                           ),
+                          SizedBox(
+                            // width: 80,
+                            height: 50,
+                            child: LottieBuilder.asset(
+                              'assets/animate.json',
+                              // width: 30,
+                            ),
+                          ),
                           Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [Text('A2')],
+                            child: Container(
+                              color: Colors.amber,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Text('A2')],
+                              ),
                             ),
                           )
                         ],
