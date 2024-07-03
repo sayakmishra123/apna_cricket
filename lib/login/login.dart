@@ -4,6 +4,7 @@ import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/login/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -26,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
-                  'assets/splash.jpg',
+                  'assets/splash1.jpg',
                 ),
                 fit: BoxFit.fill)),
         child: BackdropFilter(
@@ -44,15 +45,22 @@ class _LoginPageState extends State<LoginPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: 250,
-                          child: Image.asset(
-                            'assets/logo.png',
-                            fit: BoxFit.contain,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(200),
+                          child: SizedBox(
+                            width: 200,
+                            height: 200,
+                            child: Image.asset(
+                              'assets/logo.jpg',
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         )
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    height: 70,
                   ),
                   const Row(
                     children: [
