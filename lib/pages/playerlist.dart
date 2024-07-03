@@ -29,6 +29,14 @@ class _PlayerListState extends State<PlayerList> {
       child: Obx(
         () => Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                )),
             actions: const [
               Icon(
                 Icons.timer,
@@ -52,10 +60,10 @@ class _PlayerListState extends State<PlayerList> {
 
             title: const Text(
               'Player List',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             bottom: PreferredSize(
-                preferredSize: Size.fromHeight(140),
+                preferredSize: Size.fromHeight(190),
                 child: Column(
                   children: [
                     Container(
@@ -64,7 +72,7 @@ class _PlayerListState extends State<PlayerList> {
                         children: [
                           Expanded(
                             child: Container(
-                              color: Colors.grey,
+                              color: Colors.orange,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [Text('A1')],
@@ -73,7 +81,7 @@ class _PlayerListState extends State<PlayerList> {
                           ),
                           SizedBox(
                             // width: 80,
-                            height: 50,
+                            height: 80,
                             child: LottieBuilder.asset(
                               'assets/animate.json',
                               // width: 30,
@@ -96,9 +104,10 @@ class _PlayerListState extends State<PlayerList> {
                       child: Row(
                         children: [
                           Text(
-                            'Total selected player: ${getx.add.value}/22',
+                            'Total selected player ${getx.add.value}/22'
+                                .toUpperCase(),
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.orange[200],
                                 fontWeight: FontWeight.bold),
                           ),
                         ],

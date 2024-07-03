@@ -62,7 +62,7 @@ class _WkState extends State<Wk> {
                 // bannerTextColor: Colors.,
                 bannerText: l[index],
                 backgroundColor: isSelected
-                    ? Colors.lightBlueAccent.withOpacity(0.3)
+                    ? Colors.amber.withOpacity(0.2)
                     : Colors.transparent,
                 onTap: () {
                   controller.toggleSelection(index);
@@ -88,8 +88,8 @@ class _WkState extends State<Wk> {
                   style: TextStyle(color: Colors.grey, fontSize: 14),
                 ),
                 trailing: Icon(
-                  Icons.add_box_outlined,
-                  color: Colors.green,
+                  isSelected ? Icons.remove : Icons.add,
+                  color: isSelected ? Colors.red : Colors.green,
                 ),
               ),
             );

@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(),
         useMaterial3: true,
       ),
-      home: const PlayerList(),
+      home: const SplashScreen(),
     );
   }
 }
