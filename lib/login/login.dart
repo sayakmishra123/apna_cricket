@@ -156,28 +156,28 @@ class _LoginPageState extends State<LoginPage> {
                         // shape: ContinuousRectangleBorder(
                         //     borderRadius: BorderRadius.circular(80)),
                         onPressed: () {
-                          // try {
-                          // if (gk.currentState!.validate()) {
-                          loginApi(context, username.text, password.text);
-                          // } else {
-                          //   Get.rawSnackbar(
-                          //       duration: Duration(seconds: 1),
-                          //       // backgroundColor: ,
-                          //       overlayBlur: 5,
-                          //       barBlur: 5,
-                          //       title: 'Invalid login',
-                          //       message: 'Please enter email or password',
-                          //       snackStyle: SnackStyle.GROUNDED);
-                          // }
-                          // } catch (e) {
-                          //   Get.rawSnackbar(
-                          //       // backgroundColor: ,
-                          //       overlayBlur: 5,
-                          //       barBlur: 5,
-                          //       title: 'Invalid login',
-                          //       message: 'Please enter email or password',
-                          //       snackStyle: SnackStyle.GROUNDED);
-                          // }
+                          try {
+                            if (gk.currentState!.validate()) {
+                              loginApi(context, username.text, password.text);
+                            } else {
+                              Get.rawSnackbar(
+                                  duration: Duration(seconds: 1),
+                                  // backgroundColor: ,
+                                  overlayBlur: 5,
+                                  barBlur: 5,
+                                  title: 'Invalid login',
+                                  message: 'Please enter email or password',
+                                  snackStyle: SnackStyle.GROUNDED);
+                            }
+                          } catch (e) {
+                            Get.rawSnackbar(
+                                // backgroundColor: ,
+                                overlayBlur: 5,
+                                barBlur: 5,
+                                title: 'Invalid login',
+                                message: 'Please enter email or password',
+                                snackStyle: SnackStyle.GROUNDED);
+                          }
                         },
                         child: const Text(
                           'Login',
