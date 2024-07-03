@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class MorePage extends StatefulWidget {
   const MorePage({super.key});
@@ -10,9 +11,17 @@ class MorePage extends StatefulWidget {
 class _MorePageState extends State<MorePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('MorePage'),
+        child: Container(
+decoration: BoxDecoration(
+   color: Colors.amber[300],
+  borderRadius: BorderRadius.circular(50)),
+         
+          child: SizedBox(
+            height: 80,
+            child: LottieBuilder.asset('assets/animate.json')),
+        )
       ),
     );
   }
