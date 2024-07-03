@@ -19,8 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
             fit: BoxFit.fitHeight,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 100),
+        const Padding(
+          padding: EdgeInsets.only(top: 100),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
