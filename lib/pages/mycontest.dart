@@ -10,7 +10,9 @@ class MyContest extends StatefulWidget {
 class _MyContestState extends State<MyContest> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
+backgroundColor: Colors.red[50],
+
       body: Center(
         child: Text('MyContest'),
       ),
