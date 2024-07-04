@@ -85,76 +85,42 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 50,
                     width: width,
-                    child: Expanded(
-                        child: ListView.builder(
-                            itemCount: 5,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                width: 200,
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(colors: [
-                                      // Colors.red.withOpacity(0.8),
-                                      // Colors.orange.withOpacity(0.2)
-                                    ]),
-                                    borderRadius: BorderRadius.circular(20),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.red.withOpacity(0.05),
-                                          blurRadius: 20,
-                                          offset: const Offset(5, 5)),
-                                    ]),
-                                margin: const EdgeInsets.all(10),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'All Match Contest',
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                            decoration: BoxDecoration(
-                                                gradient:
-                                                    LinearGradient(colors: [
-                                                  Colors.blue.withOpacity(0.01),
-                                                  Colors.blue.withOpacity(0.4),
-                                                  Colors.blue,
-                                                  Colors.blue,
-                                                ]),
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                        bottomRight:
-                                                            Radius.circular(
-                                                                20))),
-                                            child: const Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 20,
-                                                    vertical: 2),
-                                                child: Text('Contest')))
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              );
-                            })),
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: contests.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: MaterialButton(
+                            color: _selectedIndex == index
+                                ? Colors.blue
+                                : Colors.white,
+                            onPressed: () {
+                              setState(() {
+                                _selectedIndex = index;
+                              });
+                            },
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: _selectedIndex == index
+                                    ? Colors.blue
+                                    : Colors.lightBlueAccent,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Text(
+                              contests[index],
+                              style: TextStyle(
+                                color: _selectedIndex == index
+                                    ? Colors.white
+                                    : Colors.black,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
