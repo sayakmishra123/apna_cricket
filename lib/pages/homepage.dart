@@ -1,5 +1,6 @@
 import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/pages/alltournaments.dart';
+import 'package:apna_cricket/pages/jointeampage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -139,6 +140,15 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(mainAxisAlignment: MainAxisAlignment. spaceBetween,
+                      children: [
+                        Text("Select Match",style: TextStyle(fontSize: 16),),
+                        Icon(Icons.arrow_forward_ios_rounded,size: 18,)
+                      ],
+                    ),
+                  ),
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -149,7 +159,9 @@ class _HomePageState extends State<HomePage> {
                         shadowColor: Colors.black12,
                         color: MyColors.sixty,
                         child: ListTile(
-                          onTap: () {},
+                          onTap: () {
+                            Get.to(JoinTeam(heading: 'WTC',));
+                          },
                           // splashColor: MyColors.thirty.withOpacity(0.5),
                           leading: SizedBox(
                             width: 45,

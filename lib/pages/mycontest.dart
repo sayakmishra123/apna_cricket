@@ -29,7 +29,6 @@ class _MyContestState extends State<MyContest> {
   ];
   RxBool floatingbtn = false.obs;
   final double _teamiconsize = 40;
-  late ScrollController _hideButtonController;
 
 
   @override
@@ -116,7 +115,12 @@ class _MyContestState extends State<MyContest> {
                                                           .withOpacity(0.6),
                                                       Colors.red.withOpacity(0),
                                                     ])),
-                                                child: Row(
+                                                child: 
+                                                
+                                                
+                                                
+                                                
+                                                Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
