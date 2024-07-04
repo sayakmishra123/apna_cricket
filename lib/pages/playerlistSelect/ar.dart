@@ -63,7 +63,7 @@ class _ArState extends State<Ar> {
                     // bannerTextColor: Colors.,
                     bannerText: l[index],
                     backgroundColor: isSelected
-                        ? Colors.lightBlueAccent.withOpacity(0.3)
+                        ? Colors.amber.withOpacity(0.2)
                         : Colors.transparent,
                     onTap: () {
                       controllerAr.toggleSelection(index);

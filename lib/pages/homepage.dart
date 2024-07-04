@@ -2,6 +2,7 @@ import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/pages/alltournaments.dart';
+import 'package:apna_cricket/pages/jointeampage.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -166,14 +167,34 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 700,
-                      child: Obx(
-                        () => getx.tournamentList.isNotEmpty
-                            ? ListView.builder(
-                                itemCount: getx.tournamentList.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Select Match",
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 18,
+                          )
+                        ],
+                      ),
+                    ),
+                    Obx(
+                      () => getx.tournamentList.isNotEmpty
+                          ? ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: getx.tournamentList.length,
+                              itemBuilder: (context, index) {
+                                return Card(
+                                  elevation: 1,
+                                  shadowColor: Colors.black12,
+                                  color: MyColors.sixty,
+                                  child: ListTile(
                                     onTap: () {
                                       allmatchListApi(
                                           context,
@@ -185,31 +206,82 @@ class _HomePageState extends State<HomePage> {
                                           getx.tournamentList[index]
                                               .tournamentId
                                               .toString());
-
-                                      Get.to(() => PlayerList());
+                                      Get.to(JoinTeam(
+                                        heading: getx.tournamentList[index]
+                                            .tournamentName,
+                                      ));
                                     },
-                                    // leading: SizedBox(
-                                    //   width: 45,
-                                    //   height: 45,
-                                    //   child: ClipRRect(
-                                    //       borderRadius:
-                                    //           BorderRadius.circular(50),
-                                    //       child: Image.asset(
-                                    //         matchicons[index],
-                                    //         fit: BoxFit.cover,
-                                    //       )),
-                                    // ),
+                                    // splashColor: MyColors.thirty.withOpacity(0.5),
+                                    leading: SizedBox(
+                                      width: 45,
+                                      height: 45,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: Image.asset(
+                                          matchicons[index],
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
                                     title: Text(getx
                                         .tournamentList[index].tournamentName),
-                                  );
-                                },
-                              )
-                            : Center(child: CircularProgressIndicator()),
-                      ),
-                    )
+                                  ),
+                                );
+                              },
+                            )
+                          : Container(),
+                    ),
                   ],
                 ),
-              )
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 20),
+              //   child: Column(
+              //     children: [
+              //       SizedBox(
+              //         height: 700,
+              //         child: Obx(
+              //           () => getx.tournamentList.isNotEmpty
+              //               ? ListView.builder(
+              //                   itemCount: getx.tournamentList.length,
+              //                   itemBuilder: (context, index) {
+              //                     return ListTile(
+              //                       onTap: () {
+              // allmatchListApi(
+              //     context,
+              //     getx.tournamentList[index]
+              //         .contestTypeId
+              //         .toString(),
+              //     getx.tournamentList[index].userId
+              //         .toString(),
+              //     getx.tournamentList[index]
+              //         .tournamentId
+              //         .toString());
+
+              //                         Get.to(() => JoinTeam(heading: 'WTC'));
+              //                       },
+              //                       // leading: SizedBox(
+              //                       //   width: 45,
+              //                       //   height: 45,
+              //                       //   child: ClipRRect(
+              //                       //       borderRadius:
+              //                       //           BorderRadius.circular(50),
+              //                       //       child: Image.asset(
+              //                       //         matchicons[index],
+              //                       //         fit: BoxFit.cover,
+              //                       //       )),
+              //                       // ),
+              //   title: Text(getx
+              //       .tournamentList[index].tournamentName),
+              // );
+              //                   },
+              //                 )
+              //               : Center(child: CircularProgressIndicator()),
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // )
             ],
           ),
         ),
