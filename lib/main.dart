@@ -1,3 +1,4 @@
+import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/dashboard.dart';
 import 'package:apna_cricket/login/login.dart';
 // import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
@@ -22,10 +23,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Apna Crikcet',
       theme: ThemeData(
-        textTheme: GoogleFonts.josefinSansTextTheme().copyWith(
-          bodyMedium: GoogleFonts.josefinSans(textStyle: textTheme.bodyMedium),
-        ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
+       textTheme: GoogleFonts.josefinSansTextTheme().copyWith(
+      bodyMedium: GoogleFonts.josefinSans(textStyle: textTheme.bodyMedium),
+    ),
+        colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
         appBarTheme: AppBarTheme(),
         useMaterial3: true,
       ),

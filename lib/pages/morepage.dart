@@ -1,3 +1,4 @@
+import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -15,7 +16,7 @@ class _MorePageState extends State<MorePage> {
       body: Center(
         child: Container(
 decoration: BoxDecoration(
-   color: Colors.amber[300],
+   color: MyColors.ten,
   borderRadius: BorderRadius.circular(50)),
          
           child: SizedBox(

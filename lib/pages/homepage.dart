@@ -1,7 +1,9 @@
 import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
+import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/pages/alltournaments.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
@@ -63,11 +65,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SizedBox(
-        height: height,
+        // height: height,
         width: width,
         child: SingleChildScrollView(
           child: Column(

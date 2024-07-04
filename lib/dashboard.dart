@@ -203,6 +203,7 @@ class _DashBoardState extends State<DashBoard> {
         //         height: 60, width: 60, child: Image.asset('assets/logo.png'))
         //   ],
         // ),
+        title: Text('Apna Cricket'),
       ),
       body: pages[_selectedIndex.value],
       bottomNavigationBar: NavigationBar(
