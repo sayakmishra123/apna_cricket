@@ -1,10 +1,16 @@
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:get/get.dart';
 
 class Getx extends GetxController {
   RxBool loginvisible = false.obs;
   RxInt add = 0.obs;
   RxBool signupvisible = false.obs;
+  RxList mileshistory = [].obs;
 
+  RxList<Player> bat = <Player>[].obs;
+  RxList blow = [].obs;
+  RxList ar = [].obs;
+  RxList wk = [].obs;
   // RxBool isSelected = false.obs;
 }
 

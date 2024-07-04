@@ -8,10 +8,10 @@ class Wk extends StatefulWidget {
   const Wk({super.key});
 
   @override
-  State<Wk> createState() => _WkState();
+  State<Wk> createState() => WkState();
 }
 
-class _WkState extends State<Wk> {
+class WkState extends State<Wk> {
   final SelectionControllerWk controller = Get.put(SelectionControllerWk());
   List l = [
     'India',

@@ -1,9 +1,44 @@
 import 'dart:convert';
 
 import 'package:apna_cricket/dashboard.dart';
+import 'package:apna_cricket/getx/getx.dart';
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import "package:http/http.dart" as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+class UserPreferences {
+  String _userKey = "user_key";
+  late SharedPreferences prefs;
+  // Save user data
+  Future<void> saveUser(User user) async {
+    prefs = await SharedPreferences.getInstance();
+    String userJson = json.encode(user.toJson());
+    await prefs.setString(_userKey, userJson);
+  }
+
+  // Retrieve user data
+  Future<User?> getUser() async {
+    prefs = await SharedPreferences.getInstance();
+    String? userJson = prefs.getString(_userKey);
+    print(userJson);
+
+    if (userJson != null) {
+      Map<String, dynamic> userMap = json.decode(userJson);
+      print(userMap['UserId']);
+      print('shared');
+      return User.fromJson(userMap);
+    }
+    return null;
+  }
+
+  // Remove user data
+  Future<void> removeUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_userKey);
+  }
+}
 
 Future loginApi(BuildContext context, String username, String password) async {
   showDialog(
@@ -23,6 +58,10 @@ Future loginApi(BuildContext context, String username, String password) async {
   print(res.statusCode);
   if (jsondata['Result'] == true && res.statusCode == 200) {
     Get.back();
+    Map<String, dynamic> jsonMap = jsondata['Data'][0];
+    User user = User.fromJson(jsonMap);
+    print(user.userId);
+    await UserPreferences().saveUser(user);
     Get.to(() => const DashBoard());
   } else {
     Get.back();
@@ -36,7 +75,6 @@ Future loginApi(BuildContext context, String username, String password) async {
         snackStyle: SnackStyle.GROUNDED);
   }
 }
-// https://apnacricket.dthlms.in/LoginRegister/Register?UserName=sarojma123@123gmail.com&UserEmail=samaroj@123gmail.com&DeviceId=100&UserPassword=Saroj@123&UserMobileNo=091987654321&Address=kolkata&State=WB&Country=india&Pincode=7012345&FranchiseId=1
 
 Future signUpApi(
   BuildContext context,
@@ -80,6 +118,116 @@ Future signUpApi(
       Get.to(() => const DashBoard());
     } else {
       Get.back();
+    }
+  } catch (e) {
+    Get.back();
+    print(e);
+  }
+}
+
+Future contestListApi(BuildContext context) async {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      });
+
+  var res = await http.get(
+    Uri.https('apnacricket.dthlms.in', '/contesttype/getContestType'),
+  );
+  var jsondata = jsonDecode(res.body);
+  print(res.body);
+  print(res.statusCode);
+  if (jsondata['Result'] == true && res.statusCode == 200) {
+    Get.back();
+    // Get.to(() => const DashBoard());
+  } else {
+    Get.back();
+    Get.rawSnackbar(
+        duration: Duration(seconds: 1),
+        // backgroundColor: ,
+        overlayBlur: 5,
+        barBlur: 5,
+        title: 'Invalid login',
+        message: jsondata['Data'],
+        snackStyle: SnackStyle.GROUNDED);
+  }
+}
+
+Future milesListApi(BuildContext context) async {
+  Getx getx = Get.put(Getx());
+  // showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return const Center(child: CircularProgressIndicator());
+  //     });
+  Map data = {'userid': '20'};
+  var res = await http.post(
+      Uri.https('apnacricket.dthlms.in', '/Miles/MilesHistory'),
+      body: data);
+  var jsondata = jsonDecode(res.body);
+  print(res.body);
+  print(res.statusCode);
+  if (jsondata['Result'] == true && res.statusCode == 200) {
+    // Get.back();
+    for (int i = 0; i < jsondata['Data'].length; i++) {
+      getx.mileshistory.add(jsondata['Data'][i]);
+    }
+// getx.mileshistory.
+    // Get.to(() => const DashBoard());
+  } else {
+    Get.back();
+    Get.rawSnackbar(
+        duration: Duration(seconds: 1),
+        // backgroundColor: ,
+        overlayBlur: 5,
+        barBlur: 5,
+        title: 'Invalid login',
+        message: jsondata['Data'],
+        snackStyle: SnackStyle.GROUNDED);
+  }
+}
+
+Future teamplayersListApi(BuildContext context) async {
+  Getx getx = Get.put(Getx());
+  print('object');
+  try {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(child: CircularProgressIndicator());
+        });
+    Map<String, String> data = {'Team1Id': '24', 'Team2Id': '25'};
+
+    final Uri uri =
+        Uri.https('apnacricket.dthlms.in', '/teamplayers/getTeamPlayerByTeamId')
+            .replace(queryParameters: data);
+    var res = await http.get(
+      uri,
+    );
+
+    var jsondata = jsonDecode(res.body);
+    print(res.statusCode);
+    // print(res.body);
+    // print(res.statusCode.toString());
+    if (jsondata['Result'] == true && res.statusCode == 200) {
+      // Get.back();
+      print(jsondata['Batsmans']);
+      dynamic jsonList = json.decode(jsondata['Batsmans']);
+      getx.bat.value = jsonList.map((json) => Player.fromJson(json)).toList();
+      for (var player in getx.bat) {
+        print('Player Name: ${player.playerName}, Team: ${player.teamName}');
+      }
+    } else {
+      Get.back();
+      Get.rawSnackbar(
+          duration: Duration(seconds: 1),
+          // backgroundColor: ,
+          overlayBlur: 5,
+          barBlur: 5,
+          title: 'Invalid login',
+          message: jsondata['Data'],
+          snackStyle: SnackStyle.GROUNDED);
     }
   } catch (e) {
     Get.back();

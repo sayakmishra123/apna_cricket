@@ -1,4 +1,7 @@
+import 'package:apna_cricket/api/allapifetch.dart';
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/homepage.dart';
+import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
 import 'package:apna_cricket/pages/morepage.dart';
 import 'package:apna_cricket/pages/mycontest.dart';
 import 'package:apna_cricket/pages/profilepage.dart';
@@ -28,6 +31,34 @@ class _DashBoardState extends State<DashBoard> {
     });
   }
 
+  late User user = User(
+      userId: 0,
+      userName: 'userName',
+      userEmail: 'userEmail',
+      userMobileNo: 'userMobileNo',
+      address: 'address',
+      state: 'state',
+      country: 'country',
+      points: 0,
+      franchiseId: 0,
+      sortedOrder: 0,
+      isActive: false,
+      isDelete: false,
+      mode: 0);
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      getshareddata();
+    });
+    // TODO: implement initState
+    super.initState();
+  }
+
+  Future getshareddata() async {
+    user = (await UserPreferences().getUser())!;
+    setState(() {});
+  }
+
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -45,8 +76,9 @@ class _DashBoardState extends State<DashBoard> {
               children: [
                 DrawerHeader(
                   decoration: const BoxDecoration(
-                    color: Colors.red,
-                  ),
+                      gradient: LinearGradient(
+                          colors: [Colors.red, Colors.black],
+                          transform: GradientRotation(2))),
                   child: Row(
                     children: [
                       Expanded(
@@ -69,10 +101,10 @@ class _DashBoardState extends State<DashBoard> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Sayak Mishra',
+                                  user.userName,
                                   style: profilestyle,
                                 ),
-                                Text('Sayak@gmail.com', style: profilestyle),
+                                Text(user.userEmail, style: profilestyle),
                               ],
                             )
                           ],
@@ -91,7 +123,9 @@ class _DashBoardState extends State<DashBoard> {
                       Text('Miles History'),
                     ],
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => MilesHistory(user.userId));
+                  },
                 ),
                 ListTile(
                   title: const Row(
@@ -135,9 +169,15 @@ class _DashBoardState extends State<DashBoard> {
         ),
       ),
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.red, Colors.black],
+                  transform: GradientRotation(2))),
+        ),
         shape:
             ContinuousRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        backgroundColor: Colors.red,
+        // backgroundColor: Colors.red,
         actions: [
           InkWell(
             onTap: () {

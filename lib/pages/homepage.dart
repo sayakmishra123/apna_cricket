@@ -44,21 +44,17 @@ class _HomePageState extends State<HomePage> {
                               return Container(
                                 width: 200,
                                 decoration: BoxDecoration(
-                                   gradient: LinearGradient(
-                                    colors: [
+                                    gradient: LinearGradient(colors: [
                                       // Colors.red.withOpacity(0.8),
                                       // Colors.orange.withOpacity(0.2)
-                                    ]
-                                   ),
-                                          borderRadius: BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.red.withOpacity(0.05),
-                                                blurRadius: 20,
-                                                offset: const Offset(5, 5)),
-                                          ]
-                                 
-                                    ),
+                                    ]),
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.red.withOpacity(0.05),
+                                          blurRadius: 20,
+                                          offset: const Offset(5, 5)),
+                                    ]),
                                 margin: const EdgeInsets.all(10),
                                 child: Column(
                                   mainAxisAlignment:
@@ -66,11 +62,12 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     const Expanded(
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          
                                           Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Text(
                                                 'All Match Contest',
@@ -82,19 +79,16 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Container(
                                             decoration: BoxDecoration(
                                                 gradient:
                                                     LinearGradient(colors: [
                                                   Colors.blue.withOpacity(0.01),
-                                                
-          
                                                   Colors.blue.withOpacity(0.4),
                                                   Colors.blue,
-                                                 Colors.blue,
+                                                  Colors.blue,
                                                 ]),
                                                 borderRadius:
                                                     const BorderRadius.only(
@@ -102,7 +96,9 @@ class _HomePageState extends State<HomePage> {
                                                             Radius.circular(
                                                                 20))),
                                             child: const Padding(
-                                                padding: EdgeInsets.symmetric(horizontal: 20,vertical: 2),
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 20,
+                                                    vertical: 2),
                                                 child: Text('Contest')))
                                       ],
                                     )
@@ -121,35 +117,33 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: MaterialButton(
-                            height: 60,
-                            shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            elevation: 10,
-                            color: Colors.white,
-                            onPressed: () {
-                            
-                          },
+                            child: MaterialButton(
+                          height: 60,
+                          shape: ContinuousRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          elevation: 10,
+                          color: Colors.white,
+                          onPressed: () {},
                           child: Text('WTC20'),
-                          )
-                        )
+                        ))
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: MaterialButton(
-                            height: 60,
-                            shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            elevation: 10,
-                            color: Colors.white,
-                            onPressed: () {
-                            
-                          },
+                            child: MaterialButton(
+                          height: 60,
+                          shape: ContinuousRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          elevation: 10,
+                          color: Colors.white,
+                          onPressed: () {},
                           child: Text('Test Serices'),
-                          )
-                        )
+                        ))
                       ],
                     ),
                   ],

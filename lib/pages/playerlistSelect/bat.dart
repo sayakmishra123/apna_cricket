@@ -67,11 +67,19 @@ class _BatState extends State<Bat> {
                 controllerBat.toggleSelection(index);
                 setState(() {});
               },
-              imageContainer: Image.asset('assets/nodp.jpg'),
+              imageContainer: SizedBox(
+                width: 10,
+                height: 10,
+                child: Image.asset(
+                  'assets/sixers.png',
+                  // width: 10,
+                  // height: 10,
+                  scale: 10,
+                ),
+              ),
               title: Text(
                 'Data',
-                style:
-                    TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               subtitle: Text(
                 'Self by 9.01%',
@@ -80,8 +88,8 @@ class _BatState extends State<Bat> {
                 ),
               ),
               trailing: Icon(
-                Icons.add,
-                color: Colors.green,
+                isSelected ? Icons.remove : Icons.add,
+                color: isSelected ? Colors.red : Colors.green,
               ),
             );
           }),
