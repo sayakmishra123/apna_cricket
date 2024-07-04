@@ -72,9 +72,11 @@ class _HomePageState extends State<HomePage> {
                       style: heading,
                     ),
                     TextButton(
-                        style:  ButtonStyle(),
+                        style: ButtonStyle(),
                         onPressed: () {
-                          Get.to(AllTournaments(contests: contests,));
+                          Get.to(AllTournaments(
+                            contests: contests,
+                          ));
                         },
                         child: const Text(
                           'See All',

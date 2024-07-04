@@ -29,7 +29,7 @@ class _MyContestState extends State<MyContest> {
   ];
   RxBool floatingbtn = false.obs;
   final double _teamiconsize = 40;
-
+  late ScrollController _hideButtonController;
 
 
   @override
@@ -37,8 +37,6 @@ class _MyContestState extends State<MyContest> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-
-     
       backgroundColor: Colors.red[50],
       body: SingleChildScrollView(
         child: SizedBox(
@@ -105,15 +103,19 @@ class _MyContestState extends State<MyContest> {
                                             children: [
                                               Container(
                                                 padding:
-                                                    const EdgeInsets.symmetric(vertical: 20),
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 20),
                                                 decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(20),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
                                                     gradient:
                                                         LinearGradient(colors: [
-                                                  Colors.red.withOpacity(0),
-                                                  Colors.red.withOpacity(0.6),
-                                                  Colors.red.withOpacity(0),
-                                                ])),
+                                                      Colors.red.withOpacity(0),
+                                                      Colors.red
+                                                          .withOpacity(0.6),
+                                                      Colors.red.withOpacity(0),
+                                                    ])),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -133,15 +135,15 @@ class _MyContestState extends State<MyContest> {
                                                                       BorderRadius
                                                                           .circular(
                                                                               50),
-                                                                  child: Image.asset(
-                                                                      'assets/sixers.png'))),
+                                                                  child: Image
+                                                                      .asset(
+                                                                          'assets/sixers.png'))),
                                                           const SizedBox(
                                                             height: 5,
                                                           ),
                                                           const Text(
                                                             'Dambullar Sixers',
                                                             style: TextStyle(
-                                                              
                                                                 color: Colors
                                                                     .black54,
                                                                 fontSize: 12),
@@ -171,7 +173,6 @@ class _MyContestState extends State<MyContest> {
                                                             FlickerAnimatedText(
                                                                 'VS'),
                                                           ],
-                                                          
                                                         ),
                                                       ),
                                                     ),
@@ -186,14 +187,16 @@ class _MyContestState extends State<MyContest> {
                                                                       BorderRadius
                                                                           .circular(
                                                                               50),
-                                                                  child: Image.asset(
-                                                                      'assets/jaffna.jfif'))),
+                                                                  child: Image
+                                                                      .asset(
+                                                                          'assets/jaffna.jfif'))),
                                                           const Text(
                                                               'Jaffna Kinga',
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .black54,
-                                                                  fontSize: 12)),
+                                                                  fontSize:
+                                                                      12)),
                                                         ],
                                                       ),
                                                     ),
@@ -207,8 +210,8 @@ class _MyContestState extends State<MyContest> {
                                                 children: [
                                                   Text(
                                                     "31-07-24",
-                                                    style: TextStyle(
-                                                        fontSize: 15),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
                                                   ),
                                                   // const Text("Entry Ended"),
                                                 ],
@@ -229,7 +232,9 @@ class _MyContestState extends State<MyContest> {
                     },
                   ),
                 ),
-                SizedBox(height: 170,)
+                SizedBox(
+                  height: 170,
+                )
               ],
             ),
           ),

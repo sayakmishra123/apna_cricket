@@ -33,6 +33,7 @@ dependencies:
   get:
   http:
   banner_listtile: ^2.3.0
+  shared_preferences: ^2.2.3
 
 
   # The following adds the Cupertino Icons font to your application.

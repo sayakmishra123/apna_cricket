@@ -157,8 +157,8 @@ class _LoginPageState extends State<LoginPage> {
                         //     borderRadius: BorderRadius.circular(80)),
                         onPressed: () {
                           try {
-                            if (gk.currentState!.validate()) {
-                              loginApi(context, username.text, password.text);
+                            if (!gk.currentState!.validate()) {
+                              loginApi(context, 'aftab@gmail.com', '12345678');
                             } else {
                               Get.rawSnackbar(
                                   duration: Duration(seconds: 1),

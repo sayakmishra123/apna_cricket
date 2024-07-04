@@ -1,3 +1,4 @@
+import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/pages/playerlistSelect/ar.dart';
 import 'package:apna_cricket/pages/playerlistSelect/bat.dart';
@@ -18,10 +19,25 @@ class PlayerList extends StatefulWidget {
 
 class _PlayerListState extends State<PlayerList> {
   Getx getx = Get.put(Getx());
-  SelectionControllerWk controllerWk = SelectionControllerWk();
-  SelectionControllerBlow controllerBlow = SelectionControllerBlow();
-  SelectionControllerBat controllerBat = SelectionControllerBat();
-  SelectionControllerAr controllerAr = SelectionControllerAr();
+  SelectionControllerWk controllerWk = Get.put(SelectionControllerWk());
+  SelectionControllerBlow controllerBlow = Get.put(SelectionControllerBlow());
+  SelectionControllerBat controllerBat = Get.put(SelectionControllerBat());
+  SelectionControllerAr controllerAr = Get.put(SelectionControllerAr());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((visibleForTesting) =>
+        // Future.delayed(Duration(seconds: 3), () {
+        fetchteam().whenComplete(() => null));
+    // });
+  }
+
+  Future fetchteam() async {
+    await teamplayersListApi(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -149,20 +165,23 @@ class _PlayerListState extends State<PlayerList> {
                             ))
                       ],
                     ),
-                    const TabBar(isScrollable: false, tabs: [
-                      Tab(
-                        text: 'WK(1)',
-                      ),
-                      Tab(
-                        text: 'BAT(1)',
-                      ),
-                      Tab(
-                        text: 'AR(1)',
-                      ),
-                      Tab(
-                        text: 'BOWL(1)',
-                      )
-                    ]),
+                    const TabBar(
+                        isScrollable: false,
+                        labelStyle: TextStyle(color: Colors.white),
+                        tabs: [
+                          Tab(
+                            text: 'WK(1)',
+                          ),
+                          Tab(
+                            text: 'BAT(1)',
+                          ),
+                          Tab(
+                            text: 'AR(1)',
+                          ),
+                          Tab(
+                            text: 'BOWL(1)',
+                          )
+                        ]),
                   ],
                 )),
           ),
