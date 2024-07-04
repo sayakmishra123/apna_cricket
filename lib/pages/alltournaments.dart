@@ -1,7 +1,8 @@
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:flutter/material.dart';
 
 class AllTournaments extends StatefulWidget {
-  final List contests;
+  final List<AllContest> contests;
   const AllTournaments({super.key, required this.contests});
 
   @override
@@ -13,7 +14,7 @@ class _AllTournamentsState extends State<AllTournaments> {
     'assets/match1.jpg',
     'assets/match2.jpg',
     'assets/match3.jpg',
-     'assets/cricketlogo.jpg',
+    'assets/cricketlogo.jpg',
     'assets/cricketlogo2.jpg',
     'assets/cricketlogo3.jpg',
     'assets/t20.jpg',
@@ -38,17 +39,19 @@ class _AllTournamentsState extends State<AllTournaments> {
               leading: SizedBox(
                 height: 40,
                 width: 40,
-
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(50),
-                    child: Image.asset(images[index],fit: BoxFit.cover,)),
+                    child: Image.asset(
+                      images[index],
+                      fit: BoxFit.cover,
+                    )),
               ),
               onTap: () {},
               trailing: const Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: 15,
               ),
-              title: Text(widget.contests[index]),
+              title: Text(widget.contests[index].contestTypeName.toString()),
             ),
           );
         },

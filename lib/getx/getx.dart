@@ -11,7 +11,8 @@ class Getx extends GetxController {
   RxList<Player> blow = <Player>[].obs;
   RxList<Player> ar = <Player>[].obs;
   RxList<Player> wk = <Player>[].obs;
-  // RxBool isSelected = false.obs;
+  RxList<AllContest> allcontext = <AllContest>[].obs;
+  RxList<AllTournament> tournamentList = <AllTournament>[].obs;
 }
 
 class SelectionControllerWk extends GetxController {

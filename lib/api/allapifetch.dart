@@ -126,6 +126,7 @@ Future signUpApi(
 }
 
 Future contestListApi(BuildContext context) async {
+  Getx getx = Get.put(Getx());
   showDialog(
       context: context,
       builder: (context) {
@@ -140,6 +141,14 @@ Future contestListApi(BuildContext context) async {
   print(res.statusCode);
   if (jsondata['Result'] == true && res.statusCode == 200) {
     Get.back();
+    List jsonList1 = jsondata['Data'];
+    getx.allcontext.value =
+        jsonList1.map((json) => AllContest.fromJson(json)).toList();
+    for (var player in getx.allcontext) {
+      // print('Player Name: ${player.}, Team: ${player.teamName}');
+    }
+
+    tournamentListApi(context, getx.allcontext[0].contestTypeId.toString());
     // Get.to(() => const DashBoard());
   } else {
     Get.back();
@@ -229,6 +238,7 @@ Future teamplayersListApi(BuildContext context) async {
       for (var player in getx.ar) {
         print('Player Name: ${player.playerName}, Team: ${player.teamName}');
       }
+
       Get.back();
     } else {
       Get.back();
@@ -244,5 +254,82 @@ Future teamplayersListApi(BuildContext context) async {
   } catch (e) {
     Get.back();
     print(e);
+  }
+}
+
+Future tournamentListApi(BuildContext context, String contestTypeId) async {
+  print(contestTypeId);
+  Getx getx = Get.put(Getx());
+  // showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return const Center(child: CircularProgressIndicator());
+  //     });
+  Map<String, dynamic> data = {'ContestTypeId': contestTypeId};
+  var res = await http.get(
+    Uri.https(
+            'apnacricket.dthlms.in', '/tournament/getTOUrnamentByContestTypeId')
+        .replace(queryParameters: data),
+  );
+  var jsondata = jsonDecode(res.body);
+  print(res.body);
+  print(res.statusCode);
+  if (jsondata['Result'] == true && res.statusCode == 200) {
+    // Get.back();
+    List jsonList1 = jsondata['AllTournament'] ?? [];
+    //  List jsonList2 = jsondata['UserTournament'];
+    getx.tournamentList.value =
+        jsonList1.map((json) => AllTournament.fromJson(json)).toList();
+    for (var player in getx.tournamentList) {
+      print(player);
+    }
+
+// getx.mileshistory.
+    // Get.to(() => const DashBoard());
+  } else {
+    Get.back();
+    Get.rawSnackbar(
+        duration: Duration(seconds: 1),
+        // backgroundColor: ,
+        overlayBlur: 5,
+        barBlur: 5,
+        title: 'Invalid login',
+        message: jsondata['Data'],
+        snackStyle: SnackStyle.GROUNDED);
+  }
+}
+
+Future allmatchListApi(BuildContext context, String contestTypeId,
+    String userid, String tournamentId) async {
+  print(contestTypeId);
+  Getx getx = Get.put(Getx());
+  // showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return const Center(child: CircularProgressIndicator());
+  //     });
+  Map<String, dynamic> data = {
+    'ContestTypeId': contestTypeId,
+    'Userid': userid,
+    'TournamentId': tournamentId
+  };
+  var res = await http.get(
+    Uri.https('apnacricket.dthlms.in', '/tournament/getTOUrnamentALLvsALL')
+        .replace(queryParameters: data),
+  );
+  var jsondata = jsonDecode(res.body);
+  print(res.body);
+  print(res.statusCode);
+  if (jsondata['Result'] == true && res.statusCode == 200) {
+  } else {
+    Get.back();
+    Get.rawSnackbar(
+        duration: Duration(seconds: 1),
+        // backgroundColor: ,
+        overlayBlur: 5,
+        barBlur: 5,
+        title: 'Invalid login',
+        message: jsondata['Data'],
+        snackStyle: SnackStyle.GROUNDED);
   }
 }
