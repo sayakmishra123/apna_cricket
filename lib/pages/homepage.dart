@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:apna_cricket/pages/alltournaments.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,7 +10,37 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var heading = const TextStyle(fontSize: 20);
+  var heading = const TextStyle(fontSize: 16);
+  int _selectedIndex = 0;
+  List contests = [
+    "All Match Contest",
+    "Single Match Contest",
+    "double Match Contest",
+    "All Match Contest",
+    "Single Match Contest",
+    "double Match Contest",
+    "All Match Contest",
+    "Single Match Contest",
+    "double Match Contest",
+    "double Match Contest",
+  ];
+  List matches = [
+    [
+      'T20',
+      'TEST MATCH',
+      'WTC20',
+      'T20',
+    ],
+    ['TEST MATCH', 'WTC20', 'SDG', 'TEST MATCH', 'abc20'],
+    ['SDGSDFGDG', 'DrFG', 'SDgFG', 'SDggFGH', 'YHgaIKT'],
+    ['frthrthawerF', 'SaergG', 'SADG', 'SDG', 'SG'],
+    ['sfsf', 'SAFG', 'SADG', 'SDgwG', 'SgawgG'],
+    ['sf', 'SAFG', 'SAergDG', 'SDgG', 'SgG'],
+    ['sdf', 'SAFG', 'SArgDG', 'SDgG', 'SggG'],
+    ['sadf', 'SAFG', 'SergADG', 'SDgwergG', 'SG'],
+    ['sdf', 'SAFG', 'SAsefDG', 'SDG', 'SgasG'],
+    ['sadf', 'sdf', 'sergfsf', 'sdf', 'sdfasf'],
+  ];
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -23,18 +53,34 @@ class _HomePageState extends State<HomePage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Row(
-                children: [
-                  Text(
-                    'Select The Tournaments',
-                    style: heading,
-                  )
-                ],
+              // const SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Select The Tournaments',
+                      style: heading,
+                    ),
+                    TextButton(
+                        style: ButtonStyle(),
+                        onPressed: () {
+                          Get.to(AllTournaments(
+                            contests: contests,
+                          ));
+                        },
+                        child: const Text(
+                          'See All',
+                          style: TextStyle(color: Colors.blue),
+                        ))
+                  ],
+                ),
               ),
               Row(
                 children: [
                   SizedBox(
-                    height: 150,
+                    height: 50,
                     width: width,
                     child: Expanded(
                         child: ListView.builder(
@@ -109,43 +155,34 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 40,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                            child: MaterialButton(
-                          height: 60,
-                          shape: ContinuousRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
-                          color: Colors.white,
-                          onPressed: () {},
-                          child: Text('WTC20'),
-                        ))
-                      ],
-                    ),
                     SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
+                      height: 700,
+                      child: ListView.builder(
+                        itemCount: matches[_selectedIndex].length,
+                        itemBuilder: (context, index) {
+                          return Expanded(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
                             child: MaterialButton(
-                          height: 60,
-                          shape: ContinuousRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
-                          color: Colors.white,
-                          onPressed: () {},
-                          child: Text('Test Serices'),
-                        ))
-                      ],
-                    ),
+                              height: 60,
+                              shape: ContinuousRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              elevation: 10,
+                              color: Colors.white,
+                              onPressed: () {},
+                              child: Text(matches[_selectedIndex][index]),
+                            ),
+                          ));
+                        },
+                      ),
+                    )
                   ],
                 ),
               )
