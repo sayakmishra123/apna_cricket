@@ -54,9 +54,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               // const SizedBox(height: 20,),
-              Row(
-                children: [Expanded(child: Image.asset('assets/banner.png'))],
-              ),
+              
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -78,6 +76,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+              
               Row(
                 children: [
                   SizedBox(
@@ -122,6 +121,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
+              
               const SizedBox(
                 height: 40,
               ),
@@ -129,6 +129,9 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
+                    Row(
+                children: [Expanded(child: Image.asset('assets/banner.png'))],
+              ),
                     SizedBox(
                       height: 700,
                       child: ListView.builder(
