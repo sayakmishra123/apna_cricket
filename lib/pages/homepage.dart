@@ -54,6 +54,9 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               // const SizedBox(height: 20,),
+              Row(
+                children: [Expanded(child: Image.asset('assets/banner.png'))],
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
