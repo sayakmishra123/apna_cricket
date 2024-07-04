@@ -71,23 +71,23 @@ class WkState extends State<Wk> {
                         setState(() {});
                       },
 
-                      imageContainer: SizedBox(
-                        width: 10,
-                        height: 10,
-                        child: Image.asset(
-                          'assets/sixers.png',
-                          // width: 10,
-                          // height: 10,
-                          scale: 10,
-                        ),
-                      ),
+                      // imageContainer: SizedBox(
+                      //   width: 10,
+                      //   height: 10,
+                      //   child: Image.asset(
+                      //     'assets/sixers.png',
+                      //     // width: 10,
+                      //     // height: 10,
+                      //     scale: 10,
+                      //   ),
+                      // ),
                       title: Text(
                         getx.wk[index].playerName,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 14),
                       ),
                       subtitle: Text(
-                        'Self by 9.01%',
+                        getx.wk[index].points.toString(),
                         style: TextStyle(color: Colors.grey, fontSize: 14),
                       ),
                       trailing: Icon(
@@ -97,7 +97,7 @@ class WkState extends State<Wk> {
                     ),
                   );
                 })
-            : const Center(child: CircularProgressIndicator()),
+            : Container(),
       ),
     );
   }

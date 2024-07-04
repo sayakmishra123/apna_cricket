@@ -1,7 +1,7 @@
 import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/dashboard.dart';
 import 'package:apna_cricket/login/login.dart';
-import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
+// import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
 import 'package:apna_cricket/splash.dart';
 import 'package:flutter/material.dart';

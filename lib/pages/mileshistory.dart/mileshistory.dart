@@ -66,7 +66,7 @@ class _MilesHistoryState extends State<MilesHistory> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  'Opening balance',
+                  'Match details',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,

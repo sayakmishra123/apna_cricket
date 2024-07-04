@@ -83,7 +83,7 @@ class _ArState extends State<Ar> {
                       getx.ar[index].playerName,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    subtitle: Text(
+                    subtitle: const Text(
                       'Self by 9.01%',
                       style: TextStyle(
                         color: Colors.grey,
