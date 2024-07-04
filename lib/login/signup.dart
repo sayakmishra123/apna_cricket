@@ -255,35 +255,29 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 10),
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(() => LoginPage(),
-                                transition: Transition.leftToRight);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                // alignment: Alignment,
-                                width: MediaQuery.sizeOf(context).width - 50,
-                                child: const Text.rich(
-                                    textAlign: TextAlign.center,
-                                    TextSpan(
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 12),
-                                        text:
-                                            "By registering, i agree to Apna cricket's",
-                                        children: [
-                                          TextSpan(
-                                              text: " Terms & Consitions",
-                                              style: TextStyle(
-                                                  color: Colors.red,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14))
-                                        ])),
-                              )
-                            ],
-                          ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              // alignment: Alignment,
+                              width: MediaQuery.sizeOf(context).width - 50,
+                              child: const Text.rich(
+                                  textAlign: TextAlign.center,
+                                  TextSpan(
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 12),
+                                      text:
+                                          "By registering, i agree to Apna cricket's",
+                                      children: [
+                                        TextSpan(
+                                            text: " Terms & Consitions",
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14))
+                                      ])),
+                            )
+                          ],
                         ),
                       ),
                       Padding(

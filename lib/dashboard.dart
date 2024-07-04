@@ -33,7 +33,6 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
-     
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
@@ -136,7 +135,6 @@ class _DashBoardState extends State<DashBoard> {
         ),
       ),
       appBar: AppBar(
-        
         shape:
             ContinuousRectangleBorder(borderRadius: BorderRadius.circular(8)),
         backgroundColor: Colors.red,

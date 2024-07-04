@@ -26,6 +26,14 @@ Future loginApi(BuildContext context, String username, String password) async {
     Get.to(() => const DashBoard());
   } else {
     Get.back();
+    Get.rawSnackbar(
+        duration: Duration(seconds: 1),
+        // backgroundColor: ,
+        overlayBlur: 5,
+        barBlur: 5,
+        title: 'Invalid login',
+        message: jsondata['Data'],
+        snackStyle: SnackStyle.GROUNDED);
   }
 }
 // https://apnacricket.dthlms.in/LoginRegister/Register?UserName=sarojma123@123gmail.com&UserEmail=samaroj@123gmail.com&DeviceId=100&UserPassword=Saroj@123&UserMobileNo=091987654321&Address=kolkata&State=WB&Country=india&Pincode=7012345&FranchiseId=1
