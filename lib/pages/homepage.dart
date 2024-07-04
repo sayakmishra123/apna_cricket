@@ -41,12 +41,19 @@ class _HomePageState extends State<HomePage> {
     ['sdf', 'SAFG', 'SAsefDG', 'SDG', 'SgasG'],
     ['sadf', 'sdf', 'sergfsf', 'sdf', 'sdfasf'],
   ];
+  List matchicons = [
+    'assets/cricketlogo.jpg',
+    'assets/cricketlogo2.jpg',
+    'assets/cricketlogo3.jpg',
+    'assets/t20.jpg',
+    'assets/test.jpg'
+  ];
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.red[50],
+
       body: SizedBox(
         height: height,
         width: width,
@@ -121,35 +128,37 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              
-              const SizedBox(
-                height: 40,
-              ),
+              const SizedBox(height: 10,),
+                Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+
+                  child: Row(
+                  children: [Expanded(child: Image.asset('assets/banner.png'))],
+                                ),
+                ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    Row(
-                children: [Expanded(child: Image.asset('assets/banner.png'))],
-              ),
+                 
                     SizedBox(
                       height: 700,
                       child: ListView.builder(
                         itemCount: matches[_selectedIndex].length,
                         itemBuilder: (context, index) {
-                          return Expanded(
-                              child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: MaterialButton(
-                              height: 60,
-                              shape: ContinuousRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
-                              elevation: 10,
-                              color: Colors.white,
-                              onPressed: () {},
-                              child: Text(matches[_selectedIndex][index]),
-                            ),
-                          ));
+                          return ListTile(
+                         
+
+leading: SizedBox(
+  width: 45,
+  height: 45,
+  child: ClipRRect(
+    borderRadius: BorderRadius.circular(50),
+    child: Image.asset(matchicons[index],fit: BoxFit.cover,)),
+),
+                            title: Text(matches[_selectedIndex][index]),
+
+                          );
                         },
                       ),
                     )

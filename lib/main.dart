@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-       textTheme: GoogleFonts.poppinsTextTheme(textTheme).copyWith(
-      bodyMedium: GoogleFonts.poppins(textStyle: textTheme.bodyMedium),
+       textTheme: GoogleFonts.josefinSansTextTheme().copyWith(
+      bodyMedium: GoogleFonts.josefinSans(textStyle: textTheme.bodyMedium),
     ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         appBarTheme: AppBarTheme(),
         useMaterial3: true,
       ),

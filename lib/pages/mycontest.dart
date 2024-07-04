@@ -29,13 +29,8 @@ class _MyContestState extends State<MyContest> {
   ];
   RxBool floatingbtn = false.obs;
   final double _teamiconsize = 40;
-  late ScrollController _hideButtonController;
 
-  @override
-  void dispose() {
-    _hideButtonController.dispose();
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {
