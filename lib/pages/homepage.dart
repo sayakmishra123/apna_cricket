@@ -118,6 +118,9 @@ class _HomePageState extends State<HomePage> {
                                         ? Colors.blue
                                         : Colors.white,
                                     onPressed: () {
+                                      setState(() {
+                                        _selectedIndex = index;
+                                      });
                                       tournamentListApi(
                                           context,
                                           getx.allcontext[index].contestTypeId

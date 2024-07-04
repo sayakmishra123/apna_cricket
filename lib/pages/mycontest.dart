@@ -31,18 +31,17 @@ class _MyContestState extends State<MyContest> {
   final double _teamiconsize = 40;
   late ScrollController _hideButtonController;
 
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.red[50],
+      // backgroundColor: Colors.red[50],
       body: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               children: [
                 Expanded(
