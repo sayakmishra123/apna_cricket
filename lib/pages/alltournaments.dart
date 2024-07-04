@@ -1,7 +1,8 @@
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:flutter/material.dart';
 
 class AllTournaments extends StatelessWidget {
-  final List contests;
+  final List<AllContest> contests;
   const AllTournaments({super.key, required this.contests});
 
   @override
@@ -17,7 +18,7 @@ class AllTournaments extends StatelessWidget {
             onTap: () {},
             trailing: SizedBox(
                 width: 20, child: Icon(Icons.arrow_forward_ios_rounded)),
-            title: Text(contests[index]),
+            title: Text(contests[index].contestTypeName),
           );
         },
       ),

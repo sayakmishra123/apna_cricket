@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      home: DashBoard(),
     );
   }
 }
