@@ -215,7 +215,7 @@ class _PlayerListState extends State<PlayerList> {
               ),
             ),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [Wk(), Bat(), Ar(), Blow()],
           ),
           floatingActionButton: FloatingActionButton(

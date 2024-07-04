@@ -2,6 +2,7 @@ import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/pages/alltournaments.dart';
+import 'package:apna_cricket/pages/playerlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -184,6 +185,8 @@ class _HomePageState extends State<HomePage> {
                                           getx.tournamentList[index]
                                               .tournamentId
                                               .toString());
+
+                                      Get.to(() => const PlayerList());
                                     },
                                     // leading: SizedBox(
                                     //   width: 45,

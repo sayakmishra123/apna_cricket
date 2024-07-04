@@ -333,3 +333,37 @@ Future allmatchListApi(BuildContext context, String contestTypeId,
         snackStyle: SnackStyle.GROUNDED);
   }
 }
+
+Future currentcontextListApi(BuildContext context, String userid) async {
+  // print(contestTypeId);
+  Getx getx = Get.put(Getx());
+  // showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return const Center(child: CircularProgressIndicator());
+  //     });
+  Map<String, dynamic> data = {'userid': userid};
+  var res = await http.get(
+    Uri.https('apnacricket.dthlms.in', '/ContestType/getMyContestType')
+        .replace(queryParameters: data),
+  );
+  var jsondata = jsonDecode(res.body);
+  print(res.body);
+  print(res.statusCode);
+  if (jsondata['Result'] == true && res.statusCode == 200) {
+    List jsonList1 = jsondata['Data'] ?? [];
+    //  List jsonList2 = jsondata['UserTournament'];
+    getx.currentcontext.value =
+        jsonList1.map((json) => CurrentContest.fromJson(json)).toList();
+  } else {
+    Get.back();
+    Get.rawSnackbar(
+        duration: Duration(seconds: 1),
+        // backgroundColor: ,
+        overlayBlur: 5,
+        barBlur: 5,
+        title: 'Invalid login',
+        message: jsondata['Data'],
+        snackStyle: SnackStyle.GROUNDED);
+  }
+}

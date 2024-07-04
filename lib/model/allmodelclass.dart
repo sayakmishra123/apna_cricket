@@ -670,3 +670,139 @@ class SingleTournament {
     };
   }
 }
+
+class CurrentContest {
+  int contestTypeId;
+  int contestTeamId;
+  int tournamentMatchesID;
+  int contestId;
+  int numberOfPlayers;
+  int levelId;
+  String? contestTypeName;
+  String? team1Logo;
+  String? team2Logo;
+  String team1Name;
+  String team2Name;
+  String matchStartDate;
+  String matchStartTime;
+  String tournamentName;
+  int userId;
+  int franchiseId;
+  int sortedOrder;
+  bool isActive;
+  bool isDelete;
+  String? createdOn;
+  String? createdIP;
+  String? modifiedOn;
+  String? modifiedIP;
+  String? createdBy;
+  String? modifiedBy;
+  String? output;
+  String? output1;
+  String? output2;
+  String? output3;
+  int mode;
+
+  CurrentContest({
+    required this.contestTypeId,
+    required this.contestTeamId,
+    required this.tournamentMatchesID,
+    required this.contestId,
+    required this.numberOfPlayers,
+    required this.levelId,
+    this.contestTypeName,
+    this.team1Logo,
+    this.team2Logo,
+    required this.team1Name,
+    required this.team2Name,
+    required this.matchStartDate,
+    required this.matchStartTime,
+    required this.tournamentName,
+    required this.userId,
+    required this.franchiseId,
+    required this.sortedOrder,
+    required this.isActive,
+    required this.isDelete,
+    this.createdOn,
+    this.createdIP,
+    this.modifiedOn,
+    this.modifiedIP,
+    this.createdBy,
+    this.modifiedBy,
+    this.output,
+    this.output1,
+    this.output2,
+    this.output3,
+    required this.mode,
+  });
+
+  factory CurrentContest.fromJson(Map<String, dynamic> json) {
+    return CurrentContest(
+      contestTypeId: json['ContestTypeId'],
+      contestTeamId: json['ContestTeamId'],
+      tournamentMatchesID: json['TournamentMatchesID'],
+      contestId: json['ContestId'],
+      numberOfPlayers: json['NumberOfPlayers'],
+      levelId: json['LevelId'],
+      contestTypeName: json['ContestTypeName'],
+      team1Logo: json['Team1Logo'],
+      team2Logo: json['Team2Logo'],
+      team1Name: json['Team1Name'],
+      team2Name: json['Team2Name'],
+      matchStartDate: json['MatchStartDate'],
+      matchStartTime: json['MatchStartTime'],
+      tournamentName: json['TournamentName'],
+      userId: json['UserId'],
+      franchiseId: json['FranchiseId'],
+      sortedOrder: json['SortedOrder'],
+      isActive: json['IsActive'],
+      isDelete: json['IsDelete'],
+      createdOn: json['CreatedOn'],
+      createdIP: json['CreatedIP'],
+      modifiedOn: json['ModifiedOn'],
+      modifiedIP: json['ModifiedIP'],
+      createdBy: json['CreatedBy'],
+      modifiedBy: json['ModifiedBy'],
+      output: json['Output'],
+      output1: json['Output1'],
+      output2: json['Output2'],
+      output3: json['Output3'],
+      mode: json['mode'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'ContestTypeId': contestTypeId,
+      'ContestTeamId': contestTeamId,
+      'TournamentMatchesID': tournamentMatchesID,
+      'ContestId': contestId,
+      'NumberOfPlayers': numberOfPlayers,
+      'LevelId': levelId,
+      'ContestTypeName': contestTypeName,
+      'Team1Logo': team1Logo,
+      'Team2Logo': team2Logo,
+      'Team1Name': team1Name,
+      'Team2Name': team2Name,
+      'MatchStartDate': matchStartDate.toString(),
+      'MatchStartTime': matchStartTime,
+      'TournamentName': tournamentName,
+      'UserId': userId,
+      'FranchiseId': franchiseId,
+      'SortedOrder': sortedOrder,
+      'IsActive': isActive,
+      'IsDelete': isDelete,
+      'CreatedOn': createdOn?.toString(),
+      'CreatedIP': createdIP,
+      'ModifiedOn': modifiedOn?.toString(),
+      'ModifiedIP': modifiedIP,
+      'CreatedBy': createdBy,
+      'ModifiedBy': modifiedBy,
+      'Output': output,
+      'Output1': output1,
+      'Output2': output2,
+      'Output3': output3,
+      'mode': mode,
+    };
+  }
+}

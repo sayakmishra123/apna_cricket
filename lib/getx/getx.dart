@@ -13,6 +13,8 @@ class Getx extends GetxController {
   RxList<Player> wk = <Player>[].obs;
   RxList<AllContest> allcontext = <AllContest>[].obs;
   RxList<AllTournament> tournamentList = <AllTournament>[].obs;
+  RxList<CurrentContest> currentcontext = <CurrentContest>[].obs;
+  // RxList<CurrentContest> currentcontext = <CurrentContest>[].obs;
 }
 
 class SelectionControllerWk extends GetxController {
