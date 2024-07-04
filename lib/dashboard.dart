@@ -1,7 +1,8 @@
 import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/homepage.dart';
-import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
+import 'package:apna_cricket/pages/mileshistory.dart/mileshistory.dart';
+
 import 'package:apna_cricket/pages/morepage.dart';
 import 'package:apna_cricket/pages/mycontest.dart';
 import 'package:apna_cricket/pages/profilepage.dart';

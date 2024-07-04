@@ -1,6 +1,6 @@
 import 'package:apna_cricket/dashboard.dart';
 import 'package:apna_cricket/login/login.dart';
-import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
+// import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
 import 'package:apna_cricket/splash.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Apna Crikcet',
       theme: ThemeData(
-       textTheme: GoogleFonts.poppinsTextTheme(textTheme).copyWith(
-      bodyMedium: GoogleFonts.poppins(textStyle: textTheme.bodyMedium),
-    ),
+        textTheme: GoogleFonts.poppinsTextTheme(textTheme).copyWith(
+          bodyMedium: GoogleFonts.poppins(textStyle: textTheme.bodyMedium),
+        ),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         appBarTheme: AppBarTheme(),
         useMaterial3: true,

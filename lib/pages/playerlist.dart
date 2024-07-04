@@ -79,7 +79,9 @@ class _PlayerListState extends State<PlayerList> {
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             bottom: PreferredSize(
-                preferredSize: Size.fromHeight(190),
+                preferredSize: getx.add.value == 0
+                    ? Size.fromHeight(140)
+                    : Size.fromHeight(190),
                 child: Column(
                   children: [
                     Container(
@@ -87,11 +89,15 @@ class _PlayerListState extends State<PlayerList> {
                       child: Row(
                         children: [
                           Expanded(
-                            child: Container(
-                              color: Colors.orange,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text('A1')],
+                            child: Card(
+                              elevation: 10,
+                              child: Container(
+                                height: 50,
+                                color: Colors.orange,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [Text('A1')],
+                                ),
                               ),
                             ),
                           ),
@@ -104,89 +110,122 @@ class _PlayerListState extends State<PlayerList> {
                             ),
                           ),
                           Expanded(
-                            child: Container(
-                              color: Colors.amber,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text('A2')],
+                            child: Card(
+                              elevation: 20,
+                              child: Container(
+                                height: 50,
+                                color: Colors.amber,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [Text('A2')],
+                                ),
                               ),
                             ),
                           )
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 10),
+                    //   child: Row(
+                    //     children: [
+                    //       Text(
+                    //         'Total selected player ${getx.add.value}/22',
+                    //         style: TextStyle(
+                    //             color: Color.fromARGB(255, 52, 194, 9),
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    Visibility(
+                      visible: getx.add.value == 0 ? false : true,
                       child: Row(
                         children: [
-                          Text(
-                            'Total selected player ${getx.add.value}/22'
-                                .toUpperCase(),
-                            style: TextStyle(
-                                color: Colors.orange[200],
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          // color: Colors.green,
-                          width: MediaQuery.sizeOf(context).width - 50,
-                          height: 20,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: getx.add.value,
-                            itemBuilder: (context, index) => Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Container(
-                                color: Colors.yellow,
-                                // margin: EdgeInsets.only(right: 2),
-                                width: 10,
-                                height: 3,
-                                // child: Text(getx.add.value.toString()),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            // color: Colors.green,
+                            width: MediaQuery.sizeOf(context).width - 50,
+                            height: 20,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: getx.add.value,
+                              itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: Container(
+                                  color: Colors.green,
+                                  // margin: EdgeInsets.only(right: 2),
+                                  width: 10,
+                                  height: 3,
+                                  // child: Text(getx.add.value.toString()),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              getx.add.value = 0;
-                              controllerAr.selectedIndices.clear();
-                              controllerBat.selectedIndices.clear();
-                              controllerBlow.selectedIndices.clear();
-                              controllerWk.selectedIndices.clear();
-                            },
-                            icon: Icon(
-                              Icons.remove_circle,
-                              color: Colors.white,
-                            ))
-                      ],
+                          IconButton(
+                              onPressed: () {
+                                getx.add.value = 0;
+                                controllerAr.selectedIndices.clear();
+                                controllerBat.selectedIndices.clear();
+                                controllerBlow.selectedIndices.clear();
+                                controllerWk.selectedIndices.clear();
+                              },
+                              icon: Icon(
+                                Icons.remove_circle,
+                                color: Colors.white,
+                              ))
+                        ],
+                      ),
                     ),
-                    const TabBar(
-                        isScrollable: false,
-                        labelStyle: TextStyle(color: Colors.white),
-                        tabs: [
-                          Tab(
-                            text: 'WK(1)',
-                          ),
-                          Tab(
-                            text: 'BAT(1)',
-                          ),
-                          Tab(
-                            text: 'AR(1)',
-                          ),
-                          Tab(
-                            text: 'BOWL(1)',
-                          )
-                        ]),
+                    Container(
+                      width: MediaQuery.sizeOf(context).width,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                        Color.fromARGB(255, 194, 20, 7),
+                        const Color.fromARGB(255, 0, 0, 0)
+                      ], transform: GradientRotation(2))),
+
+                      // color: Color.fromARGB(255, 1, 9, 37),
+                      child: TabBar(
+                          overlayColor: MaterialStatePropertyAll(Colors.green),
+                          tabAlignment: TabAlignment.center,
+                          // unselectedLabelColor: Colors.red,
+                          automaticIndicatorColorAdjustment: true,
+                          dividerColor: Colors.red,
+                          // indicatorColor: Colors.,
+                          // indicator: BoxDecoration(color: Colors.red),
+                          isScrollable: false,
+                          labelStyle: TextStyle(color: Colors.white),
+                          tabs: [
+                            Tab(
+                              text: 'WK(${getx.wk.length})',
+                            ),
+                            Tab(
+                              text: 'BAT(${getx.bat.length})',
+                            ),
+                            Tab(
+                              text: 'AR(${getx.ar.length})',
+                            ),
+                            Tab(
+                              text: 'BOWL(${getx.blow.length})',
+                            )
+                          ]),
+                    ),
                   ],
                 )),
           ),
           body: TabBarView(
             children: [Wk(), Bat(), Ar(), Blow()],
+          ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: getx.add.value == 22 ? Colors.green : Colors.grey,
+            onPressed: () {},
+            child: getx.add.value == 22
+                ? Text(
+                    'Next',
+                    style: TextStyle(color: Colors.white),
+                  )
+                : Text('Next', style: TextStyle(color: Colors.white)),
           ),
         ),
       ),
