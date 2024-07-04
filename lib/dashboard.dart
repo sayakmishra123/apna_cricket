@@ -169,13 +169,14 @@ class _DashBoardState extends State<DashBoard> {
           ],
         ),
       ),
+     
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Colors.red, Colors.black],
-                  transform: GradientRotation(2))),
-        ),
+        //  flexibleSpace: Container(
+        //   decoration: const BoxDecoration(
+        //       gradient: LinearGradient(
+        //           colors: [Colors.red, Colors.black],
+        //           transform: GradientRotation(2))),
+        // ),
         shape:
             ContinuousRectangleBorder(borderRadius: BorderRadius.circular(8)),
         // backgroundColor: Colors.red,
@@ -196,12 +197,12 @@ class _DashBoardState extends State<DashBoard> {
           )
         ],
         automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            SizedBox(
-                height: 60, width: 60, child: Image.asset('assets/logo.png'))
-          ],
-        ),
+        // title: Row(
+        //   children: [
+        //     SizedBox(
+        //         height: 60, width: 60, child: Image.asset('assets/logo.png'))
+        //   ],
+        // ),
       ),
       body: pages[_selectedIndex.value],
       bottomNavigationBar: NavigationBar(
