@@ -186,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                                               .tournamentId
                                               .toString());
 
-                                      Get.to(() => const PlayerList());
+                                      Get.to(() => PlayerList());
                                     },
                                     // leading: SizedBox(
                                     //   width: 45,
