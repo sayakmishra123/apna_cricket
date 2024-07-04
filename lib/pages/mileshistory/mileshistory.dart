@@ -27,6 +27,13 @@ class _MilesHistoryState extends State<MilesHistory> {
   }
 
   @override
+  void dispose() {
+    getx.mileshistory.clear();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.red[50],

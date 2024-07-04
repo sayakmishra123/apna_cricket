@@ -8,9 +8,9 @@ class Getx extends GetxController {
   RxList mileshistory = [].obs;
 
   RxList<Player> bat = <Player>[].obs;
-  RxList blow = [].obs;
-  RxList ar = [].obs;
-  RxList wk = [].obs;
+  RxList<Player> blow = <Player>[].obs;
+  RxList<Player> ar = <Player>[].obs;
+  RxList<Player> wk = <Player>[].obs;
   // RxBool isSelected = false.obs;
 }
 

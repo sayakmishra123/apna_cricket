@@ -207,21 +207,33 @@ Future teamplayersListApi(BuildContext context) async {
     );
 
     var jsondata = jsonDecode(res.body);
-    print(res.statusCode);
-    // print(res.body);
-    // print(res.statusCode.toString());
     if (jsondata['Result'] == true && res.statusCode == 200) {
-      // Get.back();
-      print(jsondata['Batsmans']);
-      dynamic jsonList = json.decode(jsondata['Batsmans']);
-      getx.bat.value = jsonList.map((json) => Player.fromJson(json)).toList();
+      List jsonList1 = jsondata['Batsmans'];
+      getx.bat.value = jsonList1.map((json) => Player.fromJson(json)).toList();
       for (var player in getx.bat) {
         print('Player Name: ${player.playerName}, Team: ${player.teamName}');
       }
+      List jsonList2 = jsondata['Bowlers'];
+      getx.blow.value = jsonList2.map((json) => Player.fromJson(json)).toList();
+      for (var player in getx.blow) {
+        print('Player Name: ${player.playerName}, Team: ${player.teamName}');
+      }
+
+      List jsonList3 = jsondata['WecketKeepers'];
+      getx.wk.value = jsonList3.map((json) => Player.fromJson(json)).toList();
+      for (var player in getx.wk) {
+        print('Player Name: ${player.playerName}, Team: ${player.teamName}');
+      }
+      List jsonList4 = jsondata['Allrounders'];
+      getx.ar.value = jsonList4.map((json) => Player.fromJson(json)).toList();
+      for (var player in getx.ar) {
+        print('Player Name: ${player.playerName}, Team: ${player.teamName}');
+      }
+      Get.back();
     } else {
       Get.back();
       Get.rawSnackbar(
-          duration: Duration(seconds: 1),
+          duration: const Duration(seconds: 1),
           // backgroundColor: ,
           overlayBlur: 5,
           barBlur: 5,
