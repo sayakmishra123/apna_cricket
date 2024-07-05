@@ -1,6 +1,7 @@
 import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/dashboard.dart';
 import 'package:apna_cricket/login/login.dart';
+import 'package:apna_cricket/pages/captannchoose/captainchoose.dart';
 import 'package:apna_cricket/pages/contextdeatils.dart';
 // import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
