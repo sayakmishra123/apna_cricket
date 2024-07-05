@@ -1,3 +1,5 @@
+
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
@@ -23,151 +25,264 @@ class JoinTeam extends StatelessWidget {
                   child: ListView.builder(
                 itemCount: 3,
                 itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.all(15),
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 7,
-                          spreadRadius: 1,
-                          offset: Offset(5, 5),
-                        )
-                      ],
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text('30-06-24'),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(heading),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
+                  return Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Container(
+                              margin: EdgeInsets.symmetric(vertical: 10),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: MyColors.thirty
+                                            .withOpacity(0.08),
+                                        blurRadius: 20,
+                                        offset: const Offset(10, 10)),
+                                  ]),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SizedBox(
-                                      width: _teamiconsize,
-                                      child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          child: Image.asset(
-                                              'assets/sixers.png'))),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  const Text(
-                                    'Dambullar Sixers',
-                                    style: TextStyle(
-                                        color: Colors.black54, fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 4),
-                              child: SizedBox(
-                                width: 50,
-                                height: 40,
-                                child: DefaultTextStyle(
-                                  style: const TextStyle(
-                                    fontSize: 35,
-                                    color: Colors.red,
-                                    shadows: [
-                                      Shadow(
-                                        blurRadius: 10.0,
-                                        color: Colors.red,
-                                        offset: Offset(0, 0),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              gradient:
+                                                  LinearGradient(colors: [
+                                            Colors.transparent,
+                                            Colors.transparent,
+                  
+                                            Colors.grey.withOpacity(0.05),
+                                            Colors.grey.withOpacity(0.3),
+                                            Colors.grey.withOpacity(0.05),
+                  
+                  
+                                            Colors.transparent,
+                                            Colors.transparent,
+                  
+                                          ])),
+                                          child: Center(
+                                              child: Padding(
+                                                  padding:
+                                                      const EdgeInsets
+                                                          .all(5),
+                                                  child: Text(
+                                                   'ABC',
+                                                    style:
+                                                        const TextStyle(
+                                                            color: Colors
+                                                                .black54,fontWeight: FontWeight.w800),
+                                                  ))),
+                                        ),
                                       ),
                                     ],
                                   ),
-                                  child: AnimatedTextKit(
-                                    repeatForever: true,
-                                    animatedTexts: [
-                                      FlickerAnimatedText('VS'),
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(20),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .center,
+                                                children: [
+                                                  Container(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10),
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    30),
+                                                        gradient:
+                                                            RadialGradient(
+                                                                colors: [
+                                                              Colors
+                                                                  .black,
+                                                              MyColors
+                                                                  .thirty
+                                                                  .withOpacity(
+                                                                      0.2)
+                                                            ])),
+                                                    child: SizedBox(
+                                                        width:
+                                                            _teamiconsize,
+                                                        child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50),
+                                                            child: Image
+                                                                .asset(
+                                                                    'assets/sixers.png'))),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    'ENGLAND',
+                                                    style:
+                                                        const TextStyle(
+                                                            color: Colors
+                                                                .black54,
+                                                            fontSize: 12),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                  color: Colors.black54,
+                                              width: 40,
+                                              height: 1,
+                                              child: const SizedBox(),
+                                            ),
+                                            SizedBox(
+                                              width: 70,
+                                              height: 70,
+                                              child: Center(
+                                                child: AnimatedTextKit(
+                                                  repeatForever: true,
+                                                  animatedTexts: [
+                                                    FlickerAnimatedText(
+                                                      speed: Durations.extralong1,
+                                                        'VS',
+                                                        textStyle: const TextStyle(
+                                                            fontSize: 30,
+                                                            color: Colors
+                                                                .amber,
+                                                            shadows: [
+                                                              Shadow(
+                                                                  blurRadius:
+                                                                      12,
+                                                                  color: Colors
+                                                                      .amber)
+                                                            ])),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                             Container(
+                  color: Colors.black54,
+                                              width: 40,
+                                              height: 1,
+                                              child: const SizedBox(),
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10),
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    30),
+                                                        gradient:
+                                                            RadialGradient(
+                                                                colors: [
+                                                              Colors
+                                                                  .black,
+                                                              MyColors
+                                                                  .thirty
+                                                                  .withOpacity(
+                                                                      0.2)
+                                                            ])),
+                                                    child: SizedBox(
+                                                        width:
+                                                            _teamiconsize,
+                                                        child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50),
+                                                            child: Image
+                                                                .asset(
+                                                                    'assets/jaffna.jfif'))),
+                                                  ),
+                                                  Text(
+                                                      'INDIA',
+                                                      style:
+                                                          const TextStyle(
+                                                              color: Colors
+                                                                  .black54,
+                                                              fontSize:
+                                                                  12)),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                    
+                                        const SizedBox(height: 20,),
+                                        Row(
+                                          
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [Expanded(
+                                            child: Container(
+                                              margin: const EdgeInsets.symmetric(horizontal: 20),
+                                                                                          color: Colors.black12,
+                                              
+                                                height: 1,
+                                                child: const SizedBox(),
+                                              ),
+                                          ),],
+                                        ),
+                                        const SizedBox(height: 10,),
+                  
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text(
+                                             'time',
+                                              style: const TextStyle(
+                                                  fontSize: 15,fontWeight: FontWeight.w400),
+                                            ),
+                                            
+                  InkWell(
+                        onTap: () {
+                          Get.to(() => PlayerList());
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.green,
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 30),
+                          child: const Text(
+                            'Join',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      )
+                  
+                  
+                                            // const Text("Entry Ended"),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                      width: _teamiconsize,
-                                      child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          child: Image.asset(
-                                              'assets/jaffna.jfif'))),
-                                  const Text('Jaffna Kinga',
-                                      style: TextStyle(
-                                          color: Colors.black54, fontSize: 16)),
                                 ],
                               ),
                             ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5),
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    color: Colors.blue),
-                                child: Text('20.00 Minutes'))
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Get.to(() => PlayerList());
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.green,
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 30),
-                                child: const Text(
-                                  'Join',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                      // const SizedBox(height: 20)
+                    ],
                   );
                 },
               ))
@@ -176,3 +291,9 @@ class JoinTeam extends StatelessWidget {
         ));
   }
 }
+
+
+
+
+
+
