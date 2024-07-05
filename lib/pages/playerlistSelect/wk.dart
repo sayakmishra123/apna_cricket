@@ -67,7 +67,7 @@ class WkState extends State<Wk> {
                           ? Colors.amber.withOpacity(0.2)
                           : Colors.transparent,
                       onTap: () {
-                        controller.toggleSelection(index);
+                        controller.toggleSelection(index, getx.wk[index]);
                         setState(() {});
                       },
 

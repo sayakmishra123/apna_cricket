@@ -270,9 +270,10 @@ class _CpatainchooseState extends State<Cpatainchoose> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton(
+        disabledElevation: 50,
         onPressed: () {},
-        label: const Text(
+        child: const Text(
           'Save',
           style: TextStyle(color: Colors.white),
         ),

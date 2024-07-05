@@ -26,17 +26,17 @@ class SelectionControllerWk extends GetxController {
   Getx getx = Get.put(Getx());
   RxList selectedIndices = <int>[].obs;
 
-  void toggleSelection(int index) {
+  void toggleSelection(int index, Player wk) {
     if (selectedIndices.contains(index)) {
       selectedIndices.remove(index);
       getx.add--;
-      getx.selectedplayer.remove(getx.wk[index]);
+      getx.selectedplayer.remove(wk);
     } else {
       if (getx.add.value < 22) {
         selectedIndices.add(index);
         getx.add++;
         // if (selectedIndices.contains(index)) {
-        getx.selectedplayer.add(getx.wk[index]);
+        getx.selectedplayer.add(wk);
         // } else {
 
         // }
@@ -49,16 +49,16 @@ class SelectionControllerBlow extends GetxController {
   Getx getx = Get.put(Getx());
   RxList selectedIndices = <int>[].obs;
 
-  void toggleSelection(int index) {
+  void toggleSelection(int index, Player blow) {
     if (selectedIndices.contains(index)) {
       selectedIndices.remove(index);
       getx.add--;
-      getx.selectedplayer.remove(getx.wk[index]);
+      getx.selectedplayer.remove(blow);
     } else {
       if (getx.add.value < 22) {
         selectedIndices.add(index);
         getx.add++;
-        getx.selectedplayer.add(getx.wk[index]);
+        getx.selectedplayer.add(blow);
       }
     }
   }
@@ -68,16 +68,16 @@ class SelectionControllerBat extends GetxController {
   Getx getx = Get.put(Getx());
   RxList selectedIndices = <int>[].obs;
 
-  void toggleSelection(int index) {
+  void toggleSelection(int index, Player bat) {
     if (selectedIndices.contains(index)) {
       selectedIndices.remove(index);
       getx.add--;
-      getx.selectedplayer.remove(getx.wk[index]);
+      getx.selectedplayer.remove(bat);
     } else {
       if (getx.add.value < 22) {
         selectedIndices.add(index);
         getx.add++;
-        getx.selectedplayer.add(getx.wk[index]);
+        getx.selectedplayer.add(bat);
       }
     }
   }
@@ -87,16 +87,16 @@ class SelectionControllerAr extends GetxController {
   Getx getx = Get.put(Getx());
   RxList selectedIndices = <int>[].obs;
 
-  void toggleSelection(int index) {
+  void toggleSelection(int index, Player ar) {
     if (selectedIndices.contains(index)) {
       selectedIndices.remove(index);
       getx.add--;
-      getx.selectedplayer.remove(getx.wk[index]);
+      getx.selectedplayer.remove(ar);
     } else {
       if (getx.add.value < 22) {
         selectedIndices.add(index);
         getx.add++;
-        getx.selectedplayer.add(getx.wk[index]);
+        getx.selectedplayer.add(ar);
       }
     }
   }

@@ -40,6 +40,18 @@ class _PlayerListState extends State<PlayerList> {
   }
 
   @override
+  void dispose() {
+    getx.add.value = 0;
+    controllerAr.selectedIndices.clear();
+    controllerBat.selectedIndices.clear();
+    controllerBlow.selectedIndices.clear();
+    controllerWk.selectedIndices.clear();
+    getx.selectedplayer.clear();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
@@ -223,6 +235,7 @@ class _PlayerListState extends State<PlayerList> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: getx.add.value == 22 ? Colors.green : Colors.grey,
             onPressed: () {
+              print(getx.selectedplayer.length);
               if (getx.selectedplayer.length == 22) {
                 Get.to(() => Cpatainchoose(getx.selectedplayer));
               }

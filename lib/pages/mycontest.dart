@@ -77,15 +77,11 @@ class _MyContestState extends State<MyContest> {
                                                         LinearGradient(colors: [
                                                   Colors.transparent,
                                                   Colors.transparent,
-
                                                   Colors.grey.withOpacity(0.05),
                                                   Colors.grey.withOpacity(0.3),
                                                   Colors.grey.withOpacity(0.05),
-
-
                                                   Colors.transparent,
                                                   Colors.transparent,
-
                                                 ])),
                                                 child: Center(
                                                     child: Padding(
@@ -97,10 +93,12 @@ class _MyContestState extends State<MyContest> {
                                                               .currentcontext[
                                                                   index]
                                                               .tournamentName,
-                                                          style:
-                                                              const TextStyle(
-                                                                  color: Colors
-                                                                      .black54,fontWeight: FontWeight.w800),
+                                                          style: const TextStyle(
+                                                              color: Colors
+                                                                  .black54,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w800),
                                                         ))),
                                               ),
                                             ),
@@ -123,8 +121,8 @@ class _MyContestState extends State<MyContest> {
                                                       children: [
                                                         Container(
                                                           padding:
-                                                              const EdgeInsets.all(
-                                                                  10),
+                                                              const EdgeInsets
+                                                                  .all(10),
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   BorderRadius
@@ -170,7 +168,7 @@ class _MyContestState extends State<MyContest> {
                                                     ),
                                                   ),
                                                   Container(
-color: Colors.black54,
+                                                    color: Colors.black54,
                                                     width: 40,
                                                     height: 1,
                                                     child: const SizedBox(),
@@ -183,13 +181,16 @@ color: Colors.black54,
                                                         repeatForever: true,
                                                         animatedTexts: [
                                                           FlickerAnimatedText(
-                                                            speed: Durations.extralong1,
+                                                              speed: Durations
+                                                                  .extralong1,
                                                               'VS',
-                                                              textStyle: const TextStyle(
-                                                                  fontSize: 30,
-                                                                  color: Colors
-                                                                      .amber,
-                                                                  shadows: [
+                                                              textStyle:
+                                                                  const TextStyle(
+                                                                      fontSize:
+                                                                          30,
+                                                                      color: Colors
+                                                                          .amber,
+                                                                      shadows: [
                                                                     Shadow(
                                                                         blurRadius:
                                                                             12,
@@ -200,8 +201,8 @@ color: Colors.black54,
                                                       ),
                                                     ),
                                                   ),
-                                                   Container(
-color: Colors.black54,
+                                                  Container(
+                                                    color: Colors.black54,
                                                     width: 40,
                                                     height: 1,
                                                     child: const SizedBox(),
@@ -211,8 +212,8 @@ color: Colors.black54,
                                                       children: [
                                                         Container(
                                                           padding:
-                                                              const EdgeInsets.all(
-                                                                  10),
+                                                              const EdgeInsets
+                                                                  .all(10),
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   BorderRadius
@@ -256,31 +257,39 @@ color: Colors.black54,
                                                   ),
                                                 ],
                                               ),
-                                          
-                                              const SizedBox(height: 20,),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
                                               Row(
-                                                
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [Expanded(
-                                                  child: Container(
-                                                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                                                                                                color: Colors.black12,
-                                                    
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Expanded(
+                                                    child: Container(
+                                                      margin: const EdgeInsets
+                                                          .symmetric(
+                                                          horizontal: 20),
+                                                      color: Colors.black12,
                                                       height: 1,
                                                       child: const SizedBox(),
                                                     ),
-                                                ),],
+                                                  ),
+                                                ],
                                               ),
-                                              const SizedBox(height: 10,),
-
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     getx.currentcontext[index]
                                                         .matchStartDate,
                                                     style: const TextStyle(
-                                                        fontSize: 15,fontWeight: FontWeight.w400),
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w400),
                                                   ),
                                                   // const Text("Entry Ended"),
                                                 ],
@@ -302,7 +311,6 @@ color: Colors.black54,
                   ),
                 ),
               ),
-              
             ],
           ),
         ),
