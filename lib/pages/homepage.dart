@@ -5,7 +5,6 @@ import 'package:apna_cricket/pages/alltournaments.dart';
 import 'package:apna_cricket/pages/jointeampage.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,35 +18,7 @@ class _HomePageState extends State<HomePage> {
   var heading = const TextStyle(fontSize: 16);
   Getx getx = Get.put(Getx());
   int _selectedIndex = 0;
-  List contests = [
-    "All Match Contest",
-    "Single Match Contest",
-    "double Match Contest",
-    "All Match Contest",
-    "Single Match Contest",
-    "double Match Contest",
-    "All Match Contest",
-    "Single Match Contest",
-    "double Match Contest",
-    "double Match Contest",
-  ];
-  List matches = [
-    [
-      'T20',
-      'TEST MATCH',
-      'WTC20',
-      'T20',
-    ],
-    ['TEST MATCH', 'WTC20', 'SDG', 'TEST MATCH', 'abc20'],
-    ['SDGSDFGDG', 'DrFG', 'SDgFG', 'SDggFGH', 'YHgaIKT'],
-    ['frthrthawerF', 'SaergG', 'SADG', 'SDG', 'SG'],
-    ['sfsf', 'SAFG', 'SADG', 'SDgwG', 'SgawgG'],
-    ['sf', 'SAFG', 'SAergDG', 'SDgG', 'SgG'],
-    ['sdf', 'SAFG', 'SArgDG', 'SDgG', 'SggG'],
-    ['sadf', 'SAFG', 'SergADG', 'SDgwergG', 'SG'],
-    ['sdf', 'SAFG', 'SAsefDG', 'SDG', 'SgasG'],
-    ['sadf', 'sdf', 'sergfsf', 'sdf', 'sdfasf'],
-  ];
+
   List matchicons = [
     'assets/cricketlogo.jpg',
     'assets/cricketlogo2.jpg',
@@ -61,7 +32,6 @@ class _HomePageState extends State<HomePage> {
     WidgetsBinding.instance
         .addPostFrameCallback((timeStamp) => contestListApi(context));
 
-    // TODO: implement initState
     super.initState();
   }
 
@@ -87,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                       style: heading,
                     ),
                     TextButton(
-                        style: ButtonStyle(),
+                        style: const ButtonStyle(),
                         onPressed: () {
                           Get.to(AllTournaments(
                             contests: getx.allcontext,
@@ -149,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             )
-                          : Center(child: CircularProgressIndicator()),
+                          : const Center(child: CircularProgressIndicator()),
                     ),
                   ),
                 ],
@@ -163,6 +133,7 @@ class _HomePageState extends State<HomePage> {
                   children: [Expanded(child: Image.asset('assets/banner.png'))],
                 ),
               ),
+              const SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -234,54 +205,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   child: Column(
-              //     children: [
-              //       SizedBox(
-              //         height: 700,
-              //         child: Obx(
-              //           () => getx.tournamentList.isNotEmpty
-              //               ? ListView.builder(
-              //                   itemCount: getx.tournamentList.length,
-              //                   itemBuilder: (context, index) {
-              //                     return ListTile(
-              //                       onTap: () {
-              // allmatchListApi(
-              //     context,
-              //     getx.tournamentList[index]
-              //         .contestTypeId
-              //         .toString(),
-              //     getx.tournamentList[index].userId
-              //         .toString(),
-              //     getx.tournamentList[index]
-              //         .tournamentId
-              //         .toString());
-
-              //                         Get.to(() => JoinTeam(heading: 'WTC'));
-              //                       },
-              //                       // leading: SizedBox(
-              //                       //   width: 45,
-              //                       //   height: 45,
-              //                       //   child: ClipRRect(
-              //                       //       borderRadius:
-              //                       //           BorderRadius.circular(50),
-              //                       //       child: Image.asset(
-              //                       //         matchicons[index],
-              //                       //         fit: BoxFit.cover,
-              //                       //       )),
-              //                       // ),
-              //   title: Text(getx
-              //       .tournamentList[index].tournamentName),
-              // );
-              //                   },
-              //                 )
-              //               : Center(child: CircularProgressIndicator()),
-              //         ),
-              //       )
-              //     ],
-              //   ),
-              // )
+              
             ],
           ),
         ),

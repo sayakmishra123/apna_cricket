@@ -29,10 +29,10 @@ class MyApp extends StatelessWidget {
           bodyMedium: GoogleFonts.josefinSans(textStyle: textTheme.bodyMedium),
         ),
         colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
-        appBarTheme: AppBarTheme(),
+       
         useMaterial3: true,
       ),
-      home: const DashBoard(),
+      home: const SplashScreen(),
     );
   }
 }

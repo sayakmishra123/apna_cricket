@@ -1,4 +1,5 @@
 import 'package:apna_cricket/api/allapifetch.dart';
+import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/homepage.dart';
 import 'package:apna_cricket/pages/mileshistory.dart/mileshistory.dart';
@@ -49,7 +50,7 @@ class _DashBoardState extends State<DashBoard> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      getshareddata();
+      // getshareddata();
     });
     // TODO: implement initState
     super.initState();
@@ -115,53 +116,25 @@ class _DashBoardState extends State<DashBoard> {
                   ),
                 ),
                 ListTile(
-                  title: const Row(
-                    children: [
-                      Icon(Icons.attach_money_outlined),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text('Miles History'),
-                    ],
-                  ),
+                  leading: const Icon(Icons.attach_money_outlined),
+                  title: const Text('Fantasy Miles'),
                   onTap: () {
                     Get.to(() => MilesHistory(user.userId));
                   },
                 ),
                 ListTile(
-                  title: const Row(
-                    children: [
-                      Icon(Icons.lock_outlined),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text('Change Password'),
-                    ],
-                  ),
+                  leading: const Icon(Icons.lock_outlined),
+                  title: const Text('Change Password'),
                   onTap: () {},
                 ),
                 ListTile(
-                  title: const Row(
-                    children: [
-                      Icon(Icons.more_horiz_rounded),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text('More'),
-                    ],
-                  ),
+                  leading: const Icon(Icons.more_horiz_rounded),
+                  title: const Text('More'),
                   onTap: () {},
                 ),
                 ListTile(
-                  title: const Row(
-                    children: [
-                      Icon(Icons.logout_rounded),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text('Log Out'),
-                    ],
-                  ),
+                  title: const Text('Log Out'),
+                  leading: const Icon(Icons.logout_rounded),
                   onTap: () {},
                 ),
               ],
@@ -169,14 +142,13 @@ class _DashBoardState extends State<DashBoard> {
           ],
         ),
       ),
-     
       appBar: AppBar(
-        //  flexibleSpace: Container(
-        //   decoration: const BoxDecoration(
-        //       gradient: LinearGradient(
-        //           colors: [Colors.red, Colors.black],
-        //           transform: GradientRotation(2))),
-        // ),
+         flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [MyColors.thirty, Colors.black87],
+                  transform: GradientRotation(2))),
+        ),
         shape:
             ContinuousRectangleBorder(borderRadius: BorderRadius.circular(8)),
         // backgroundColor: Colors.red,
@@ -203,7 +175,7 @@ class _DashBoardState extends State<DashBoard> {
         //         height: 60, width: 60, child: Image.asset('assets/logo.png'))
         //   ],
         // ),
-        title: Text('Apna Cricket'),
+        title:  Text('Apna Cricket',style: TextStyle(color: Colors.white),),
       ),
       body: pages[_selectedIndex.value],
       bottomNavigationBar: NavigationBar(
