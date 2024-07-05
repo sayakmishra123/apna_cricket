@@ -21,10 +21,10 @@ class UserPreferences {
   // Retrieve user data
   Future<User?> getUser() async {
     prefs = await SharedPreferences.getInstance();
-    String? userJson = prefs.getString(_userKey);
+    String? userJson = prefs.getString(_userKey)?? 'no';
     print(userJson);
 
-    if (userJson != null) {
+    if (userJson!='no') {
       Map<String, dynamic> userMap = json.decode(userJson);
       print(userMap['UserId']);
       print('shared');
