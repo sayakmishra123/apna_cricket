@@ -57,6 +57,12 @@ class _AllTournamentsState extends State<AllTournaments> {
             color: Colors.white,
             shadowColor: Colors.black12,
             child: ExpansionTile(
+             onExpansionChanged: (value) {
+               tournamentListApi(
+                                          context,
+                                          getx.allcontext[index].contestTypeId
+                                              .toString());
+             },
               leading: SizedBox(
                 height: 40,
                 width: 40,
