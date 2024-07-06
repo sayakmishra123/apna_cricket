@@ -26,7 +26,7 @@ class Getx extends GetxController {
   RxList<AllTournament> tournamentList = <AllTournament>[].obs;
   RxList<CurrentContest> currentcontext = <CurrentContest>[].obs;
   RxList<ContestHistory> contesthistory = <ContestHistory>[].obs;
-
+RxList<Player> selectedplayer = <Player>[].obs;
   // RxList<CurrentContest> currentcontext = <CurrentContest>[].obs;
 }
 

@@ -48,7 +48,12 @@ class _DashBoardState extends State<DashBoard> {
   //     isActive: false,
   //     isDelete: false,
   //     mode: 0);
-
+@override
+  void initState() {
+    getshareddata();
+    // TODO: implement initState
+    super.initState();
+  }
 User? user ;
 
   Future getshareddata() async {
@@ -59,153 +64,148 @@ User? user ;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: getshareddata(),
-      builder: (context,snap) {
-       return  user != null ?
-
-        
-       DefaultTabController(
-          length: 2,
-          child: Scaffold(
-            key: _key,
-            drawer: Drawer(
-          
-              child: ListView(
-         
-                padding: EdgeInsets.zero,
-                children: [
-                  DrawerHeader(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            colors: [Colors.red, Colors.black],
-                            transform: GradientRotation(2))),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 60,
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(100),
-                                    child: Image.asset(
-                                      'assets/nodp.jpg',
-                                      fit: BoxFit.cover,
-                                    )),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    user!.userName,
-                                    style: profilestyle,
-                                  ),
-                                  Text(user!.userEmail, style: profilestyle),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.attach_money_outlined),
-                    title: const Text('Fantasy Miles'),
-                    onTap: () {
-                      Get.to(() => MilesHistory(user!.userId));
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.lock_outlined),
-                    title: const Text('Change Password'),
-                    onTap: () {
-                      Get.to(()=> const ChangePassword());
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.more_horiz_rounded),
-                    title: const Text('More'),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    title: const Text('Log Out'),
-                    leading: const Icon(Icons.logout_rounded),
-                    onTap: () {},
-                  ),
-                ],
-              ),
-            ),
-            appBar: AppBar(
-            bottom: _selectedIndex == 1 ? TabBar(
-                unselectedLabelColor: Colors.white30,
-                labelColor: Colors.white,
-                tabs: [
-                  Tab(text: 'Current Contests'),
-                  Tab(text: 'Contest History'),
-                ],
-              ): null,
-               flexibleSpace: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [MyColors.thirty, Colors.black87],
-                        transform: GradientRotation(2))),
-              ),
-              shape:
-                  ContinuousRectangleBorder(borderRadius: BorderRadius.circular(8)),
-              // backgroundColor: Colors.red,
-              actions: [
-                InkWell(
-                  onTap: () {
-                    _key.currentState!.openDrawer();
-                  },
-                  child: SizedBox(
-                    width: 40,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.asset('assets/nodp.jpg')),
-                  ),
-                ),
-                const SizedBox(
-                  width: 15,
-                )
-              ],
-              automaticallyImplyLeading: false,
-              // title: Row(
-              //   children: [
-              //     SizedBox(
-              //         height: 60, width: 60, child: Image.asset('assets/logo.png'))
-              //   ],
-              // ),
-              title:  Text('Apna Cricket',style: TextStyle(color: Colors.white),),
-            ),
-            body: pages[_selectedIndex.value],
-            bottomNavigationBar: NavigationBar(
-                onDestinationSelected: _handleIndexChange,
-                selectedIndex: _selectedIndex.value,
-                shadowColor: Colors.cyan,
-                backgroundColor: Colors.transparent,
-                height: 80,
-                elevation: 0,
-                // indicatorColor: const Color.fromARGB(255, 53, 48, 48).withOpacity(0.1),
-                destinations: const [
-                  NavigationDestination(
-                      icon: Icon(Icons.home_outlined), label: 'Home'),
-                  NavigationDestination(
-                      icon: Icon(Icons.emoji_events_outlined), label: 'My Contest'),
-                  // NavigationDestination(
-                  //     icon: Icon(Icons.person_outline_rounded), label: 'Profile'),
-                  NavigationDestination(
-                      icon: Icon(Icons.more_horiz_outlined), label: 'More'),
-                ]),
-          ),
-        ): CircularProgressIndicator();
-      }
-    );
+    return user != null ?
+    
+     
+    DefaultTabController(
+       length: 2,
+       child: Scaffold(
+         key: _key,
+         drawer: Drawer(
+       
+           child: ListView(
+      
+             padding: EdgeInsets.zero,
+             children: [
+               DrawerHeader(
+                 decoration: const BoxDecoration(
+                     gradient: LinearGradient(
+                         colors: [Colors.red, Colors.black],
+                         transform: GradientRotation(2))),
+                 child: Row(
+                   children: [
+                     Expanded(
+                       child: Row(
+                         mainAxisAlignment: MainAxisAlignment.start,
+                         children: [
+                           SizedBox(
+                             height: 60,
+                             child: ClipRRect(
+                                 borderRadius: BorderRadius.circular(100),
+                                 child: Image.asset(
+                                   'assets/nodp.jpg',
+                                   fit: BoxFit.cover,
+                                 )),
+                           ),
+                           const SizedBox(
+                             width: 5,
+                           ),
+                           Column(
+                             mainAxisAlignment: MainAxisAlignment.center,
+                             children: [
+                               Text(
+                                 user!.userName,
+                                 style: profilestyle,
+                               ),
+                               Text(user!.userEmail, style: profilestyle),
+                             ],
+                           )
+                         ],
+                       ),
+                     ),
+                   ],
+                 ),
+               ),
+               ListTile(
+                 leading: const Icon(Icons.attach_money_outlined),
+                 title: const Text('Fantasy Miles'),
+                 onTap: () {
+                   Get.to(() => MilesHistory(user!.userId));
+                 },
+               ),
+               ListTile(
+                 leading: const Icon(Icons.lock_outlined),
+                 title: const Text('Change Password'),
+                 onTap: () {
+                   Get.to(()=> const ChangePassword());
+                 },
+               ),
+               ListTile(
+                 leading: const Icon(Icons.more_horiz_rounded),
+                 title: const Text('More'),
+                 onTap: () {},
+               ),
+               ListTile(
+                 title: const Text('Log Out'),
+                 leading: const Icon(Icons.logout_rounded),
+                 onTap: () {},
+               ),
+             ],
+           ),
+         ),
+         appBar: AppBar(
+         bottom: _selectedIndex == 1 ? TabBar(
+             unselectedLabelColor: Colors.white30,
+             labelColor: Colors.white,
+             tabs: [
+               Tab(text: 'Current Contests'),
+               Tab(text: 'Contest History'),
+             ],
+           ): null,
+            flexibleSpace: Container(
+             decoration: BoxDecoration(
+                 gradient: LinearGradient(
+                     colors: [MyColors.thirty, Colors.black87],
+                     transform: GradientRotation(2))),
+           ),
+           shape:
+               ContinuousRectangleBorder(borderRadius: BorderRadius.circular(8)),
+           // backgroundColor: Colors.red,
+           actions: [
+             InkWell(
+               onTap: () {
+                 _key.currentState!.openDrawer();
+               },
+               child: SizedBox(
+                 width: 40,
+                 child: ClipRRect(
+                     borderRadius: BorderRadius.circular(100),
+                     child: Image.asset('assets/nodp.jpg')),
+               ),
+             ),
+             const SizedBox(
+               width: 15,
+             )
+           ],
+           automaticallyImplyLeading: false,
+           // title: Row(
+           //   children: [
+           //     SizedBox(
+           //         height: 60, width: 60, child: Image.asset('assets/logo.png'))
+           //   ],
+           // ),
+           title:  Text('Apna Cricket',style: TextStyle(color: Colors.white),),
+         ),
+         body: pages[_selectedIndex.value],
+         bottomNavigationBar: NavigationBar(
+             onDestinationSelected: _handleIndexChange,
+             selectedIndex: _selectedIndex.value,
+             shadowColor: Colors.cyan,
+             backgroundColor: Colors.transparent,
+             height: 80,
+             elevation: 0,
+             // indicatorColor: const Color.fromARGB(255, 53, 48, 48).withOpacity(0.1),
+             destinations: const [
+               NavigationDestination(
+                   icon: Icon(Icons.home_outlined), label: 'Home'),
+               NavigationDestination(
+                   icon: Icon(Icons.emoji_events_outlined), label: 'My Contest'),
+               // NavigationDestination(
+               //     icon: Icon(Icons.person_outline_rounded), label: 'Profile'),
+               NavigationDestination(
+                   icon: Icon(Icons.more_horiz_outlined), label: 'More'),
+             ]),
+       ),
+     ): CircularProgressIndicator();
   }
 }
