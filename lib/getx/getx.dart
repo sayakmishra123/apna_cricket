@@ -5,6 +5,11 @@ class Getx extends GetxController {
   RxBool loginvisible = false.obs;
   RxInt add = 0.obs;
   RxBool signupvisible = false.obs;
+  RxBool oldPasswordvisible = false.obs;
+  RxBool newpasswordvisible = false.obs;
+  RxBool confirmnewPasswordvisible = false.obs;
+
+
   RxList mileshistory = [].obs;
 
   RxList<Player> bat = <Player>[].obs;
@@ -14,6 +19,8 @@ class Getx extends GetxController {
   RxList<AllContest> allcontext = <AllContest>[].obs;
   RxList<AllTournament> tournamentList = <AllTournament>[].obs;
   RxList<CurrentContest> currentcontext = <CurrentContest>[].obs;
+  RxList<ContestHistory> contesthistory = <ContestHistory>[].obs;
+
   // RxList<CurrentContest> currentcontext = <CurrentContest>[].obs;
 }
 

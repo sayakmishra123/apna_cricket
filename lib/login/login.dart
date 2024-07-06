@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           try {
                             if (!gk.currentState!.validate()) {
-                              loginApi(context, 'aftab@gmail.com', '12345678');
+                              loginApi(context, 'aftab@gmail.com', 'shubha2131');
                             } else {
                               Get.rawSnackbar(
                                   duration: Duration(seconds: 1),

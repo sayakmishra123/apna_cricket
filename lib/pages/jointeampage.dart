@@ -1,5 +1,3 @@
-
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
@@ -12,10 +10,21 @@ class JoinTeam extends StatelessWidget {
   final double _teamiconsize = 40.0;
   @override
   Widget build(BuildContext context) {
+    // New join team
     return Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: MyColors.thirty,
-          title: Text(heading),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [MyColors.thirty, Colors.black87],
+                    transform: const GradientRotation(2))),
+          ),
+          title: Text(
+            heading,
+            style: const TextStyle(color: Colors.white),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -32,14 +41,17 @@ class JoinTeam extends StatelessWidget {
                         children: [
                           Flexible(
                             child: Container(
-                              margin: EdgeInsets.symmetric(vertical: 10),
+                              
+                              margin: const EdgeInsets.symmetric(vertical: 10),
                               decoration: BoxDecoration(
+                                border: Border.all(  width: 0.5,
+                                          color: Colors.black45),
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
                                   boxShadow: [
                                     BoxShadow(
-                                        color: MyColors.thirty
-                                            .withOpacity(0.08),
+                                        color:
+                                            MyColors.thirty.withOpacity(0.08),
                                         blurRadius: 20,
                                         offset: const Offset(10, 10)),
                                   ]),
@@ -50,31 +62,24 @@ class JoinTeam extends StatelessWidget {
                                       Expanded(
                                         child: Container(
                                           decoration: BoxDecoration(
-                                              gradient:
-                                                  LinearGradient(colors: [
+                                              gradient: LinearGradient(colors: [
                                             Colors.transparent,
                                             Colors.transparent,
-                  
                                             Colors.grey.withOpacity(0.05),
                                             Colors.grey.withOpacity(0.3),
                                             Colors.grey.withOpacity(0.05),
-                  
-                  
                                             Colors.transparent,
                                             Colors.transparent,
-                  
                                           ])),
-                                          child: Center(
+                                          child: const Center(
                                               child: Padding(
-                                                  padding:
-                                                      const EdgeInsets
-                                                          .all(5),
+                                                  padding: EdgeInsets.all(5),
                                                   child: Text(
-                                                   'ABC',
-                                                    style:
-                                                        const TextStyle(
-                                                            color: Colors
-                                                                .black54,fontWeight: FontWeight.w800),
+                                                    'ABC',
+                                                    style: TextStyle(
+                                                        color: Colors.black54,
+                                                        fontWeight:
+                                                            FontWeight.w800),
                                                   ))),
                                         ),
                                       ),
@@ -86,14 +91,12 @@ class JoinTeam extends StatelessWidget {
                                       children: [
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Expanded(
                                               child: Column(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .center,
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   Container(
                                                     padding:
@@ -102,46 +105,39 @@ class JoinTeam extends StatelessWidget {
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(
-                                                                    30),
+                                                                .circular(30),
                                                         gradient:
                                                             RadialGradient(
                                                                 colors: [
-                                                              Colors
-                                                                  .black,
-                                                              MyColors
-                                                                  .thirty
+                                                              Colors.black,
+                                                              MyColors.thirty
                                                                   .withOpacity(
                                                                       0.2)
                                                             ])),
                                                     child: SizedBox(
-                                                        width:
-                                                            _teamiconsize,
+                                                        width: _teamiconsize,
                                                         child: ClipRRect(
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         50),
-                                                            child: Image
-                                                                .asset(
-                                                                    'assets/sixers.png'))),
+                                                            child: Image.asset(
+                                                                'assets/sixers.png'))),
                                                   ),
                                                   const SizedBox(
                                                     height: 5,
                                                   ),
-                                                  Text(
+                                                  const Text(
                                                     'ENGLAND',
-                                                    style:
-                                                        const TextStyle(
-                                                            color: Colors
-                                                                .black54,
-                                                            fontSize: 12),
+                                                    style: TextStyle(
+                                                        color: Colors.black54,
+                                                        fontSize: 12),
                                                   ),
                                                 ],
                                               ),
                                             ),
                                             Container(
-                  color: Colors.black54,
+                                              color: Colors.black54,
                                               width: 40,
                                               height: 1,
                                               child: const SizedBox(),
@@ -154,13 +150,15 @@ class JoinTeam extends StatelessWidget {
                                                   repeatForever: true,
                                                   animatedTexts: [
                                                     FlickerAnimatedText(
-                                                      speed: Durations.extralong1,
+                                                        speed: Durations
+                                                            .extralong1,
                                                         'VS',
-                                                        textStyle: const TextStyle(
-                                                            fontSize: 30,
-                                                            color: Colors
-                                                                .amber,
-                                                            shadows: [
+                                                        textStyle:
+                                                            const TextStyle(
+                                                                fontSize: 30,
+                                                                color: Colors
+                                                                    .amber,
+                                                                shadows: [
                                                               Shadow(
                                                                   blurRadius:
                                                                       12,
@@ -171,8 +169,8 @@ class JoinTeam extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                             Container(
-                  color: Colors.black54,
+                                            Container(
+                                              color: Colors.black54,
                                               width: 40,
                                               height: 1,
                                               child: const SizedBox(),
@@ -187,88 +185,83 @@ class JoinTeam extends StatelessWidget {
                                                     decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(
-                                                                    30),
+                                                                .circular(30),
                                                         gradient:
                                                             RadialGradient(
                                                                 colors: [
-                                                              Colors
-                                                                  .black,
-                                                              MyColors
-                                                                  .thirty
+                                                              Colors.black,
+                                                              MyColors.thirty
                                                                   .withOpacity(
                                                                       0.2)
                                                             ])),
                                                     child: SizedBox(
-                                                        width:
-                                                            _teamiconsize,
+                                                        width: _teamiconsize,
                                                         child: ClipRRect(
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         50),
-                                                            child: Image
-                                                                .asset(
-                                                                    'assets/jaffna.jfif'))),
+                                                            child: Image.asset(
+                                                                'assets/jaffna.jfif'))),
                                                   ),
-                                                  Text(
-                                                      'INDIA',
-                                                      style:
-                                                          const TextStyle(
-                                                              color: Colors
-                                                                  .black54,
-                                                              fontSize:
-                                                                  12)),
+                                                  const Text('INDIA',
+                                                      style: TextStyle(
+                                                          color: Colors.black54,
+                                                          fontSize: 12)),
                                                 ],
                                               ),
                                             ),
                                           ],
                                         ),
-                                    
-                                        const SizedBox(height: 20,),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
                                         Row(
-                                          
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [Expanded(
-                                            child: Container(
-                                              margin: const EdgeInsets.symmetric(horizontal: 20),
-                                                                                          color: Colors.black12,
-                                              
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                              child: Container(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                color: Colors.black12,
                                                 height: 1,
                                                 child: const SizedBox(),
                                               ),
-                                          ),],
-                                        ),
-                                        const SizedBox(height: 10,),
-                  
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(
-                                             'time',
-                                              style: const TextStyle(
-                                                  fontSize: 15,fontWeight: FontWeight.w400),
                                             ),
-                                            
-                  InkWell(
-                        onTap: () {
-                          Get.to(() => PlayerList());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.green,
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 30),
-                          child: const Text(
-                            'Join',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      )
-                  
-                  
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            const Text(
+                                              'time',
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+
+                                            MaterialButton(
+                                              shape: ContinuousRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8)),
+                                              onPressed: () {
+                                                Get.to(
+                                                    () => const PlayerList());
+                                              },
+                                              color: Colors.green,
+                                              child: const Text(
+                                                'Join',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            )
+
                                             // const Text("Entry Ended"),
                                           ],
                                         ),
@@ -291,9 +284,3 @@ class JoinTeam extends StatelessWidget {
         ));
   }
 }
-
-
-
-
-
-
