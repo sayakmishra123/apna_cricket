@@ -64,7 +64,7 @@ class _BlowState extends State<Blow> {
                         ? Colors.amber.withOpacity(0.2)
                         : Colors.transparent,
                     onTap: () {
-                      controller.toggleSelection(index);
+                      controller.toggleSelection(index, getx.blow[index]);
                       setState(() {});
                     },
                     imageContainer: SizedBox(

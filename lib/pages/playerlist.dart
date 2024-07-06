@@ -1,5 +1,6 @@
 import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
+import 'package:apna_cricket/pages/captannchoose/captainchoose.dart';
 import 'package:apna_cricket/pages/playerlistSelect/ar.dart';
 import 'package:apna_cricket/pages/playerlistSelect/bat.dart';
 import 'package:apna_cricket/pages/playerlistSelect/blow.dart';
@@ -39,6 +40,18 @@ class _PlayerListState extends State<PlayerList> {
   }
 
   @override
+  void dispose() {
+    getx.add.value = 0;
+    controllerAr.selectedIndices.clear();
+    controllerBat.selectedIndices.clear();
+    controllerBlow.selectedIndices.clear();
+    controllerWk.selectedIndices.clear();
+    getx.selectedplayer.clear();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
@@ -68,9 +81,10 @@ class _PlayerListState extends State<PlayerList> {
             ],
             // backgroundColor: ,
             flexibleSpace: Container(
+              // height: 100,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
-                      colors: [Colors.red, Colors.black],
+                      colors: [Color.fromARGB(255, 117, 15, 7), Colors.black],
                       transform: GradientRotation(2))),
             ),
 
@@ -125,19 +139,19 @@ class _PlayerListState extends State<PlayerList> {
                       ],
                     ),
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  //   child: Row(
-                  //     children: [
-                  //       Text(
-                  //         'Total selected player ${getx.add.value}/22',
-                  //         style: TextStyle(
-                  //             color: Color.fromARGB(255, 52, 194, 9),
-                  //             fontWeight: FontWeight.bold),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Total selected player ${getx.add.value}/22',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 52, 194, 9),
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
                   Visibility(
                     visible: getx.add.value == 0 ? false : true,
                     child: Row(
@@ -165,12 +179,16 @@ class _PlayerListState extends State<PlayerList> {
                         IconButton(
                             onPressed: () {
                               getx.add.value = 0;
-                              controllerAr.selectedIndices.clear();
-                              controllerBat.selectedIndices.clear();
-                              controllerBlow.selectedIndices.clear();
-                              controllerWk.selectedIndices.clear();
+                              getx.isColor.value = true;
+                              setState(() {
+                                controllerAr.selectedIndices.clear();
+                                controllerBat.selectedIndices.clear();
+                                controllerBlow.selectedIndices.clear();
+                                controllerWk.selectedIndices.clear();
+                                getx.selectedplayer.clear();
+                              });
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.remove_circle,
                               color: Colors.white,
                             ))
@@ -179,10 +197,10 @@ class _PlayerListState extends State<PlayerList> {
                   ),
                   Container(
                     width: MediaQuery.sizeOf(context).width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         gradient: LinearGradient(colors: [
                       Color.fromARGB(255, 194, 20, 7),
-                      const Color.fromARGB(255, 0, 0, 0)
+                      Color.fromARGB(255, 0, 0, 0)
                     ], transform: GradientRotation(2))),
 
                     // color: Color.fromARGB(255, 1, 9, 37),
@@ -220,13 +238,18 @@ class _PlayerListState extends State<PlayerList> {
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: getx.add.value == 22 ? Colors.green : Colors.grey,
-            onPressed: () {},
+            onPressed: () {
+              print(getx.selectedplayer.length);
+              if (getx.selectedplayer.length == 22) {
+                Get.to(() => Cpatainchoose(getx.selectedplayer));
+              }
+            },
             child: getx.add.value == 22
-                ? Text(
+                ? const Text(
                     'Next',
                     style: TextStyle(color: Colors.white),
                   )
-                : Text('Next', style: TextStyle(color: Colors.white)),
+                : const Text('Next', style: TextStyle(color: Colors.white)),
           ),
         ),
       ),

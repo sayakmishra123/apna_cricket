@@ -1,9 +1,12 @@
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class Getx extends GetxController {
   RxBool loginvisible = false.obs;
   RxInt add = 0.obs;
+  RxBool isColor = false.obs;
   RxBool signupvisible = false.obs;
   RxBool oldPasswordvisible = false.obs;
   RxBool newpasswordvisible = false.obs;
@@ -11,7 +14,10 @@ class Getx extends GetxController {
 
 
   RxList mileshistory = [].obs;
-
+  RxInt captainindexvalue = RxInt(-1);
+  RxInt vicecaptainindexvalue = RxInt(-1);
+  RxString captainchoose = 'Captain gets'.obs;
+  RxString vicecaptainchoose = 'Vice Captain gets'.obs;
   RxList<Player> bat = <Player>[].obs;
   RxList<Player> blow = <Player>[].obs;
   RxList<Player> ar = <Player>[].obs;
@@ -28,14 +34,20 @@ class SelectionControllerWk extends GetxController {
   Getx getx = Get.put(Getx());
   RxList selectedIndices = <int>[].obs;
 
-  void toggleSelection(int index) {
+  void toggleSelection(int index, Player wk) {
     if (selectedIndices.contains(index)) {
       selectedIndices.remove(index);
       getx.add--;
+      getx.selectedplayer.remove(wk);
     } else {
       if (getx.add.value < 22) {
         selectedIndices.add(index);
         getx.add++;
+        // if (selectedIndices.contains(index)) {
+        getx.selectedplayer.add(wk);
+        // } else {
+
+        // }
       }
     }
   }
@@ -45,14 +57,16 @@ class SelectionControllerBlow extends GetxController {
   Getx getx = Get.put(Getx());
   RxList selectedIndices = <int>[].obs;
 
-  void toggleSelection(int index) {
+  void toggleSelection(int index, Player blow) {
     if (selectedIndices.contains(index)) {
       selectedIndices.remove(index);
       getx.add--;
+      getx.selectedplayer.remove(blow);
     } else {
       if (getx.add.value < 22) {
         selectedIndices.add(index);
         getx.add++;
+        getx.selectedplayer.add(blow);
       }
     }
   }
@@ -62,14 +76,16 @@ class SelectionControllerBat extends GetxController {
   Getx getx = Get.put(Getx());
   RxList selectedIndices = <int>[].obs;
 
-  void toggleSelection(int index) {
+  void toggleSelection(int index, Player bat) {
     if (selectedIndices.contains(index)) {
       selectedIndices.remove(index);
       getx.add--;
+      getx.selectedplayer.remove(bat);
     } else {
       if (getx.add.value < 22) {
         selectedIndices.add(index);
         getx.add++;
+        getx.selectedplayer.add(bat);
       }
     }
   }
@@ -79,14 +95,16 @@ class SelectionControllerAr extends GetxController {
   Getx getx = Get.put(Getx());
   RxList selectedIndices = <int>[].obs;
 
-  void toggleSelection(int index) {
+  void toggleSelection(int index, Player ar) {
     if (selectedIndices.contains(index)) {
       selectedIndices.remove(index);
       getx.add--;
+      getx.selectedplayer.remove(ar);
     } else {
       if (getx.add.value < 22) {
         selectedIndices.add(index);
         getx.add++;
+        getx.selectedplayer.add(ar);
       }
     }
   }

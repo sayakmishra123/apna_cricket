@@ -66,7 +66,7 @@ class _ArState extends State<Ar> {
                         ? Colors.amber.withOpacity(0.2)
                         : Colors.transparent,
                     onTap: () {
-                      controllerAr.toggleSelection(index);
+                      controllerAr.toggleSelection(index, getx.ar[index]);
                       setState(() {});
                     },
                     imageContainer: SizedBox(

@@ -67,7 +67,7 @@ class _BatState extends State<Bat> {
                         ? Colors.amber.withOpacity(0.2)
                         : Colors.transparent,
                     onTap: () {
-                      controllerBat.toggleSelection(index);
+                      controllerBat.toggleSelection(index, getx.bat[index]);
                       setState(() {});
                     },
                     imageContainer: SizedBox(
