@@ -1,14 +1,16 @@
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class Getx extends GetxController {
   RxBool loginvisible = false.obs;
   RxInt add = 0.obs;
+  RxBool isColor = false.obs;
   RxBool signupvisible = false.obs;
   RxList mileshistory = [].obs;
-  RxInt captainindexvalue = 1000.obs;
-  RxInt vicecaptainindexvalue = 1000.obs;
+  RxInt captainindexvalue = RxInt(-1);
+  RxInt vicecaptainindexvalue = RxInt(-1);
   RxString captainchoose = 'Captain gets'.obs;
   RxString vicecaptainchoose = 'Vice Captain gets'.obs;
   RxList<Player> bat = <Player>[].obs;

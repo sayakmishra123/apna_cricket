@@ -1,3 +1,4 @@
+import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,6 +20,16 @@ class Cpatainchoose extends StatefulWidget {
 
 class _CpatainchooseState extends State<Cpatainchoose> {
   Getx getx = Get.put(Getx());
+
+  @override
+  void dispose() {
+    getx.captainchoose.value = "Captain gets";
+    getx.vicecaptainchoose.value = "Vice Captain gets";
+    getx.captainindexvalue.value = -1;
+    getx.vicecaptainindexvalue.value = -1;
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   int beforindex = 1000;
   @override
@@ -54,7 +65,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
           )
         ],
         bottom: PreferredSize(
-          preferredSize: Size.copy(Size.fromRadius(50)),
+          preferredSize: Size.fromHeight(130),
           child: Container(
             // color: Colors.yellow,
             child: Expanded(
@@ -98,6 +109,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                                   ),
                                 ),
                                 Text(
+                                  overflow: TextOverflow.ellipsis,
                                   getx.captainchoose.value.toString(),
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 12),
@@ -133,6 +145,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                                   ),
                                 ),
                                 Text(
+                                  overflow: TextOverflow.ellipsis,
                                   getx.vicecaptainchoose.value.toString(),
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 12),
@@ -177,6 +190,8 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                   widget.allplayerlist[index].playerName,
                   style: const TextStyle(fontSize: 14),
                 ),
+                subtitle:
+                    Text(widget.allplayerlist[index].boundaries.toString()),
                 trailing: SizedBox(
                   width: 100,
                   child: Row(
@@ -201,6 +216,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                                 getx.captainindexvalue.value =
                                     -1; // Deselect Captain
                               }
+                              print(getx.captainindexvalue.value);
                             },
                             borderRadius: BorderRadius.circular(80),
                             child: CircleAvatar(
@@ -242,6 +258,8 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                                 getx.vicecaptainindexvalue.value =
                                     -1; // Deselect Vice Captain
                               }
+
+                              print(getx.vicecaptainindexvalue.value);
                             },
                             child: CircleAvatar(
                               backgroundColor:
@@ -270,14 +288,24 @@ class _CpatainchooseState extends State<Cpatainchoose> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        disabledElevation: 50,
-        onPressed: () {},
-        child: const Text(
-          'Save',
-          style: TextStyle(color: Colors.white),
+      floatingActionButton: Obx(
+        () => FloatingActionButton(
+          disabledElevation: 50,
+          onPressed: () {
+            if (getx.captainindexvalue.value != -1 &&
+                getx.vicecaptainindexvalue.value != -1) {
+              // teamSaveListApi(context, widget.allplayerlist[0].playerID);
+            }
+          },
+          backgroundColor: getx.captainindexvalue.value != -1 &&
+                  getx.vicecaptainindexvalue.value != -1
+              ? Colors.green
+              : Colors.grey,
+          child: const Text(
+            'Save',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
-        backgroundColor: Colors.green,
       ),
     );
   }

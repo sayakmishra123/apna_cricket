@@ -21,10 +21,10 @@ class UserPreferences {
   // Retrieve user data
   Future<User?> getUser() async {
     prefs = await SharedPreferences.getInstance();
-    String? userJson = prefs.getString(_userKey)?? 'no';
+    String? userJson = prefs.getString(_userKey) ?? 'no';
     print(userJson);
 
-    if (userJson!='no') {
+    if (userJson != 'no') {
       Map<String, dynamic> userMap = json.decode(userJson);
       print(userMap['UserId']);
       print('shared');
@@ -365,5 +365,51 @@ Future currentcontextListApi(BuildContext context, String userid) async {
         title: 'Invalid login',
         message: jsondata['Data'],
         snackStyle: SnackStyle.GROUNDED);
+  }
+}
+
+Future teamSaveListApi(
+  BuildContext context,
+  int playerID,
+) async {
+  try {
+    Getx getx = Get.put(Getx());
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(child: CircularProgressIndicator());
+        });
+    Map<String, dynamic> data = {
+      'PlayerID': '1',
+      'ContestId': '1',
+      'UserId': '1',
+      'MatchId': '1',
+      'Captain': 'true',
+      'ViceCaptain': 'true'
+    };
+    print(data);
+    var res = await http.get(
+      Uri.https('apnacricket.dthlms.in', '/Team/CreateTeam')
+          .replace(queryParameters: data),
+    );
+    print(res.body);
+    var jsondata = jsonDecode(res.body);
+
+    Get.back();
+    if (jsondata['Result'] == true && res.statusCode == 200) {
+    } else {
+      Get.back();
+      Get.rawSnackbar(
+          duration: Duration(seconds: 1),
+          // backgroundColor: ,
+          overlayBlur: 5,
+          barBlur: 5,
+          title: 'Invalid login',
+          message: jsondata['Data'],
+          snackStyle: SnackStyle.GROUNDED);
+    }
+  } catch (e) {
+    Get.back();
+    print(e);
   }
 }

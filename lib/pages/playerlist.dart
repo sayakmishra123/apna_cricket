@@ -179,10 +179,14 @@ class _PlayerListState extends State<PlayerList> {
                         IconButton(
                             onPressed: () {
                               getx.add.value = 0;
-                              controllerAr.selectedIndices.clear();
-                              controllerBat.selectedIndices.clear();
-                              controllerBlow.selectedIndices.clear();
-                              controllerWk.selectedIndices.clear();
+                              getx.isColor.value = true;
+                              setState(() {
+                                controllerAr.selectedIndices.clear();
+                                controllerBat.selectedIndices.clear();
+                                controllerBlow.selectedIndices.clear();
+                                controllerWk.selectedIndices.clear();
+                                getx.selectedplayer.clear();
+                              });
                             },
                             icon: const Icon(
                               Icons.remove_circle,

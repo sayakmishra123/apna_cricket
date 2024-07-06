@@ -70,17 +70,6 @@ class WkState extends State<Wk> {
                         controller.toggleSelection(index, getx.wk[index]);
                         setState(() {});
                       },
-
-                      // imageContainer: SizedBox(
-                      //   width: 10,
-                      //   height: 10,
-                      //   child: Image.asset(
-                      //     'assets/sixers.png',
-                      //     // width: 10,
-                      //     // height: 10,
-                      //     scale: 10,
-                      //   ),
-                      // ),
                       title: Text(
                         getx.wk[index].playerName,
                         style: const TextStyle(
