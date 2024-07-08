@@ -10,10 +10,21 @@ class JoinTeam extends StatelessWidget {
   final double _teamiconsize = 40.0;
   @override
   Widget build(BuildContext context) {
+    // New join team
     return Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: MyColors.thirty,
-          title: Text(heading),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [MyColors.thirty, Colors.black87],
+                    transform: const GradientRotation(2))),
+          ),
+          title: Text(
+            heading,
+            style: const TextStyle(color: Colors.white),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -30,8 +41,11 @@ class JoinTeam extends StatelessWidget {
                         children: [
                           Flexible(
                             child: Container(
-                              margin: EdgeInsets.symmetric(vertical: 10),
+                              
+                              margin: const EdgeInsets.symmetric(vertical: 10),
                               decoration: BoxDecoration(
+                                border: Border.all(  width: 0.5,
+                                          color: Colors.black45),
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
                                   boxShadow: [
@@ -57,13 +71,12 @@ class JoinTeam extends StatelessWidget {
                                             Colors.transparent,
                                             Colors.transparent,
                                           ])),
-                                          child: Center(
+                                          child: const Center(
                                               child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(5),
+                                                  padding: EdgeInsets.all(5),
                                                   child: Text(
                                                     'ABC',
-                                                    style: const TextStyle(
+                                                    style: TextStyle(
                                                         color: Colors.black54,
                                                         fontWeight:
                                                             FontWeight.w800),
@@ -114,9 +127,9 @@ class JoinTeam extends StatelessWidget {
                                                   const SizedBox(
                                                     height: 5,
                                                   ),
-                                                  Text(
+                                                  const Text(
                                                     'ENGLAND',
-                                                    style: const TextStyle(
+                                                    style: TextStyle(
                                                         color: Colors.black54,
                                                         fontSize: 12),
                                                   ),
@@ -191,8 +204,8 @@ class JoinTeam extends StatelessWidget {
                                                             child: Image.asset(
                                                                 'assets/jaffna.jfif'))),
                                                   ),
-                                                  Text('INDIA',
-                                                      style: const TextStyle(
+                                                  const Text('INDIA',
+                                                      style: TextStyle(
                                                           color: Colors.black54,
                                                           fontSize: 12)),
                                                 ],
@@ -233,25 +246,19 @@ class JoinTeam extends StatelessWidget {
                                                   fontWeight: FontWeight.w400),
                                             ),
 
-                                            InkWell(
-                                              onTap: () {
-                                                Get.to(() => PlayerList());
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
+                                            MaterialButton(
+                                              shape: ContinuousRectangleBorder(
                                                   borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  color: Colors.green,
-                                                ),
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 10,
-                                                        horizontal: 30),
-                                                child: const Text(
-                                                  'Join',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
+                                                      BorderRadius.circular(8)),
+                                              onPressed: () {
+                                                Get.to(
+                                                    () => const PlayerList());
+                                              },
+                                              color: Colors.green,
+                                              child: const Text(
+                                                'Join',
+                                                style: TextStyle(
+                                                    color: Colors.white),
                                               ),
                                             )
 

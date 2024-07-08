@@ -348,8 +348,8 @@ Future currentcontextListApi(BuildContext context, String userid) async {
         .replace(queryParameters: data),
   );
   var jsondata = jsonDecode(res.body);
-  print(res.body);
-  print(res.statusCode);
+  // print(res.body);
+  // print(res.statusCode);
   if (jsondata['Result'] == true && res.statusCode == 200) {
     List jsonList1 = jsondata['Data'] ?? [];
     //  List jsonList2 = jsondata['UserTournament'];
@@ -392,22 +392,81 @@ Future teamSaveListApi(BuildContext context, String playerID, String contestId,
     );
     print(res.body);
     var jsondata = jsonDecode(res.body);
+  } catch (e) {}
+}
 
+// ContestHistory by shubha
+Future contestHistoryListApi(BuildContext context, String userid) async {
+  // print(contestTypeId);
+  Getx getx = Get.put(Getx());
+  // showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return const Center(child: CircularProgressIndicator());
+  //     });
+  Map<String, dynamic> data = {'userid': userid};
+  var res = await http.get(
+    Uri.https('apnacricket.dthlms.in', '/contestType/getMyContestHistory')
+// https://apnacricket.dthlms.in/contestType/getMyContestHistory?userid=20
+        .replace(queryParameters: data),
+  );
+  var jsondata = jsonDecode(res.body);
+  // print(res.body);
+  // print(res.statusCode);
+  if (jsondata['Result'] == true && res.statusCode == 200) {
+    List jsonList1 = jsondata['Data'] ?? [];
+    //  List jsonList2 = jsondata['UserTournament'];
+    getx.contesthistory.value =
+        jsonList1.map((json) => ContestHistory.fromJson(json)).toList();
+  } else {
     Get.back();
-    if (jsondata['Result'] == true && res.statusCode == 200) {
-    } else {
-      Get.back();
-      Get.rawSnackbar(
-          duration: Duration(seconds: 1),
-          // backgroundColor: ,
-          overlayBlur: 5,
-          barBlur: 5,
-          title: 'Invalid login',
-          message: jsondata['Data'],
-          snackStyle: SnackStyle.GROUNDED);
-    }
-  } catch (e) {
+    Get.rawSnackbar(
+        duration: Duration(seconds: 1),
+        // backgroundColor: ,
+        overlayBlur: 5,
+        barBlur: 5,
+        title: 'Invalid login',
+        message: jsondata['Data'],
+        snackStyle: SnackStyle.GROUNDED);
+  }
+}
+
+// userId =18  newPassword=1234567
+// Change Password
+Future changepasswordApi(
+    BuildContext context, String userid, String newpassword) async {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      });
+
+  Map data = {'userId': userid, 'newPassword': newpassword};
+  Getx getx = Get.put(Getx());
+
+  var res = await http.post(
+      Uri.https('apnacricket.dthlms.in', '/LoginRegister/ChangePassword?'),
+      // /LoginRegister/ChangePassword?
+      body: data);
+
+  var jsondata = jsonDecode(res.body);
+  print(res.body);
+  print(res.statusCode);
+  if (jsondata['Result'] == true && res.statusCode == 200) {
+    print('Change success');
+    // List jsonList1 = jsondata['Data'] ?? [];
+    //  List jsonList2 = jsondata['UserTournament'];
+    // getx.contesthistory.value =
+    //     jsonList1.map((json) => ContestHistory.fromJson(json)).toList();
+  } else {
     Get.back();
-    print(e);
+    Get.rawSnackbar(
+        duration: Duration(seconds: 1),
+        // backgroundColor: ,
+        overlayBlur: 5,
+        barBlur: 5,
+        title: 'Invalid login',
+        message: jsondata['Data'],
+        snackStyle: SnackStyle.GROUNDED);
   }
 }
