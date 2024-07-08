@@ -13,22 +13,21 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-
   Getx getx = Get.put(Getx());
   GlobalKey<FormState> gk = GlobalKey();
   TextEditingController oldPassword = TextEditingController();
-  TextEditingController newpassword = TextEditingController();
-  TextEditingController confirmpassword = TextEditingController();
-  User? userid;
+  TextEditingController newPassword = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
+  User? userId;
 
-  getuser() async {
-    User? userid = await UserPreferences().getUser();
+  getUser() async {
+    userId = await UserPreferences().getUser();
+    setState(() {});
   }
-
 
   @override
   void initState() {
-   getuser();
+    getUser();
     super.initState();
   }
 
@@ -36,25 +35,20 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: MediaQuery.sizeOf(context).height,
+        height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(
-                  'assets/splash1.jpg',
-                ),
-                fit: BoxFit.fill)),
+                image: AssetImage('assets/splash1.jpg'), fit: BoxFit.fill)),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
           child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
               child: Form(
                 key: gk,
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 70,
-                    ),
+                    const SizedBox(height: 70),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: Row(
@@ -65,18 +59,14 @@ class _ChangePasswordState extends State<ChangePassword> {
                             child: SizedBox(
                               width: 200,
                               height: 200,
-                              child: Image.asset(
-                                'assets/logo.jpg',
-                                fit: BoxFit.contain,
-                              ),
+                              child: Image.asset('assets/logo.jpg',
+                                  fit: BoxFit.contain),
                             ),
                           )
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 70,
-                    ),
+                    const SizedBox(height: 70),
                     const Row(
                       children: [
                         Text(
@@ -99,9 +89,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         )
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     Obx(
                       () => Padding(
                         padding: const EdgeInsets.only(top: 10, bottom: 15),
@@ -109,13 +97,13 @@ class _ChangePasswordState extends State<ChangePassword> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Can't blank";
+                              return "Old password cannot be blank";
                             } else {
                               return null;
                             }
                           },
                           controller: oldPassword,
-                          obscureText: getx.oldPasswordvisible.value,
+                          obscureText: getx.oldPasswordVisible.value,
                           decoration: InputDecoration(
                               contentPadding:
                                   const EdgeInsets.symmetric(vertical: 10),
@@ -123,11 +111,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                               prefixIcon: const Icon(Icons.lock),
                               suffixIcon: IconButton(
                                 onPressed: () {
-                                  getx.oldPasswordvisible.value =
-                                      !getx.oldPasswordvisible.value;
+                                  getx.oldPasswordVisible.value =
+                                      !getx.oldPasswordVisible.value;
                                 },
                                 icon: Icon(
-                                  getx.oldPasswordvisible.value
+                                  getx.oldPasswordVisible.value
                                       ? Icons.visibility_off
                                       : Icons.visibility,
                                 ),
@@ -148,13 +136,15 @@ class _ChangePasswordState extends State<ChangePassword> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Can't blank";
+                              return "New password cannot be blank";
+                            } else if (value.length < 6) {
+                              return "Password should be at least 6 characters";
                             } else {
                               return null;
                             }
                           },
-                          controller: newpassword,
-                          obscureText: getx.newpasswordvisible.value,
+                          controller: newPassword,
+                          obscureText: getx.newPasswordVisible.value,
                           decoration: InputDecoration(
                               contentPadding:
                                   const EdgeInsets.symmetric(vertical: 10),
@@ -162,11 +152,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                               prefixIcon: const Icon(Icons.lock),
                               suffixIcon: IconButton(
                                 onPressed: () {
-                                  getx.newpasswordvisible.value =
-                                      !getx.newpasswordvisible.value;
+                                  getx.newPasswordVisible.value =
+                                      !getx.newPasswordVisible.value;
                                 },
                                 icon: Icon(
-                                  getx.newpasswordvisible.value
+                                  getx.newPasswordVisible.value
                                       ? Icons.visibility_off
                                       : Icons.visibility,
                                 ),
@@ -187,15 +177,15 @@ class _ChangePasswordState extends State<ChangePassword> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Can't blank";
-                            } else if (value != newpassword.text) {
-                              return "Password dose't match";
+                              return "Confirm password cannot be blank";
+                            } else if (value != newPassword.text) {
+                              return "Passwords do not match";
                             } else {
                               return null;
                             }
                           },
-                          controller: confirmpassword,
-                          obscureText: getx.confirmnewPasswordvisible.value,
+                          controller: confirmPassword,
+                          obscureText: getx.confirmNewPasswordVisible.value,
                           decoration: InputDecoration(
                               contentPadding:
                                   const EdgeInsets.symmetric(vertical: 10),
@@ -203,11 +193,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                               prefixIcon: const Icon(Icons.lock),
                               suffixIcon: IconButton(
                                 onPressed: () {
-                                  getx.confirmnewPasswordvisible.value =
-                                      !getx.confirmnewPasswordvisible.value;
+                                  getx.confirmNewPasswordVisible.value =
+                                      !getx.confirmNewPasswordVisible.value;
                                 },
                                 icon: Icon(
-                                  getx.confirmnewPasswordvisible.value
+                                  getx.confirmNewPasswordVisible.value
                                       ? Icons.visibility_off
                                       : Icons.visibility,
                                 ),
@@ -221,40 +211,37 @@ class _ChangePasswordState extends State<ChangePassword> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15),
                     SizedBox(
-                      width: MediaQuery.sizeOf(context).width,
+                      width: MediaQuery.of(context).size.width,
                       child: MaterialButton(
                         color: Colors.red,
                         padding: const EdgeInsets.all(10),
                         shape: ContinuousRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
                         onPressed: () {
-                          try {
-                            if (!gk.currentState!.validate()) {
+                          if (gk.currentState!.validate()) {
+                            if (userId != null) {
                               changepasswordApi(
                                   context,
-                                  userid!.userId.toString(),
-                                  confirmpassword.text.toString());
+                                  userId!.userId.toString(),
+                                  confirmPassword.text);
                             } else {
                               Get.rawSnackbar(
-                                  duration: Duration(seconds: 1),
-                                  // backgroundColor: ,
+                                  duration: const Duration(seconds: 1),
                                   overlayBlur: 5,
                                   barBlur: 5,
-                                  title: 'Invalid login',
-                                  message: 'Please enter password',
+                                  title: 'User not found',
+                                  message: 'Please log in again',
                                   snackStyle: SnackStyle.GROUNDED);
                             }
-                          } catch (e) {
+                          } else {
                             Get.rawSnackbar(
-                                // backgroundColor: ,
+                                duration: const Duration(seconds: 1),
                                 overlayBlur: 5,
                                 barBlur: 5,
-                                title: 'Invalid login',
-                                message: 'Please enter password',
+                                title: 'Invalid Input',
+                                message: 'Please correct the errors',
                                 snackStyle: SnackStyle.GROUNDED);
                           }
                         },

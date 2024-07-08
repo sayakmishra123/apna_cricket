@@ -441,18 +441,17 @@ Future changepasswordApi(
         return const Center(child: CircularProgressIndicator());
       });
 
-  Map data = {'userId': userid, 'newPassword': newpassword};
+  Map<String, dynamic> data = {'userId': userid, 'newPassword': newpassword};
   Getx getx = Get.put(Getx());
 
   var res = await http.post(
-      Uri.https('apnacricket.dthlms.in', '/LoginRegister/ChangePassword?'),
-      // /LoginRegister/ChangePassword?
+      Uri.https('apnacricket.dthlms.in', '/LoginRegister/ChangePassword'),
       body: data);
 
-  var jsondata = jsonDecode(res.body);
+  //  var jsondata = jsonDecode(res.body);
   print(res.body);
   print(res.statusCode);
-  if (jsondata['Result'] == true && res.statusCode == 200) {
+  if (res.statusCode == 200) {
     print('Change success');
     // List jsonList1 = jsondata['Data'] ?? [];
     //  List jsonList2 = jsondata['UserTournament'];
@@ -466,7 +465,7 @@ Future changepasswordApi(
         overlayBlur: 5,
         barBlur: 5,
         title: 'Invalid login',
-        message: jsondata['Data'],
+        // message: jsondata['Data'],
         snackStyle: SnackStyle.GROUNDED);
   }
 }
