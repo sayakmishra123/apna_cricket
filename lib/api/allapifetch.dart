@@ -368,6 +368,33 @@ Future currentcontextListApi(BuildContext context, String userid) async {
   }
 }
 
+Future teamSaveListApi(BuildContext context, String playerID, String contestId,
+    String userId, String matchId, String captain, String viceCaptain) async {
+  try {
+    Getx getx = Get.put(Getx());
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(child: CircularProgressIndicator());
+        });
+    Map<String, dynamic> data = {
+      'PlayerID': playerID,
+      'ContestId': contestId,
+      'UserId': userId,
+      'MatchId': matchId,
+      'Captain': captain,
+      'ViceCaptain': viceCaptain
+    };
+    print(data);
+    var res = await http.get(
+      Uri.https('apnacricket.dthlms.in', '/Team/CreateTeam')
+          .replace(queryParameters: data),
+    );
+    print(res.body);
+    var jsondata = jsonDecode(res.body);
+  } catch (e) {}
+}
+
 // ContestHistory by shubha
 Future contestHistoryListApi(BuildContext context, String userid) async {
   // print(contestTypeId);
