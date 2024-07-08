@@ -48,7 +48,7 @@ class TermAndCondition extends StatelessWidget {
                     transform: GradientRotation(2))),
           ),
           title: const Text(
-            'How to Play',
+            'Term & Condition',
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),
         ),
