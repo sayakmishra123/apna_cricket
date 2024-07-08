@@ -16,10 +16,7 @@ class JoinTeam extends StatelessWidget {
           iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: MyColors.thirty,
           flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [MyColors.thirty, Colors.black87],
-                    transform: const GradientRotation(2))),
+            decoration: const BoxDecoration(gradient: MyColors.appbargradient),
           ),
           title: Text(
             heading,
@@ -41,11 +38,10 @@ class JoinTeam extends StatelessWidget {
                         children: [
                           Flexible(
                             child: Container(
-                              
                               margin: const EdgeInsets.symmetric(vertical: 10),
                               decoration: BoxDecoration(
-                                border: Border.all(  width: 0.5,
-                                          color: Colors.black45),
+                                  border: Border.all(
+                                      width: 0.5, color: Colors.black45),
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
                                   boxShadow: [

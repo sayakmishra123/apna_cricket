@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Duration(
           seconds: 2,
         ), () {
-      Get.to(() => const LoginPage(), transition: Transition.leftToRight);
+      // Get.to(() => const LoginPage(), transition: Transition.leftToRight);
     });
 
     super.initState();

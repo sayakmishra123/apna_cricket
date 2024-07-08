@@ -149,14 +149,20 @@ class Contests extends StatelessWidget {
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(30),
-                                                          gradient:
-                                                              RadialGradient(
+                                                          gradient: index % 2 ==
+                                                                  0
+                                                              ? MyColors
+                                                                  .appbargradient
+                                                              : RadialGradient(
                                                                   colors: [
-                                                                Colors.black,
-                                                                MyColors.thirty
-                                                                    .withOpacity(
-                                                                        0.2)
-                                                              ])),
+                                                                      // MyColors.appbargradient
+                                                                      Colors
+                                                                          .black,
+                                                                      MyColors
+                                                                          .thirty
+                                                                          .withOpacity(
+                                                                              0.2)
+                                                                    ])),
                                                       child: SizedBox(
                                                           width: _teamiconsize,
                                                           child: ClipRRect(
@@ -234,17 +240,19 @@ class Contests extends StatelessWidget {
                                                           const EdgeInsets.all(
                                                               10),
                                                       decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(30),
-                                                          gradient:
-                                                              RadialGradient(
-                                                                  colors: [
-                                                                Colors.black,
-                                                                MyColors.thirty
-                                                                    .withOpacity(
-                                                                        0.2)
-                                                              ])),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30),
+                                                        gradient: index % 2 == 0
+                                                            ? RadialGradient(
+                                                                colors: [
+                                                                    // MyColors.appbargradient
+                                                                    Colors.blue,
+                                                                    Colors.red
+                                                                  ])
+                                                            : MyColors
+                                                                .appbargradient,
+                                                      ),
                                                       child: SizedBox(
                                                           width: _teamiconsize,
                                                           child: ClipRRect(
