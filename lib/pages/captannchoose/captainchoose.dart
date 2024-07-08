@@ -294,7 +294,20 @@ class _CpatainchooseState extends State<Cpatainchoose> {
           onPressed: () {
             if (getx.captainindexvalue.value != -1 &&
                 getx.vicecaptainindexvalue.value != -1) {
-              // teamSaveListApi(context, widget.allplayerlist[0].playerID);
+              for (int i = 0; i < widget.allplayerlist.length; i++) {
+                bool checktype1 = widget.allplayerlist[i].playerName ==
+                    getx.captainchoose.value;
+                bool checktype2 = widget.allplayerlist[i].playerName ==
+                    getx.vicecaptainchoose.value;
+                teamSaveListApi(
+                    context,
+                    widget.allplayerlist[i].playerID.toString(),
+                    widget.allplayerlist[i].contestId.toString(),
+                    widget.allplayerlist[i].userId.toString(),
+                    widget.allplayerlist[i].teamId.toString(),
+                    checktype1.toString(),
+                    checktype2.toString());
+              }
             }
           },
           backgroundColor: getx.captainindexvalue.value != -1 &&

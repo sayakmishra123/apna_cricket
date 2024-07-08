@@ -368,10 +368,8 @@ Future currentcontextListApi(BuildContext context, String userid) async {
   }
 }
 
-Future teamSaveListApi(
-  BuildContext context,
-  int playerID,
-) async {
+Future teamSaveListApi(BuildContext context, String playerID, String contestId,
+    String userId, String matchId, String captain, String viceCaptain) async {
   try {
     Getx getx = Get.put(Getx());
     showDialog(
@@ -380,12 +378,12 @@ Future teamSaveListApi(
           return const Center(child: CircularProgressIndicator());
         });
     Map<String, dynamic> data = {
-      'PlayerID': '1',
-      'ContestId': '1',
-      'UserId': '1',
-      'MatchId': '1',
-      'Captain': 'true',
-      'ViceCaptain': 'true'
+      'PlayerID': playerID,
+      'ContestId': contestId,
+      'UserId': userId,
+      'MatchId': matchId,
+      'Captain': captain,
+      'ViceCaptain': viceCaptain
     };
     print(data);
     var res = await http.get(

@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
           bodyMedium: GoogleFonts.josefinSans(textStyle: textTheme.bodyMedium),
         ),
         colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
-       
         useMaterial3: true,
       ),
       home: const SplashScreen(),
