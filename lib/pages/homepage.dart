@@ -31,10 +31,8 @@ class _HomePageState extends State<HomePage> {
   ];
   List carasonimg = [
     'assets/banner.png',
-    'assets/banner.png',
-    'assets/banner.png',
-    'assets/banner.png',
-    'assets/banner.png'
+    'assets/hardik_banner.png',
+    'assets/rohit_banner.png',
   ];
 
   @override
