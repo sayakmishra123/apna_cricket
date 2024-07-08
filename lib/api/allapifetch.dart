@@ -66,7 +66,7 @@ Future loginApi(BuildContext context, String username, String password) async {
   } else {
     Get.back();
     Get.rawSnackbar(
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         // backgroundColor: ,
         overlayBlur: 5,
         barBlur: 5,
@@ -153,7 +153,7 @@ Future contestListApi(BuildContext context) async {
   } else {
     Get.back();
     Get.rawSnackbar(
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         // backgroundColor: ,
         overlayBlur: 5,
         barBlur: 5,
@@ -187,7 +187,7 @@ Future milesListApi(BuildContext context) async {
   } else {
     Get.back();
     Get.rawSnackbar(
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         // backgroundColor: ,
         overlayBlur: 5,
         barBlur: 5,
@@ -289,7 +289,7 @@ Future tournamentListApi(BuildContext context, String contestTypeId) async {
   } else {
     Get.back();
     Get.rawSnackbar(
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         // backgroundColor: ,
         overlayBlur: 5,
         barBlur: 5,
@@ -324,7 +324,7 @@ Future allmatchListApi(BuildContext context, String contestTypeId,
   } else {
     Get.back();
     Get.rawSnackbar(
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         // backgroundColor: ,
         overlayBlur: 5,
         barBlur: 5,
@@ -358,7 +358,7 @@ Future currentcontextListApi(BuildContext context, String userid) async {
   } else {
     Get.back();
     Get.rawSnackbar(
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         // backgroundColor: ,
         overlayBlur: 5,
         barBlur: 5,
@@ -394,7 +394,7 @@ Future contestHistoryListApi(BuildContext context, String userid) async {
   } else {
     Get.back();
     Get.rawSnackbar(
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         // backgroundColor: ,
         overlayBlur: 5,
         barBlur: 5,
@@ -404,46 +404,53 @@ Future contestHistoryListApi(BuildContext context, String userid) async {
   }
 }
 
-
-
-// userId =18  newPassword=1234567
-// Change Password 
-Future changepasswordApi(BuildContext context, String userid, String newpassword) async {
+Future changepasswordApi(
+    BuildContext context, String userid, String newpassword) async {
   showDialog(
       context: context,
       builder: (context) {
         return const Center(child: CircularProgressIndicator());
       });
 
- Map<String, dynamic> data = {'userId': userid, 'newPassword': newpassword};
+  Map<String, dynamic> data = {'userId': userid, 'newPassword': newpassword};
   Getx getx = Get.put(Getx());
 
-  var res = await http.post(
-      Uri.https(
-          'apnacricket.dthlms.in', '/LoginRegister/ChangePassword?'),
-          // .replace(queryParameters: data));
-          // /LoginRegister/ChangePassword?
-      body: data);
+  var res = await http.get(
+      Uri.https('apnacricket.dthlms.in', '/LoginRegister/ChangePassword')
+          .replace(queryParameters: data));
 
-
-  //  var jsondata = jsonDecode(res.body);
-  print(res.body);
-  print(res.statusCode);
+  var jsondata = jsonDecode(res.body);
   if (res.statusCode == 200) {
-    print('Change success');
-    // List jsonList1 = jsondata['Data'] ?? [];
-    //  List jsonList2 = jsondata['UserTournament'];
-    // getx.contesthistory.value =
-    //     jsonList1.map((json) => ContestHistory.fromJson(json)).toList();
+    if (jsondata["Result"] == true) {
+
+    Get.back();
+
+      showDialog(
+     context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Alert'),
+            content: const Text('Your password has been changed successfully!'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   } else {
     Get.back();
     Get.rawSnackbar(
-        duration: Duration(seconds: 1),
-        // backgroundColor: ,
+        duration: const Duration(seconds: 1),
         overlayBlur: 5,
         barBlur: 5,
         title: 'Invalid login',
-        // message: jsondata['Data'],
+        message: jsondata["Result"],
         snackStyle: SnackStyle.GROUNDED);
   }
 }

@@ -1,13 +1,10 @@
 import 'dart:ui';
-
 import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/login/signup.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -158,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           try {
                             if (!gk.currentState!.validate()) {
-                              loginApi(context, 'aftab@gmail.com', 'shubha2131');
+                              loginApi(context, 'aftab@gmail.com', '12345678');
                             } else {
                               Get.rawSnackbar(
                                   duration: Duration(seconds: 1),

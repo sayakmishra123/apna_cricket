@@ -8,9 +8,9 @@ class Getx extends GetxController {
   RxInt add = 0.obs;
   RxBool isColor = false.obs;
   RxBool signupvisible = false.obs;
-  RxBool oldPasswordVisible = false.obs;
-  RxBool newPasswordVisible = false.obs;
-  RxBool confirmNewPasswordVisible = false.obs;
+  RxBool oldPasswordVisible = true.obs;
+  RxBool newPasswordVisible = true.obs;
+  RxBool confirmNewPasswordVisible = true.obs;
 
 
   RxList mileshistory = [].obs;
