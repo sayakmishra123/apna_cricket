@@ -38,6 +38,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+      iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -66,24 +67,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   key: gk,
                   child: Column(
                     children: [
-                      // const SizedBox(height: 70),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(top: 20),
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.center,
-                      //     children: [
-                      //       ClipRRect(
-                      //         borderRadius: BorderRadius.circular(200),
-                      //         child: SizedBox(
-                      //           width: 200,
-                      //           height: 200,
-                      //           child: Image.asset('assets/logo.jpg',
-                      //               fit: BoxFit.contain),
-                      //         ),
-                      //       )
-                      //     ],
-                      //   ),
-                      // ),
+                      
                       SizedBox(
                         height: 100,
                       ),
@@ -134,7 +118,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       ),
 
                       SizedBox(
-                        height: height * 0.2,
+                        height: height * 0.12,
                       ),
 
                       const Row(

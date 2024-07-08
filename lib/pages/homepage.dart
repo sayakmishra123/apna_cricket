@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
               // const SizedBox(height: 20,),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -56,17 +56,18 @@ class _HomePageState extends State<HomePage> {
                       'Select The Tournaments',
                       style: heading,
                     ),
-                    TextButton(
-                        style: const ButtonStyle(),
-                        onPressed: () {
-                          Get.to(AllTournaments(
-                            contests: getx.allcontext,
-                          ));
-                        },
-                        child: const Text(
-                          'See All',
-                          style: TextStyle(color: Colors.blue),
-                        ))
+                    Icon(Icons.arrow_forward_rounded)
+                    // TextButton(
+                    //     style: const ButtonStyle(),
+                    //     onPressed: () {
+                    //       Get.to(AllTournaments(
+                    //         contests: getx.allcontext,
+                    //       ));
+                    //     },
+                    //     child: const Text(
+                    //       'See All',
+                    //       style: TextStyle(color: Colors.blue),
+                    //     ))
                   ],
                 ),
               ),
