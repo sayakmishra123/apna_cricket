@@ -5,6 +5,7 @@ import 'package:apna_cricket/login/login.dart';
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/captannchoose/captainchoose.dart';
 import 'package:apna_cricket/pages/contextdeatils.dart';
+import 'package:apna_cricket/pages/milesbalance.dart';
 // import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
 import 'package:apna_cricket/splash.dart';
@@ -49,16 +50,18 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Apna Crikcet',
-      theme: ThemeData(
-        textTheme: GoogleFonts.josefinSansTextTheme().copyWith(
-          bodyMedium: GoogleFonts.josefinSans(textStyle: textTheme.bodyMedium),
+        debugShowCheckedModeBanner: false,
+        title: 'Apna Crikcet',
+        theme: ThemeData(
+          textTheme: GoogleFonts.josefinSansTextTheme().copyWith(
+            bodyMedium:
+                GoogleFonts.josefinSans(textStyle: textTheme.bodyMedium),
+          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
+          useMaterial3: true,
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
-        useMaterial3: true,
-      ),
-      home: datahas != null ? const DashBoard() : const LoginPage(),
-    );
+        home: const MilesBalance()
+        // home: datahas != null ? const DashBoard() : const LoginPage(),
+        );
   }
 }

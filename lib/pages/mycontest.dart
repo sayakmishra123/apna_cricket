@@ -51,10 +51,6 @@ class _MyContestState extends State<MyContest> {
   }
 }
 
-
-
-
-
 class Contests extends StatelessWidget {
   final bool current;
   Contests({super.key, required this.current});
@@ -82,8 +78,8 @@ class Contests extends StatelessWidget {
                           children: [
                             Flexible(
                               child: Container(
-                                
-                                margin: const EdgeInsets.symmetric(vertical: 10),
+                                margin:
+                                    const EdgeInsets.symmetric(vertical: 10),
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 0.5, color: Colors.black45),
@@ -134,9 +130,16 @@ class Contests extends StatelessWidget {
                                                     ))),
                                           ),
                                         ),
+                                        current
+                                            ? IconButton(
+                                                onPressed: () {},
+                                                icon: Icon(Icons.edit))
+                                            : SizedBox()
                                       ],
                                     ),
-                                    const SizedBox(height: 5,),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
                                     Column(
                                       children: [
                                         Row(
@@ -153,8 +156,7 @@ class Contests extends StatelessWidget {
                                                       child: ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(
-                                                                      50),
+                                                                  .circular(50),
                                                           child: Image.asset(
                                                               'assets/sixers.png'))),
                                                   const SizedBox(
@@ -170,15 +172,13 @@ class Contests extends StatelessWidget {
                                                             .contesthistory[
                                                                 index]
                                                             .team1Name,
-                                                      textAlign: TextAlign.center,
-
-                                                    style:  const TextStyle(
-                                                      
-                                                      fontWeight: FontWeight.w800,
-                                                        color: Colors.black54,
-                                                        fontSize: 16,
-                                                        
-                                                        ),
+                                                    textAlign: TextAlign.center,
+                                                    style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                      color: Colors.black54,
+                                                      fontSize: 16,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -194,44 +194,45 @@ class Contests extends StatelessWidget {
                                                       child: const SizedBox(),
                                                     ),
                                                     SizedBox(
-                                                  width: 70,
-                                                  height: 70,
-                                                  child: Center(
-                                                    child: AnimatedTextKit(
-                                                      repeatForever: true,
-                                                      animatedTexts: [
-                                                        FlickerAnimatedText(
-                                                            speed: Durations
-                                                                .extralong1,
-                                                            'VS',
-                                                            textStyle:
-                                                                const TextStyle(
-                                                                    fontSize: 30,
+                                                      width: 70,
+                                                      height: 70,
+                                                      child: Center(
+                                                        child: AnimatedTextKit(
+                                                          repeatForever: true,
+                                                          animatedTexts: [
+                                                            FlickerAnimatedText(
+                                                                speed: Durations
+                                                                    .extralong1,
+                                                                'VS',
+                                                                textStyle: const TextStyle(
+                                                                    fontSize:
+                                                                        30,
                                                                     color: Colors
                                                                         .amber,
                                                                     shadows: [
-                                                                  Shadow(
-                                                                      blurRadius:
-                                                                          12,
-                                                                      color: Colors
-                                                                          .amber)
-                                                                ])),
-                                                      ],
+                                                                      Shadow(
+                                                                          blurRadius:
+                                                                              12,
+                                                                          color:
+                                                                              Colors.amber)
+                                                                    ])),
+                                                          ],
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  color: Colors.red,
-                                                  width: 40,
-                                                  height: 1,
-                                                  child: const SizedBox(),
-                                                ),
+                                                    Container(
+                                                      color: Colors.red,
+                                                      width: 40,
+                                                      height: 1,
+                                                      child: const SizedBox(),
+                                                    ),
                                                   ],
                                                 ),
-                                                const SizedBox(height: 20,)
+                                                const SizedBox(
+                                                  height: 20,
+                                                )
                                               ],
                                             ),
-                                            
                                             Expanded(
                                               child: Column(
                                                 children: [
@@ -240,30 +241,29 @@ class Contests extends StatelessWidget {
                                                       child: ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(
-                                                                      50),
+                                                                  .circular(50),
                                                           child: Image.asset(
                                                               'assets/jaffna.jfif'))),
-                                                              const SizedBox(height: 5,),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
                                                   Text(
-                                                      current
-                                                          ? getx
-                                                              .currentcontext[
-                                                                  index]
-                                                              .team2Name
-                                                          : getx
-                                                              .contesthistory[
-                                                                  index]
-                                                              .team2Name,
-
-                                                  
-                                                      textAlign: TextAlign.center,
-                                                      style: const TextStyle(
-                                                      fontWeight: FontWeight.w800,
+                                                    current
+                                                        ? getx
+                                                            .currentcontext[
+                                                                index]
+                                                            .team2Name
+                                                        : getx
+                                                            .contesthistory[
+                                                                index]
+                                                            .team2Name,
+                                                    textAlign: TextAlign.center,
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w800,
                                                         color: Colors.black54,
                                                         fontSize: 16),
-                                                        
-                                                        )
+                                                  )
                                                 ],
                                               ),
                                             ),
@@ -278,9 +278,9 @@ class Contests extends StatelessWidget {
                                           children: [
                                             Expanded(
                                               child: Container(
-                                                margin: const EdgeInsets
-                                                    .symmetric(
-                                                    horizontal: 20),
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 20),
                                                 color: Colors.black12,
                                                 height: 1,
                                                 child: const SizedBox(),
@@ -301,11 +301,10 @@ class Contests extends StatelessWidget {
                                                       .matchStartDate
                                                   : getx.contesthistory[index]
                                                       .matchStartDate,
-                                              style:  const TextStyle(
+                                              style: const TextStyle(
                                                   fontSize: 15,
                                                   color: Colors.black54,
-                                                  fontWeight:
-                                                      FontWeight.w400),
+                                                  fontWeight: FontWeight.w400),
                                             ),
                                             // const Text("Entry Ended"),
                                           ],

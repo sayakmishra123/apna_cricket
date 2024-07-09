@@ -394,6 +394,7 @@ Future teamSaveListApi(BuildContext context, String playerID, String contestId,
     );
     print(res.body);
     var jsondata = jsonDecode(res.body);
+    print(jsondata);
   } catch (e) {}
 }
 
