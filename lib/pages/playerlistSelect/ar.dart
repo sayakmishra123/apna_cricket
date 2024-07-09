@@ -1,11 +1,13 @@
 import 'package:apna_cricket/getx/getx.dart';
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:banner_listtile/banner_listtile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class Ar extends StatefulWidget {
-  const Ar({super.key});
+  MatchDetails match;
+  Ar(this.match, {super.key});
 
   @override
   State<Ar> createState() => _ArState();
@@ -66,7 +68,8 @@ class _ArState extends State<Ar> {
                         ? Colors.amber.withOpacity(0.2)
                         : Colors.transparent,
                     onTap: () {
-                      controllerAr.toggleSelection(index, getx.ar[index]);
+                      controllerAr.toggleSelection(
+                          index, getx.ar[index], widget.match.numberOfPlayers);
                       setState(() {});
                     },
                     imageContainer: SizedBox(

@@ -1,13 +1,16 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:apna_cricket/colors/mycolor.dart';
+import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class JoinTeam extends StatelessWidget {
   final String heading;
-  const JoinTeam({super.key, required this.heading});
+
+  JoinTeam({super.key, required this.heading});
   final double _teamiconsize = 50.0;
+  Getx getx = Get.put(Getx());
   @override
   Widget build(BuildContext context) {
     // New join team
@@ -114,61 +117,63 @@ class JoinTeam extends StatelessWidget {
                                                         
                                                         ),
                                               ),
+                                              const SizedBox(
+                                                height: 20,
+                                              )
                                             ],
                                           ),
-                                        ),
-                                        
-                                        Column(
-                                          children: [
-                                            Row(
+                                          Expanded(
+                                            child: Column(
                                               children: [
-                                                Container(
-                                                  color: Colors.green,
-                                                  width: 40,
-                                                  height: 1,
-                                                  child: const SizedBox(),
-                                                ),
                                                 SizedBox(
-                                              width: 65,
-                                              height: 65,
-                                              child: Center(
-                                                child: AnimatedTextKit(
-                                                  repeatForever: true,
-                                                  animatedTexts: [
-                                                    FlickerAnimatedText(
-                                                        speed: Durations
-                                                            .extralong1,
-                                                        'VS',
-                                                        textStyle:
-                                                            const TextStyle(
-                                                                fontSize: 30,
-                                                                color: Colors
-                                                                    .amber,
-                                                                shadows: [
-                                                              Shadow(
-                                                                  blurRadius:
-                                                                      12,
-                                                                  color: Colors
-                                                                      .amber)
-                                                            ])),
-                                                  ],
+                                                    width: _teamiconsize,
+                                                    child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
+                                                        child: Image.asset(
+                                                            'assets/jaffna.jfif'))),
+                                                Text(
+                                                  data.team2Name,
+                                                  textAlign: TextAlign.center,
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                      color: Colors.black54,
+                                                      fontSize: 16),
                                                 ),
-                                              ),
+                                              ],
                                             ),
-                                            Container(
-                                              color: Colors.red,
-                                              width: 40,
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              color: Colors.black12,
                                               height: 1,
                                               child: const SizedBox(),
                                             ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 20,)
-                                          ],
-                                        ),
-                                        
-                                        Expanded(
-                                          child: Column(
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Column(
                                             children: [
                                               SizedBox(
                                                   width: _teamiconsize,
@@ -227,8 +232,7 @@ class JoinTeam extends StatelessWidget {
                                             Text(
                                               '20 Jun 24 WED',
                                               style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w400),
+                                                  color: Colors.white),
                                             ),
                                               Text(
                                               '13:20 HRS',
@@ -266,15 +270,15 @@ class JoinTeam extends StatelessWidget {
                               ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    // const SizedBox(height: 20)
-                  ],
-                );
-              },
-            ))
-          ],
+                        ],
+                      ),
+                      // const SizedBox(height: 20)
+                    ],
+                  );
+                },
+              ))
+            ],
+          ),
         ));
   }
 }

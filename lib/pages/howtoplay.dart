@@ -11,23 +11,26 @@ class HowToPlay extends StatelessWidget {
     ..setNavigationDelegate(
       NavigationDelegate(
         onProgress: (int progress) {
+          CircularProgressIndicator();
           // Update loading bar.
         },
-        onPageStarted: (String url) {},
-        onPageFinished: (String url) {},
+        onPageStarted: (String url) {
+          CircularProgressIndicator();
+        },
+        onPageFinished: (String url) {
+          CircularProgressIndicator();
+        },
         onHttpError: (HttpResponseError error) {},
         onWebResourceError: (WebResourceError error) {},
         onNavigationRequest: (NavigationRequest request) {
-          if (request.url
-              .startsWith('https://apnacricket.dthlms.in/WebPages/HowtoPlay')) {
+          if (request.url.startsWith('https://apnacricketteam.com/')) {
             return NavigationDecision.prevent;
           }
           return NavigationDecision.navigate;
         },
       ),
     )
-    ..loadRequest(
-        Uri.parse('https://apnacricket.dthlms.in/WebPages/HowtoPlay'));
+    ..loadRequest(Uri.parse('https://apnacricketteam.com/'));
   @override
   Widget build(BuildContext context) {
     return Scaffold(

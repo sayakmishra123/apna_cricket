@@ -37,10 +37,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    WidgetsBinding.instance
-        .addPostFrameCallback((timeStamp) => contestListApi(context));
-
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      calldata();
+    });
     super.initState();
+  }
+
+  calldata() {
+    contestListApi(context);
   }
 
   @override
@@ -56,7 +60,8 @@ class _HomePageState extends State<HomePage> {
               // const SizedBox(height: 20,),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -91,6 +96,7 @@ class _HomePageState extends State<HomePage> {
                               scrollDirection: Axis.horizontal,
                               itemCount: getx.allcontext.length,
                               itemBuilder: (context, index) {
+                                // print(getx.allcontext[index].contestTypeId);
                                 return Padding(
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 5),
@@ -102,6 +108,8 @@ class _HomePageState extends State<HomePage> {
                                       setState(() {
                                         _selectedIndex = index;
                                       });
+                                      print(
+                                          getx.allcontext[index].contestTypeId);
                                       tournamentListApi(
                                           context,
                                           getx.allcontext[index].contestTypeId
@@ -237,20 +245,39 @@ class _HomePageState extends State<HomePage> {
                                   color: MyColors.sixty,
                                   child: ListTile(
                                     onTap: () {
-                                      allmatchListApi(
-                                          context,
-                                          getx.tournamentList[index]
-                                              .contestTypeId
-                                              .toString(),
-                                          getx.tournamentList[index].userId
-                                              .toString(),
-                                          getx.tournamentList[index]
-                                              .tournamentId
-                                              .toString());
-                                      Get.to(JoinTeam(
-                                        heading: getx.tournamentList[index]
-                                            .tournamentName,
-                                      ));
+                                      // getx.tournamentList[index].contestTypeId==1?
+
+                                      // print(getx
+                                      //     .tournamentList[index].contestTypeId);
+                                      if (getx.tournamentList[index]
+                                              .numberOfPlayers! <=
+                                          11) {
+                                        singlematchListApi(
+                                            context,
+                                            getx.tournamentList[index]
+                                                .contestTypeId
+                                                .toString(),
+                                            getx.tournamentList[index].userId
+                                                .toString(),
+                                            getx.tournamentList[index]
+                                                .tournamentId
+                                                .toString());
+                                      } else {
+                                        allmatchListApi(
+                                            context,
+                                            getx.tournamentList[index]
+                                                .contestTypeId
+                                                .toString(),
+                                            getx.tournamentList[index].userId
+                                                .toString(),
+                                            getx.tournamentList[index]
+                                                .tournamentId
+                                                .toString());
+                                      }
+                                      Get.to(() => JoinTeam(
+                                            heading: getx.tournamentList[index]
+                                                .tournamentName,
+                                          ));
                                     },
                                     // splashColor: MyColors.thirty.withOpacity(0.5),
                                     leading: SizedBox(

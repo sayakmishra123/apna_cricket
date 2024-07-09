@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
         useMaterial3: true,
       ),
-      home: datahas != null ? const () : const LoginPage(),
+      home: datahas != null ? const DashBoard() : const LoginPage(),
     );
   }
 }

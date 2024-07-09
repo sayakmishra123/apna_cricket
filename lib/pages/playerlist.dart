@@ -1,5 +1,6 @@
 import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/captannchoose/captainchoose.dart';
 import 'package:apna_cricket/pages/playerlistSelect/ar.dart';
 import 'package:apna_cricket/pages/playerlistSelect/bat.dart';
@@ -12,7 +13,8 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class PlayerList extends StatefulWidget {
-  const PlayerList({super.key});
+  MatchDetails match;
+  PlayerList(this.match, {super.key});
 
   @override
   State<PlayerList> createState() => _PlayerListState();
@@ -36,7 +38,11 @@ class _PlayerListState extends State<PlayerList> {
   }
 
   Future fetchteam() async {
-    await teamplayersListApi(context);
+    if (widget.match.numberOfPlayers <= 11) {
+      await singleteamplayersListApi(context, widget.match);
+    } else {
+      await allteamplayersListApi(context, widget.match);
+    }
   }
 
   @override
@@ -220,18 +226,25 @@ class _PlayerListState extends State<PlayerList> {
               ),
             ),
           ),
-          body: const TabBarView(
-            children: [Wk(), Bat(), Ar(), Blow()],
+          body: TabBarView(
+            children: [
+              Wk(widget.match),
+              Bat(widget.match),
+              Ar(widget.match),
+              Blow(widget.match)
+            ],
           ),
           floatingActionButton: FloatingActionButton(
-            backgroundColor: getx.add.value == 22 ? Colors.green : Colors.grey,
+            backgroundColor: getx.add.value == widget.match.numberOfPlayers
+                ? Colors.green
+                : Colors.grey,
             onPressed: () {
-              print(getx.selectedplayer.length);
-              if (getx.selectedplayer.length == 22) {
+              print(widget.match.numberOfPlayers);
+              if (getx.selectedplayer.length == widget.match.numberOfPlayers) {
                 Get.to(() => Cpatainchoose(getx.selectedplayer));
               }
             },
-            child: getx.add.value == 22
+            child: getx.add.value == widget.match.numberOfPlayers
                 ? const Text(
                     'Next',
                     style: TextStyle(color: Colors.white),

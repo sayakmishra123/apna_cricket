@@ -293,6 +293,7 @@ class AllContest {
   int sortedOrder;
   bool isActive;
   bool isDelete;
+  // String? numberOfPlayers;
   DateTime? createdOn;
   String? createdIP;
   DateTime? modifiedOn;
@@ -427,6 +428,7 @@ class AllTournament {
   String? tournamentLastEntryDate;
   String? tournamentLastEntryTime;
   int userId;
+  int? numberOfPlayers;
   int contestTypeId;
   int franchiseId;
   int sortedOrder;
@@ -455,6 +457,7 @@ class AllTournament {
     this.tournamentLastEntryDate,
     this.tournamentLastEntryTime,
     required this.userId,
+    required this.numberOfPlayers,
     required this.contestTypeId,
     required this.franchiseId,
     required this.sortedOrder,
@@ -485,6 +488,7 @@ class AllTournament {
       tournamentLastEntryDate: json['TournamentLastEntryDate']?.toString(),
       tournamentLastEntryTime: json['TournamentLastEntryDate_Time'],
       userId: json['UserId'],
+      numberOfPlayers: json['NumberOfPlayers'],
       contestTypeId: json['ContestTypeId'],
       franchiseId: json['FranchiseId'],
       sortedOrder: json['SortedOrder'],
@@ -520,6 +524,7 @@ class AllTournament {
       'TournamentLastEntryDate': tournamentLastEntryDate?.toString(),
       'TournamentLastEntryDate_Time': tournamentLastEntryTime,
       'UserId': userId,
+      'NumberOfPlayers': numberOfPlayers,
       'ContestTypeId': contestTypeId,
       'FranchiseId': franchiseId,
       'SortedOrder': sortedOrder,
@@ -540,27 +545,30 @@ class AllTournament {
   }
 }
 
-class SingleTournament {
-  int tournamentMatchesID;
-  int team1ID;
-  int team2ID;
+class MatchDetails {
+  int tournamentMatchesId;
+  int contestTypeId;
+  int team1Id;
+  int team2Id;
   String team1Name;
   String team2Name;
-  String? team1LogoPath;
-  String? team2LogoPath;
+  String team1LogoPath;
+  String team2LogoPath = " ";
   String tournamentName;
   int matchNo;
   int tournamentId;
   int matchId;
   String matchStartTime;
-  DateTime matchStartDate;
+  String matchStartDate;
+  int entryMiles;
+  int numberOfPlayers;
   int franchiseId;
   int sortedOrder;
   bool isActive;
   bool isDelete;
-  DateTime? createdOn;
+  String? createdOn;
   String? createdIP;
-  DateTime? modifiedOn;
+  String? modifiedOn;
   String? modifiedIP;
   String? createdBy;
   String? modifiedBy;
@@ -570,20 +578,23 @@ class SingleTournament {
   String? output3;
   int mode;
 
-  SingleTournament({
-    required this.tournamentMatchesID,
-    required this.team1ID,
-    required this.team2ID,
+  MatchDetails({
+    required this.tournamentMatchesId,
+    required this.contestTypeId,
+    required this.team1Id,
+    required this.team2Id,
     required this.team1Name,
     required this.team2Name,
-    this.team1LogoPath,
-    this.team2LogoPath,
+    required this.team1LogoPath,
+    required this.team2LogoPath,
     required this.tournamentName,
     required this.matchNo,
     required this.tournamentId,
     required this.matchId,
     required this.matchStartTime,
     required this.matchStartDate,
+    required this.entryMiles,
+    required this.numberOfPlayers,
     required this.franchiseId,
     required this.sortedOrder,
     required this.isActive,
@@ -601,31 +612,31 @@ class SingleTournament {
     required this.mode,
   });
 
-  factory SingleTournament.fromJson(Map<String, dynamic> json) {
-    return SingleTournament(
-      tournamentMatchesID: json['TournamentMatchesID'],
-      team1ID: json['Team1ID'],
-      team2ID: json['Team2ID'],
+  factory MatchDetails.fromJson(Map<String, dynamic> json) {
+    return MatchDetails(
+      tournamentMatchesId: json['TournamentMatchesID'],
+      contestTypeId: json['ContestTypeId'],
+      team1Id: json['Team1ID'],
+      team2Id: json['Team2ID'],
       team1Name: json['Team1_Name'],
       team2Name: json['Team2_Name'],
-      team1LogoPath: json['Team1LogoPath'],
-      team2LogoPath: json['Team2LogoPath'],
+      team1LogoPath: json['Team1LogoPath'].toString(),
+      team2LogoPath: json['Team2LogoPath'].toString(),
       tournamentName: json['TournamentName'],
       matchNo: json['MatchNo'],
       tournamentId: json['TournamentId'],
       matchId: json['MatchId'],
       matchStartTime: json['MatchStartTime'],
-      matchStartDate: DateTime.parse(json['MatchStartDate']),
+      matchStartDate: json['MatchStartDate'],
+      entryMiles: json['EntryMiles'],
+      numberOfPlayers: json['NumberOfPlayers'],
       franchiseId: json['FranchiseId'],
       sortedOrder: json['SortedOrder'],
       isActive: json['IsActive'],
       isDelete: json['IsDelete'],
-      createdOn:
-          json['CreatedOn'] != null ? DateTime.parse(json['CreatedOn']) : null,
+      createdOn: json['CreatedOn'],
       createdIP: json['CreatedIP'],
-      modifiedOn: json['ModifiedOn'] != null
-          ? DateTime.parse(json['ModifiedOn'])
-          : null,
+      modifiedOn: json['ModifiedOn'],
       modifiedIP: json['ModifiedIP'],
       createdBy: json['CreatedBy'],
       modifiedBy: json['ModifiedBy'],
@@ -639,9 +650,10 @@ class SingleTournament {
 
   Map<String, dynamic> toJson() {
     return {
-      'TournamentMatchesID': tournamentMatchesID,
-      'Team1ID': team1ID,
-      'Team2ID': team2ID,
+      'TournamentMatchesID': tournamentMatchesId,
+      'ContestTypeId': contestTypeId,
+      'Team1ID': team1Id,
+      'Team2ID': team2Id,
       'Team1_Name': team1Name,
       'Team2_Name': team2Name,
       'Team1LogoPath': team1LogoPath,
@@ -651,14 +663,16 @@ class SingleTournament {
       'TournamentId': tournamentId,
       'MatchId': matchId,
       'MatchStartTime': matchStartTime,
-      'MatchStartDate': matchStartDate.toIso8601String(),
+      'MatchStartDate': matchStartDate,
+      'EntryMiles': entryMiles,
+      'NumberOfPlayers': numberOfPlayers,
       'FranchiseId': franchiseId,
       'SortedOrder': sortedOrder,
       'IsActive': isActive,
       'IsDelete': isDelete,
-      'CreatedOn': createdOn?.toIso8601String(),
+      'CreatedOn': createdOn,
       'CreatedIP': createdIP,
-      'ModifiedOn': modifiedOn?.toIso8601String(),
+      'ModifiedOn': modifiedOn,
       'ModifiedIP': modifiedIP,
       'CreatedBy': createdBy,
       'ModifiedBy': modifiedBy,
@@ -670,6 +684,137 @@ class SingleTournament {
     };
   }
 }
+
+// class SingleTournament {
+//   int tournamentMatchesID;
+//   int team1ID;
+//   int team2ID;
+//   String team1Name;
+//   String team2Name;
+//   String? team1LogoPath;
+//   String? team2LogoPath;
+//   String tournamentName;
+//   int matchNo;
+//   int tournamentId;
+//   int matchId;
+//   String matchStartTime;
+//   DateTime matchStartDate;
+//   int franchiseId;
+//   int sortedOrder;
+//   bool isActive;
+//   bool isDelete;
+//   DateTime? createdOn;
+//   String? createdIP;
+//   DateTime? modifiedOn;
+//   String? modifiedIP;
+//   String? createdBy;
+//   String? modifiedBy;
+//   String? output;
+//   String? output1;
+//   String? output2;
+//   String? output3;
+//   int mode;
+
+//   SingleTournament({
+//     required this.tournamentMatchesID,
+//     required this.team1ID,
+//     required this.team2ID,
+//     required this.team1Name,
+//     required this.team2Name,
+//     this.team1LogoPath,
+//     this.team2LogoPath,
+//     required this.tournamentName,
+//     required this.matchNo,
+//     required this.tournamentId,
+//     required this.matchId,
+//     required this.matchStartTime,
+//     required this.matchStartDate,
+//     required this.franchiseId,
+//     required this.sortedOrder,
+//     required this.isActive,
+//     required this.isDelete,
+//     this.createdOn,
+//     this.createdIP,
+//     this.modifiedOn,
+//     this.modifiedIP,
+//     this.createdBy,
+//     this.modifiedBy,
+//     this.output,
+//     this.output1,
+//     this.output2,
+//     this.output3,
+//     required this.mode,
+//   });
+
+//   factory SingleTournament.fromJson(Map<String, dynamic> json) {
+//     return SingleTournament(
+//       tournamentMatchesID: json['TournamentMatchesID'],
+//       team1ID: json['Team1ID'],
+//       team2ID: json['Team2ID'],
+//       team1Name: json['Team1_Name'],
+//       team2Name: json['Team2_Name'],
+//       team1LogoPath: json['Team1LogoPath'],
+//       team2LogoPath: json['Team2LogoPath'],
+//       tournamentName: json['TournamentName'],
+//       matchNo: json['MatchNo'],
+//       tournamentId: json['TournamentId'],
+//       matchId: json['MatchId'],
+//       matchStartTime: json['MatchStartTime'],
+//       matchStartDate: DateTime.parse(json['MatchStartDate']),
+//       franchiseId: json['FranchiseId'],
+//       sortedOrder: json['SortedOrder'],
+//       isActive: json['IsActive'],
+//       isDelete: json['IsDelete'],
+//       createdOn:
+//           json['CreatedOn'] != null ? DateTime.parse(json['CreatedOn']) : null,
+//       createdIP: json['CreatedIP'],
+//       modifiedOn: json['ModifiedOn'] != null
+//           ? DateTime.parse(json['ModifiedOn'])
+//           : null,
+//       modifiedIP: json['ModifiedIP'],
+//       createdBy: json['CreatedBy'],
+//       modifiedBy: json['ModifiedBy'],
+//       output: json['Output'],
+//       output1: json['Output1'],
+//       output2: json['Output2'],
+//       output3: json['Output3'],
+//       mode: json['mode'],
+//     );
+//   }
+
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'TournamentMatchesID': tournamentMatchesID,
+//       'Team1ID': team1ID,
+//       'Team2ID': team2ID,
+//       'Team1_Name': team1Name,
+//       'Team2_Name': team2Name,
+//       'Team1LogoPath': team1LogoPath,
+//       'Team2LogoPath': team2LogoPath,
+//       'TournamentName': tournamentName,
+//       'MatchNo': matchNo,
+//       'TournamentId': tournamentId,
+//       'MatchId': matchId,
+//       'MatchStartTime': matchStartTime,
+//       'MatchStartDate': matchStartDate.toIso8601String(),
+//       'FranchiseId': franchiseId,
+//       'SortedOrder': sortedOrder,
+//       'IsActive': isActive,
+//       'IsDelete': isDelete,
+//       'CreatedOn': createdOn?.toIso8601String(),
+//       'CreatedIP': createdIP,
+//       'ModifiedOn': modifiedOn?.toIso8601String(),
+//       'ModifiedIP': modifiedIP,
+//       'CreatedBy': createdBy,
+//       'ModifiedBy': modifiedBy,
+//       'Output': output,
+//       'Output1': output1,
+//       'Output2': output2,
+//       'Output3': output3,
+//       'mode': mode,
+//     };
+//   }
+// }
 
 class CurrentContest {
   int contestTypeId;
@@ -1072,6 +1217,3 @@ class ChangepasswordModel {
     };
   }
 }
-
-
-

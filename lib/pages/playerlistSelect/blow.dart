@@ -1,11 +1,13 @@
 import 'package:apna_cricket/getx/getx.dart';
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:banner_listtile/banner_listtile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class Blow extends StatefulWidget {
-  const Blow({super.key});
+  MatchDetails match;
+  Blow(this.match, {super.key});
 
   @override
   State<Blow> createState() => _BlowState();
@@ -64,7 +66,8 @@ class _BlowState extends State<Blow> {
                         ? Colors.amber.withOpacity(0.2)
                         : Colors.transparent,
                     onTap: () {
-                      controller.toggleSelection(index, getx.blow[index]);
+                      controller.toggleSelection(index, getx.blow[index],
+                          widget.match.numberOfPlayers);
                       setState(() {});
                     },
                     imageContainer: SizedBox(

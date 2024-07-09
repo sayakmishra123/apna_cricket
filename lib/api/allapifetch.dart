@@ -167,11 +167,11 @@ Future contestListApi(BuildContext context) async {
 
 Future milesListApi(BuildContext context) async {
   Getx getx = Get.put(Getx());
-  // showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return const Center(child: CircularProgressIndicator());
-  //     });
+  showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      });
   Map data = {'userid': '20'};
   var res = await http.post(
       Uri.https('apnacricket.dthlms.in', '/Miles/MilesHistory'),
@@ -193,13 +193,14 @@ Future milesListApi(BuildContext context) async {
         // backgroundColor: ,
         overlayBlur: 5,
         barBlur: 5,
-        title: 'Invalid login',
+        title: 'Error',
         message: jsondata['Data'],
         snackStyle: SnackStyle.GROUNDED);
   }
 }
 
-Future teamplayersListApi(BuildContext context) async {
+Future singleteamplayersListApi(
+    BuildContext context, MatchDetails match) async {
   Getx getx = Get.put(Getx());
   print('object');
   try {
@@ -208,7 +209,73 @@ Future teamplayersListApi(BuildContext context) async {
         builder: (context) {
           return const Center(child: CircularProgressIndicator());
         });
-    Map<String, String> data = {'Team1Id': '24', 'Team2Id': '25'};
+    Map<String, String> data = {
+      'Team1Id': match.team1Id.toString(),
+      'Team2Id': match.team2Id.toString()
+    };
+
+    final Uri uri =
+        Uri.https('apnacricket.dthlms.in', '/teamplayers/getTeamPlayerByTeamId')
+            .replace(queryParameters: data);
+    var res = await http.get(
+      uri,
+    );
+
+    var jsondata = jsonDecode(res.body);
+    if (jsondata['Result'] == true && res.statusCode == 200) {
+      List jsonList1 = jsondata['Batsmans'];
+      getx.bat.value = jsonList1.map((json) => Player.fromJson(json)).toList();
+      for (var player in getx.bat) {
+        print('Player Name: ${player.playerName}, Team: ${player.teamName}');
+      }
+      List jsonList2 = jsondata['Bowlers'];
+      getx.blow.value = jsonList2.map((json) => Player.fromJson(json)).toList();
+      for (var player in getx.blow) {
+        print('Player Name: ${player.playerName}, Team: ${player.teamName}');
+      }
+
+      List jsonList3 = jsondata['WecketKeepers'];
+      getx.wk.value = jsonList3.map((json) => Player.fromJson(json)).toList();
+      for (var player in getx.wk) {
+        print('Player Name: ${player.playerName}, Team: ${player.teamName}');
+      }
+      List jsonList4 = jsondata['Allrounders'];
+      getx.ar.value = jsonList4.map((json) => Player.fromJson(json)).toList();
+      for (var player in getx.ar) {
+        print('Player Name: ${player.playerName}, Team: ${player.teamName}');
+      }
+
+      Get.back();
+    } else {
+      Get.back();
+      Get.rawSnackbar(
+          duration: const Duration(seconds: 1),
+          // backgroundColor: ,
+          overlayBlur: 5,
+          barBlur: 5,
+          title: 'Invalid login',
+          message: jsondata['Data'],
+          snackStyle: SnackStyle.GROUNDED);
+    }
+  } catch (e) {
+    Get.back();
+    print(e);
+  }
+}
+
+Future allteamplayersListApi(BuildContext context, MatchDetails match) async {
+  Getx getx = Get.put(Getx());
+  print('object');
+  try {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(child: CircularProgressIndicator());
+        });
+    Map<String, String> data = {
+      'Team1Id': match.team1Id.toString(),
+      'Team2Id': match.team2Id.toString()
+    };
 
     final Uri uri =
         Uri.https('apnacricket.dthlms.in', '/teamplayers/getTeamPlayerByTeamId')
@@ -313,17 +380,59 @@ Future allmatchListApi(BuildContext context, String contestTypeId,
   //     });
   Map<String, dynamic> data = {
     'ContestTypeId': contestTypeId,
-    'Userid': userid,
+    // 'Userid': userid,
     'TournamentId': tournamentId
   };
   var res = await http.get(
-    Uri.https('apnacricket.dthlms.in', '/tournament/getTOUrnamentALLvsALL')
+    Uri.https('apnacricket.dthlms.in', '/Matches/getMatchALLvsALL')
         .replace(queryParameters: data),
   );
   var jsondata = jsonDecode(res.body);
   print(res.body);
   print(res.statusCode);
   if (jsondata['Result'] == true && res.statusCode == 200) {
+    // MatchDetails
+    List jsonList = jsondata['Data'] ?? [];
+    getx.matchdetails.value =
+        jsonList.map((e) => MatchDetails.fromJson(e)).toList();
+  } else {
+    // Get.back();
+    Get.rawSnackbar(
+        duration: const Duration(seconds: 1),
+        // backgroundColor: ,
+        overlayBlur: 5,
+        barBlur: 5,
+        title: 'Error',
+        message: jsondata['Data'],
+        snackStyle: SnackStyle.GROUNDED);
+  }
+}
+
+Future singlematchListApi(BuildContext context, String contestTypeId,
+    String userid, String tournamentId) async {
+  print(contestTypeId);
+  Getx getx = Get.put(Getx());
+  // showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return const Center(child: CircularProgressIndicator());
+  //     });
+  Map<String, dynamic> data = {
+    'ContestTypeId': contestTypeId,
+    // 'Userid': userid,
+    'TournamentId': tournamentId
+  };
+  var res = await http.get(
+    Uri.https('apnacricket.dthlms.in', '/Matches/getMatchSingle')
+        .replace(queryParameters: data),
+  );
+  var jsondata = jsonDecode(res.body);
+  print(res.body);
+  print(res.statusCode);
+  if (jsondata['Result'] == true && res.statusCode == 200) {
+    List jsonList = jsondata['Data'] ?? [];
+    getx.matchdetails.value =
+        jsonList.map((e) => MatchDetails.fromJson(e)).toList();
   } else {
     // Get.back();
     Get.rawSnackbar(
@@ -395,6 +504,7 @@ Future teamSaveListApi(BuildContext context, String playerID, String contestId,
     );
     print(res.body);
     var jsondata = jsonDecode(res.body);
+    print(jsondata);
   } catch (e) {}
 }
 

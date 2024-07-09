@@ -32,24 +32,24 @@ class TermAndCondition extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Get.back();
-            },
-          ),
-          flexibleSpace: Container(
-            // height: 100,
-            decoration: const BoxDecoration(gradient: MyColors.appbargradient),
-          ),
-          title: const Text(
-            'Term & Condition',
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
+      leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: Colors.white,
         ),
-        body: WebViewWidget(controller: controller));
+        onPressed: () {
+          Get.back();
+        },
+      ),
+      flexibleSpace: Container(
+        // height: 100,
+        decoration: const BoxDecoration(gradient: MyColors.appbargradient),
+      ),
+      title: const Text(
+        'Term & Condition',
+        style: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+    ));
+    // body: Container();
   }
 }
