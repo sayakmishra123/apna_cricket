@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
   User? datahas;
   @override
   void initState() {
+    print(DateTime.now());
     getdata().whenComplete(() => null);
     super.initState();
   }

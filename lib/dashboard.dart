@@ -1,5 +1,6 @@
 import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/colors/mycolor.dart';
+import 'package:apna_cricket/login/login.dart';
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/homepage.dart';
 import 'package:apna_cricket/pages/mileshistory.dart/mileshistory.dart';
@@ -7,7 +8,7 @@ import 'package:apna_cricket/pages/mileshistory.dart/mileshistory.dart';
 import 'package:apna_cricket/pages/morepage.dart';
 import 'package:apna_cricket/pages/mycontest.dart';
 import 'package:apna_cricket/pages/profile/changepasswordpage.dart';
-import 'package:apna_cricket/pages/profilepage.dart';
+// import 'package:apna_cricket/pages/profilepage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,24 +35,10 @@ class _DashBoardState extends State<DashBoard> {
     });
   }
 
-  // late User user = User(
-  //     userId: 0,
-  //     userName: 'userName',
-  //     userEmail: 'userEmail',
-  //     userMobileNo: 'userMobileNo',
-  //     address: 'address',
-  //     state: 'state',
-  //     country: 'country',
-  //     points: 0,
-  //     franchiseId: 0,
-  //     sortedOrder: 0,
-  //     isActive: false,
-  //     isDelete: false,
-  //     mode: 0);
   @override
   void initState() {
     getshareddata();
-    // TODO: implement initState
+
     super.initState();
   }
 
@@ -130,7 +117,33 @@ class _DashBoardState extends State<DashBoard> {
                       title: const Text('Log Out'),
                       leading: const Icon(Icons.logout_rounded),
                       onTap: () {
-                        UserPreferences().removeUser();
+                        Get.defaultDialog(
+                          barrierDismissible: false,
+                          middleText: 'Are you sure you want to logout',
+                          backgroundColor: Colors.white,
+                          buttonColor: Colors.red,
+                          title: 'Logout',
+                          // content: Card(
+                          //   color: Colors.white,
+                          //   elevation: 40,
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.all(8.0),
+                          //     child: Text('Are you sure you want to logout'),
+                          //   ),
+                          // ),
+
+                          onConfirm: () {
+                            Get.offAll(() => const LoginPage(),
+                                transition: Transition.leftToRight);
+                          },
+                          onCancel: () {
+                            Get.back();
+                          },
+                          // actions: [],
+                          // onCancel: () {},
+                          // onConfirm: () {},
+                        );
+                        // UserPreferences().removeUser();
                       },
                     ),
                   ],
@@ -150,7 +163,8 @@ class _DashBoardState extends State<DashBoard> {
                       )
                     : null,
                 flexibleSpace: Container(
-                  decoration: BoxDecoration(gradient: MyColors.appbargradient),
+                  decoration:
+                      const BoxDecoration(gradient: MyColors.appbargradient),
                 ),
                 shape: ContinuousRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
@@ -172,13 +186,8 @@ class _DashBoardState extends State<DashBoard> {
                   )
                 ],
                 automaticallyImplyLeading: false,
-                // title: Row(
-                //   children: [
-                //     SizedBox(
-                //         height: 60, width: 60, child: Image.asset('assets/logo.png'))
-                //   ],
-                // ),
-                title: Text(
+
+                title: const Text(
                   'Apna Cricket',
                   style: TextStyle(color: Colors.white),
                 ),
