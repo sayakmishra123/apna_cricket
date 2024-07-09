@@ -106,10 +106,13 @@ class JoinTeam extends StatelessWidget {
                                               const Text(
                                                 'ENGLAND',
                                                 textAlign: TextAlign.center,
-                                                      style: const TextStyle(
+                                                       style:  const TextStyle(
+                                                      
                                                       fontWeight: FontWeight.w800,
                                                         color: Colors.black54,
-                                                        fontSize: 16),
+                                                        fontSize: 14,
+                                                        
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -176,12 +179,15 @@ class JoinTeam extends StatelessWidget {
                                                                   50),
                                                       child: Image.asset(
                                                           'assets/jaffna.jfif'))),
+                                                           const SizedBox(
+                                                height: 5,
+                                              ),
                                               const Text('INDIA',
                                                   textAlign: TextAlign.center,
                                                       style: const TextStyle(
                                                       fontWeight: FontWeight.w800,
                                                         color: Colors.black54,
-                                                        fontSize: 16),
+                                                        fontSize: 14),
                                                       
                                                       ),
                                             ],
@@ -219,13 +225,13 @@ class JoinTeam extends StatelessWidget {
                                         const Column(
                                           children: [
                                             Text(
-                                              '10-07-2025',
+                                              '20 Jun 24 WED',
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w400),
                                             ),
                                               Text(
-                                              '13:20',
+                                              '13:20 HRS',
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w400),

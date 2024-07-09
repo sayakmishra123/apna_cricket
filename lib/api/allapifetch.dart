@@ -270,7 +270,8 @@ Future tournamentListApi(BuildContext context, String contestTypeId) async {
   Map<String, dynamic> data = {'ContestTypeId': contestTypeId};
   var res = await http.get(
     Uri.https(
-            'apnacricket.dthlms.in', '/tournament/getTOUrnamentByContestTypeId')
+            'apnacricket.dthlms.in', '/Tournament/getTOUrnament')
+            // https://apnacricket.dthlms.in/Tournament/getTOUrnament?contestTypeId=2
         .replace(queryParameters: data),
   );
   var jsondata = jsonDecode(res.body);
