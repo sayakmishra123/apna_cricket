@@ -1,11 +1,13 @@
 import 'package:apna_cricket/getx/getx.dart';
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:banner_listtile/banner_listtile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class Bat extends StatefulWidget {
-  const Bat({super.key});
+  MatchDetails match;
+  Bat(this.match, {super.key});
 
   @override
   State<Bat> createState() => _BatState();
@@ -67,7 +69,8 @@ class _BatState extends State<Bat> {
                         ? Colors.amber.withOpacity(0.2)
                         : Colors.transparent,
                     onTap: () {
-                      controllerBat.toggleSelection(index, getx.bat[index]);
+                      controllerBat.toggleSelection(
+                          index, getx.bat[index], widget.match.numberOfPlayers);
                       setState(() {});
                     },
                     imageContainer: SizedBox(

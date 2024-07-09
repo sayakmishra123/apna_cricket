@@ -114,11 +114,6 @@ class _DashBoardState extends State<DashBoard> {
                       },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.more_horiz_rounded),
-                      title: const Text('More'),
-                      onTap: () {},
-                    ),
-                    ListTile(
                       title: const Text('Log Out'),
                       leading: const Icon(Icons.logout_rounded),
                       onTap: () {
@@ -130,10 +125,10 @@ class _DashBoardState extends State<DashBoard> {
               ),
               appBar: AppBar(
                 bottom: _selectedIndex.value == 1
-                    ? PreferredSize(
+                    ? const PreferredSize(
                         preferredSize: Size.fromHeight(
                             48.0), // fixed height for the TabBar
-                        child: const TabBar(
+                        child: TabBar(
                           unselectedLabelColor: Colors.white30,
                           labelColor: Colors.white,
                           tabs: [
@@ -143,17 +138,14 @@ class _DashBoardState extends State<DashBoard> {
                         ),
                       )
                     : PreferredSize(
-                        preferredSize: Size.fromHeight(
+                        preferredSize: const Size.fromHeight(
                             48), // no height when TabBar is not present
                         child: Container(),
                       ),
                 flexibleSpace: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [MyColors.thirty, Colors.black87],
-                      transform: const GradientRotation(2),
-                    ),
-                  ),
+                  // height: 100,
+                  decoration:
+                      const BoxDecoration(gradient: MyColors.appbargradient),
                 ),
                 shape: ContinuousRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
@@ -166,7 +158,7 @@ class _DashBoardState extends State<DashBoard> {
                       width: 40,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Image.asset('assets/nodp.jpg'),
+                        child: Image.asset('assets/logo.jpg'),
                       ),
                     ),
                   ),

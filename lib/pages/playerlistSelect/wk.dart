@@ -1,11 +1,13 @@
 import 'package:apna_cricket/getx/getx.dart';
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:banner_listtile/banner_listtile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class Wk extends StatefulWidget {
-  const Wk({super.key});
+  MatchDetails match;
+  Wk(this.match, {super.key});
 
   @override
   State<Wk> createState() => WkState();
@@ -13,38 +15,7 @@ class Wk extends StatefulWidget {
 
 class WkState extends State<Wk> {
   final SelectionControllerWk controller = Get.put(SelectionControllerWk());
-  List l = [
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan'
-  ];
+
   Getx getx = Get.put(Getx());
   @override
   Widget build(BuildContext context) {
@@ -62,12 +33,13 @@ class WkState extends State<Wk> {
                       borderSide: BorderSide.none,
                       bannerColor: Colors.red,
                       // bannerTextColor: Colors.,
-                      bannerText: l[index],
+
                       backgroundColor: isSelected
                           ? Colors.amber.withOpacity(0.2)
                           : Colors.transparent,
                       onTap: () {
-                        controller.toggleSelection(index, getx.wk[index]);
+                        controller.toggleSelection(index, getx.wk[index],
+                            widget.match.numberOfPlayers);
                         setState(() {});
                       },
                       title: Text(

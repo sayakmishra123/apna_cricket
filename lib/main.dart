@@ -50,18 +50,17 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Apna Crikcet',
-        theme: ThemeData(
-          textTheme: GoogleFonts.josefinSansTextTheme().copyWith(
-            bodyMedium:
-                GoogleFonts.josefinSans(textStyle: textTheme.bodyMedium),
-          ),
-          colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
-          useMaterial3: true,
+      debugShowCheckedModeBanner: false,
+      title: 'Apna Crikcet',
+      theme: ThemeData(
+        textTheme: GoogleFonts.josefinSansTextTheme().copyWith(
+          bodyMedium: GoogleFonts.josefinSans(textStyle: textTheme.bodyMedium),
         ),
-        home: const MilesBalance()
-        // home: datahas != null ? const DashBoard() : const LoginPage(),
-        );
+        colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
+        useMaterial3: true,
+      ),
+      // home: const MilesBalance()
+      home: datahas != null ? const DashBoard() : const LoginPage(),
+    );
   }
 }
