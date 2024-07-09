@@ -1,6 +1,8 @@
+import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/dashboard.dart';
 import 'package:apna_cricket/login/login.dart';
+import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/captannchoose/captainchoose.dart';
 import 'package:apna_cricket/pages/contextdeatils.dart';
 // import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
@@ -14,10 +16,35 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  User? datahas;
+  @override
+  void initState() {
+    print(DateTime.now());
+    getdata().whenComplete(() => null);
+    super.initState();
+  }
+
+  String data = '';
+  Future getdata() async {
+    datahas = await UserPreferences().getUser();
+    setState(() {});
+    // setState(() {
+    // setState(() {});
+    // print();
+    // data = datahas!.userEmail;
+    print('has data?');
+    // });
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -31,7 +58,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: datahas != null ? const DashBoard() : const LoginPage(),
     );
   }
 }

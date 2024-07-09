@@ -36,7 +36,9 @@ class UserPreferences {
   // Remove user data
   Future<void> removeUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_userKey);
+    print(prefs.getString(_userKey) ?? 'no data');
+    await prefs.clear();
+    // Get.to(page)
   }
 }
 
@@ -281,13 +283,13 @@ Future tournamentListApi(BuildContext context, String contestTypeId) async {
     getx.tournamentList.value =
         jsonList1.map((json) => AllTournament.fromJson(json)).toList();
     for (var player in getx.tournamentList) {
-      print(player);
+      print(player.contestTypeId);
     }
 
 // getx.mileshistory.
     // Get.to(() => const DashBoard());
   } else {
-    Get.back();
+    // Get.back();
     Get.rawSnackbar(
         duration: const Duration(seconds: 1),
         // backgroundColor: ,
@@ -322,7 +324,7 @@ Future allmatchListApi(BuildContext context, String contestTypeId,
   print(res.statusCode);
   if (jsondata['Result'] == true && res.statusCode == 200) {
   } else {
-    Get.back();
+    // Get.back();
     Get.rawSnackbar(
         duration: const Duration(seconds: 1),
         // backgroundColor: ,
@@ -356,7 +358,7 @@ Future currentcontextListApi(BuildContext context, String userid) async {
     getx.currentcontext.value =
         jsonList1.map((json) => CurrentContest.fromJson(json)).toList();
   } else {
-    Get.back();
+    // Get.back();
     Get.rawSnackbar(
         duration: const Duration(seconds: 1),
         // backgroundColor: ,
@@ -449,11 +451,10 @@ Future changepasswordApi(
   var jsondata = jsonDecode(res.body);
   if (res.statusCode == 200) {
     if (jsondata["Result"] == true) {
-
-    Get.back();
+      Get.back();
 
       showDialog(
-     context: context,
+        context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Alert'),
@@ -463,6 +464,7 @@ Future changepasswordApi(
                 child: const Text('OK'),
                 onPressed: () {
                   Navigator.of(context).pop();
+                  Get.back();
                 },
               ),
             ],

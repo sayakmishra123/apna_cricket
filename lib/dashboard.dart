@@ -1,5 +1,6 @@
 import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/colors/mycolor.dart';
+import 'package:apna_cricket/login/login.dart';
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/homepage.dart';
 import 'package:apna_cricket/pages/mileshistory.dart/mileshistory.dart';
@@ -7,7 +8,7 @@ import 'package:apna_cricket/pages/mileshistory.dart/mileshistory.dart';
 import 'package:apna_cricket/pages/morepage.dart';
 import 'package:apna_cricket/pages/mycontest.dart';
 import 'package:apna_cricket/pages/profile/changepasswordpage.dart';
-import 'package:apna_cricket/pages/profilepage.dart';
+// import 'package:apna_cricket/pages/profilepage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,29 +35,16 @@ class _DashBoardState extends State<DashBoard> {
     });
   }
 
-  // late User user = User(
-  //     userId: 0,
-  //     userName: 'userName',
-  //     userEmail: 'userEmail',
-  //     userMobileNo: 'userMobileNo',
-  //     address: 'address',
-  //     state: 'state',
-  //     country: 'country',
-  //     points: 0,
-  //     franchiseId: 0,
-  //     sortedOrder: 0,
-  //     isActive: false,
-  //     isDelete: false,
-  //     mode: 0);
-@override
+  @override
   void initState() {
     getshareddata();
     super.initState();
   }
-User? user ;
+
+  User? user;
 
   Future getshareddata() async {
-   user = await UserPreferences().getUser();
+    user = await UserPreferences().getUser();
     setState(() {});
   }
 

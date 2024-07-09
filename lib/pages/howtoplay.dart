@@ -1,3 +1,4 @@
+import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -42,10 +43,7 @@ class HowToPlay extends StatelessWidget {
           ),
           flexibleSpace: Container(
             // height: 100,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Color.fromARGB(255, 117, 15, 7), Colors.black],
-                    transform: GradientRotation(2))),
+            decoration: const BoxDecoration(gradient: MyColors.appbargradient),
           ),
           title: const Text(
             'How to Play',

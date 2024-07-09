@@ -16,10 +16,7 @@ class JoinTeam extends StatelessWidget {
           iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: MyColors.thirty,
           flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [MyColors.thirty, Colors.black87],
-                    transform: const GradientRotation(2))),
+            decoration: const BoxDecoration(gradient: MyColors.appbargradient),
           ),
           title: Text(
             heading,
