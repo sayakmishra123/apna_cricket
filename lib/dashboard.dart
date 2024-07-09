@@ -51,7 +51,6 @@ class _DashBoardState extends State<DashBoard> {
 @override
   void initState() {
     getshareddata();
-    // TODO: implement initState
     super.initState();
   }
 User? user ;
@@ -143,49 +142,56 @@ User? user ;
              ],
            ),
          ),
-         appBar: AppBar(
-         bottom: _selectedIndex == 1 ? TabBar(
-             unselectedLabelColor: Colors.white30,
-             labelColor: Colors.white,
-             tabs: [
-               Tab(text: 'Current Contests'),
-               Tab(text: 'Contest History'),
-             ],
-           ): null,
-            flexibleSpace: Container(
-             decoration: BoxDecoration(
-                 gradient: LinearGradient(
-                     colors: [MyColors.thirty, Colors.black87],
-                     transform: GradientRotation(2))),
-           ),
-           shape:
-               ContinuousRectangleBorder(borderRadius: BorderRadius.circular(8)),
-           // backgroundColor: Colors.red,
-           actions: [
-             InkWell(
-               onTap: () {
-                 _key.currentState!.openDrawer();
-               },
-               child: SizedBox(
-                 width: 40,
-                 child: ClipRRect(
-                     borderRadius: BorderRadius.circular(100),
-                     child: Image.asset('assets/nodp.jpg')),
-               ),
-             ),
-             const SizedBox(
-               width: 15,
-             )
-           ],
-           automaticallyImplyLeading: false,
-           // title: Row(
-           //   children: [
-           //     SizedBox(
-           //         height: 60, width: 60, child: Image.asset('assets/logo.png'))
-           //   ],
-           // ),
-           title:  Text('Apna Cricket',style: TextStyle(color: Colors.white),),
-         ),
+        appBar: AppBar(
+  bottom: _selectedIndex.value == 1
+      ? PreferredSize(
+          preferredSize: Size.fromHeight(48.0), // fixed height for the TabBar
+          child: const TabBar(
+            unselectedLabelColor: Colors.white30,
+            labelColor: Colors.white,
+            tabs: [
+              Tab(text: 'Current Contests'),
+              Tab(text: 'Contest History'),
+            ],
+          ),
+        )
+      : PreferredSize(
+          preferredSize: Size.fromHeight(48), // no height when TabBar is not present
+          child: Container(),
+        ),
+  flexibleSpace: Container(
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        colors: [MyColors.thirty, Colors.black87],
+        transform: const GradientRotation(2),
+      ),
+    ),
+  ),
+  shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  actions: [
+    InkWell(
+      onTap: () {
+        _key.currentState!.openDrawer();
+      },
+      child: SizedBox(
+        width: 40,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: Image.asset('assets/nodp.jpg'),
+        ),
+      ),
+    ),
+    const SizedBox(
+      width: 15,
+    )
+  ],
+  automaticallyImplyLeading: false,
+  title: const Text(
+    'Apna Cricket',
+    style: TextStyle(color: Colors.white),
+  ),
+),
+
          body: pages[_selectedIndex.value],
          bottomNavigationBar: NavigationBar(
              onDestinationSelected: _handleIndexChange,
@@ -206,6 +212,6 @@ User? user ;
                    icon: Icon(Icons.more_horiz_outlined), label: 'More'),
              ]),
        ),
-     ): CircularProgressIndicator();
+     ): const CircularProgressIndicator();
   }
 }
