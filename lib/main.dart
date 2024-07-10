@@ -54,6 +54,8 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         textTheme: GoogleFonts.josefinSansTextTheme().copyWith(
           bodyMedium: GoogleFonts.josefinSans(textStyle: textTheme.bodyMedium),
+          bodyLarge: GoogleFonts.josefinSans(textStyle: textTheme.bodyLarge),
+          bodySmall: GoogleFonts.josefinSans(textStyle: textTheme.bodySmall)
         ),
         colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
         useMaterial3: true,

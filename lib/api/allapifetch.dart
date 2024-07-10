@@ -120,9 +120,18 @@ Future signUpApi(
       Get.to(() => const DashBoard());
     } else {
       Get.back();
+      Get.rawSnackbar(
+          duration: const Duration(seconds: 1),
+          // backgroundColor: ,
+          overlayBlur: 5,
+          barBlur: 5,
+          title: 'Invalid login',
+          message: jsondata['Data'],
+          snackStyle: SnackStyle.GROUNDED);
     }
   } catch (e) {
     Get.back();
+
     print(e);
   }
 }
