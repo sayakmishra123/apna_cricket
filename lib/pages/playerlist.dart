@@ -21,7 +21,7 @@ class PlayerList extends StatefulWidget {
 class _PlayerListState extends State<PlayerList> {
   late double vsLine = 170;
   Getx getx = Get.put(Getx());
-  TextStyle teamNameStyle=TextStyle(fontSize: 25,fontWeight: FontWeight.w800,);
+  TextStyle teamNameStyle=const TextStyle(fontSize: 25,fontWeight: FontWeight.w800,);
   SelectionControllerWk controllerWk = Get.put(SelectionControllerWk());
   SelectionControllerBlow controllerBlow = Get.put(SelectionControllerBlow());
   SelectionControllerBat controllerBat = Get.put(SelectionControllerBat());
@@ -122,12 +122,17 @@ class _PlayerListState extends State<PlayerList> {
       child: Column(
         children: [
 
-           Text(
+           const Text(
             'INDIA',
             style: TextStyle(
               fontSize: 20,
-              color: Colors.amber, // Adjust text style as needed
-            //  Optional: background color with opacity
+              color: Colors.red, 
+          shadows: [
+            Shadow(
+              blurRadius: 40,
+              color: Colors.red
+            )
+          ]
             ),
           ),
           Image.asset(
@@ -149,14 +154,20 @@ class _PlayerListState extends State<PlayerList> {
       child:  Column(
         children: [
       
-          Text(
+          const Text(
             'ENGLAND',
             style: TextStyle(
              
               
               fontSize: 20,
-              color: Colors.amber, // Adjust text style as needed
-            //  Optional: background color with opacity
+              color: Colors.green, 
+              shadows: [
+                Shadow(
+                  color: Colors.green,
+                  blurRadius: 40
+                )
+              ]
+         
             ),
           ),
           Image.asset(
@@ -168,7 +179,7 @@ class _PlayerListState extends State<PlayerList> {
     ),
   ],
 ),
-SizedBox(height: 5,),
+const SizedBox(height: 5,),
 
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -199,9 +210,9 @@ SizedBox(height: 5,),
                               scrollDirection: Axis.horizontal,
                               itemCount: getx.add.value,
                               itemBuilder: (context, index) => Padding(
-                                padding: const EdgeInsets.only(right: 10),
+                                padding: const EdgeInsets.only(right: 4),
                                 child: Container(
-                                  color: Colors.green,
+                                  color: Colors.amber,
                                   // margin: EdgeInsets.only(right: 2),
                                   width: 10,
                                   height: 3,
