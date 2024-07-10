@@ -119,70 +119,8 @@ class _PlayerListState extends State<PlayerList> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-//                  Row(
-//   children: [
-//     // TEAM 1
-//     Expanded(
-//       child: Column(
-//         children: [
 
-//            const Text(
-//             'INDIA',
-//             style: TextStyle(
-//               fontSize: 20,
-//               color: Colors.red,
-//           shadows: [
-//             Shadow(
-//               blurRadius: 40,
-//               color: Colors.red
-//             )
-//           ]
-//             ),
-//           ),
-//           Image.asset(
-//             'assets/team1_line.png',
-//           ),
-
-//         ],
-//       ),
-//     ),
-
-//     SizedBox(
-//       // width: 120,
-//       height: 70,
-//       child: LottieBuilder.asset(
-//         'assets/animate.json',
-//       ),
-//     ),
-//     // TEAM 2
-//     Expanded(
-//       child:  Column(
-//         children: [
-
-//           const Text(
-//             'ENGLAND',
-//             style: TextStyle(
-
-//               fontSize: 20,
-//               color: Colors.green,
-//               shadows: [
-//                 Shadow(
-//                   color: Colors.green,
-//                   blurRadius: 40
-//                 )
-//               ]
-
-//             ),
-//           ),
-//           Image.asset(
-//             'assets/team2_line.png',
-//           ),
-
-//         ],
-//       ),
-//     ),
-//   ],
-// ),
+   
 
                   const SizedBox(
                     height: 10,
@@ -196,7 +134,7 @@ class _PlayerListState extends State<PlayerList> {
                           children: [
                             Text(
                               widget.match.team1Name,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 20,
                                   color: Colors.red,
                                   shadows: [
@@ -222,7 +160,7 @@ class _PlayerListState extends State<PlayerList> {
                           children: [
                             Text(
                               widget.match.team2Name,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 20,
                                   color: Colors.green,
                                   shadows: [
@@ -304,43 +242,33 @@ class _PlayerListState extends State<PlayerList> {
                     height: 10,
                   ),
 
-                  Container(
-                    width: MediaQuery.sizeOf(context).width,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                      Color.fromARGB(255, 194, 20, 7),
-                      Color.fromARGB(255, 0, 0, 0)
-                    ], transform: GradientRotation(2))),
-
-                    // color: Color.fromARGB(255, 1, 9, 37),
-                    child: TabBar(
-                        unselectedLabelColor: Colors.white54,
-                        overlayColor:
-                            const MaterialStatePropertyAll(Colors.green),
-                        tabAlignment: TabAlignment.center,
-                        // unselectedLabelColor: Colors.red,
-                        automaticIndicatorColorAdjustment: true,
-                        indicatorColor: Colors.amber,
-                        indicatorWeight: 5,
-                        // indicator: BoxDecoration(color: Colors.red),
-                        isScrollable: true,
-                        labelStyle: GoogleFonts.josefinSans()
-                            .copyWith(color: Colors.amber[200]),
-                        tabs: [
-                          Tab(
-                            text: 'WK(${getx.wk.length})',
-                          ),
-                          Tab(
-                            text: 'BAT(${getx.bat.length})',
-                          ),
-                          Tab(
-                            text: 'AR(${getx.ar.length})',
-                          ),
-                          Tab(
-                            text: 'BOWL(${getx.blow.length})',
-                          )
-                        ]),
-                  ),
+                  TabBar(
+                      unselectedLabelColor: Colors.white54,
+                      // overlayColor:
+                      //     const MaterialStatePropertyAll(Colors.green),
+                      tabAlignment: TabAlignment.center,
+                      // unselectedLabelColor: Colors.red,
+                      automaticIndicatorColorAdjustment: true,
+                      indicatorColor: Colors.amber,
+                      indicatorWeight: 5,
+                      // indicator: BoxDecoration(color: Colors.red),
+                      isScrollable: true,
+                      labelStyle: GoogleFonts.josefinSans()
+                          .copyWith(color: Colors.amber[200]),
+                      tabs: [
+                        Tab(
+                          text: 'WK(${getx.wk.length})',
+                        ),
+                        Tab(
+                          text: 'BAT(${getx.bat.length})',
+                        ),
+                        Tab(
+                          text: 'AR(${getx.ar.length})',
+                        ),
+                        Tab(
+                          text: 'BOWL(${getx.blow.length})',
+                        )
+                      ]),
                 ],
               ),
             ),
