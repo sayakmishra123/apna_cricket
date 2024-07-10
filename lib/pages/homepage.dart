@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                       'Select The Tournaments',
                       style: heading,
                     ),
-                    Icon(Icons.arrow_forward_rounded)
+                    const Icon(Icons.arrow_forward_rounded)
                     // TextButton(
                     //     style: const ButtonStyle(),
                     //     onPressed: () {
@@ -295,6 +295,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ),
                                     ),
+
                                     title: Text(getx
                                         .tournamentList[index].tournamentName),
                                   ),

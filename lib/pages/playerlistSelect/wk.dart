@@ -28,12 +28,13 @@ class WkState extends State<Wk> {
                   bool isSelected = controller.selectedIndices.contains(index);
 
                   return Container(
-                    // decoration: BoxDecoration(border: Border(bottom: BorderSide())),
+                    decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide(width: 0.3))),
                     child: BannerListTile(
                       borderSide: BorderSide.none,
                       bannerColor: Colors.red,
                       // bannerTextColor: Colors.,
-
+                      showBanner: false,
                       backgroundColor: isSelected
                           ? Colors.amber.withOpacity(0.2)
                           : Colors.transparent,

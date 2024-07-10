@@ -5,7 +5,6 @@ import 'package:apna_cricket/login/login.dart';
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/captannchoose/captainchoose.dart';
 import 'package:apna_cricket/pages/contextdeatils.dart';
-import 'package:apna_cricket/pages/milesbalance.dart';
 // import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
 import 'package:apna_cricket/splash.dart';
@@ -59,7 +58,6 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: MyColors.thirty),
         useMaterial3: true,
       ),
-      // home: const MilesBalance()
       home: datahas != null ? const DashBoard() : const LoginPage(),
     );
   }

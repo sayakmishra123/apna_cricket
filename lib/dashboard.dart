@@ -113,11 +113,32 @@ class _DashBoardState extends State<DashBoard> {
                         Get.to(() => const ChangePassword());
                       },
                     ),
+                    //  ListTile(
+                    //    leading: const Icon(Icons.more_horiz_rounded),
+                    //    title: const Text('More'),
+                    //    onTap: () {},
+                    //  ),
                     ListTile(
                       title: const Text('Log Out'),
                       leading: const Icon(Icons.logout_rounded),
-                      onTap: () {
-                        UserPreferences().removeUser();
+                      onTap: () async {
+                        // showDialog(
+                        //     context: context,
+                        //     builder: (context) {
+                        //       return const CircularProgressIndicator();
+                        //     });
+                        await UserPreferences().removeUser();
+                        Get.defaultDialog(
+                          buttonColor: Colors.red,
+                          title: 'Logout',
+                          content: Text('Are you sure want to logout?'),
+                          onConfirm: () {
+                            Get.offAll(() => const LoginPage());
+                          },
+                          onCancel: () {
+                            Get.back();
+                          },
+                        );
                       },
                     ),
                   ],
@@ -125,15 +146,27 @@ class _DashBoardState extends State<DashBoard> {
               ),
               appBar: AppBar(
                 bottom: _selectedIndex.value == 1
-                    ? const PreferredSize(
-                        preferredSize: Size.fromHeight(
+                    ? PreferredSize(
+                        preferredSize: const Size.fromHeight(
                             48.0), // fixed height for the TabBar
                         child: TabBar(
                           unselectedLabelColor: Colors.white30,
                           labelColor: Colors.white,
-                          tabs: [
-                            Tab(text: 'Current Contests'),
-                            Tab(text: 'Contest History'),
+                          indicatorColor: Colors.amber,
+                          //  indicatorPadding: EdgeInsets.all(10),
+                          indicatorWeight: 4,
+
+                          tabs: const [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 2, horizontal: 10),
+                              child: Tab(text: 'Current Contests'),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 2, horizontal: 10),
+                              child: Tab(text: 'Contest History'),
+                            ),
                           ],
                         ),
                       )
@@ -143,9 +176,12 @@ class _DashBoardState extends State<DashBoard> {
                         child: Container(),
                       ),
                 flexibleSpace: Container(
-                  // height: 100,
-                  decoration:
-                      const BoxDecoration(gradient: MyColors.appbargradient),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [MyColors.thirty, Colors.black87],
+                      transform: const GradientRotation(2),
+                    ),
+                  ),
                 ),
                 shape: ContinuousRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
@@ -158,7 +194,7 @@ class _DashBoardState extends State<DashBoard> {
                       width: 40,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Image.asset('assets/logo.jpg'),
+                        child: Image.asset('assets/nodp.jpg'),
                       ),
                     ),
                   ),

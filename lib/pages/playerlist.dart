@@ -6,9 +6,7 @@ import 'package:apna_cricket/pages/playerlistSelect/ar.dart';
 import 'package:apna_cricket/pages/playerlistSelect/bat.dart';
 import 'package:apna_cricket/pages/playerlistSelect/blow.dart';
 import 'package:apna_cricket/pages/playerlistSelect/wk.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
@@ -21,7 +19,12 @@ class PlayerList extends StatefulWidget {
 }
 
 class _PlayerListState extends State<PlayerList> {
+  late double vsLine = 170;
   Getx getx = Get.put(Getx());
+  TextStyle teamNameStyle = TextStyle(
+    fontSize: 25,
+    fontWeight: FontWeight.w800,
+  );
   SelectionControllerWk controllerWk = Get.put(SelectionControllerWk());
   SelectionControllerBlow controllerBlow = Get.put(SelectionControllerBlow());
   SelectionControllerBat controllerBat = Get.put(SelectionControllerBat());
@@ -29,7 +32,6 @@ class _PlayerListState extends State<PlayerList> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((visibleForTesting) =>
         // Future.delayed(Duration(seconds: 3), () {
@@ -53,7 +55,7 @@ class _PlayerListState extends State<PlayerList> {
     controllerBlow.selectedIndices.clear();
     controllerWk.selectedIndices.clear();
     getx.selectedplayer.clear();
-    // TODO: implement dispose
+
     super.dispose();
   }
 
@@ -64,30 +66,36 @@ class _PlayerListState extends State<PlayerList> {
       child: Obx(
         () => Scaffold(
           appBar: AppBar(
-            leading: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                )),
+            // leading: IconButton(
+            //     onPressed: () {
+            //       Get.back();
+            //     },
+            //     icon: Icon(
+            //       Icons.arrow_back,
+            //       color: Colors.white,
+            //     )),
+            automaticallyImplyLeading: true,
+            iconTheme: const IconThemeData(color: Colors.white),
             actions: const [
               Icon(
-                Icons.timer,
+                Icons.timer_outlined,
                 color: Colors.white,
               ),
+              SizedBox(
+                width: 5,
+              ),
               Padding(
-                padding: EdgeInsets.only(right: 10),
+                padding: EdgeInsets.only(right: 20),
                 child: Text(
                   '20:00:00',
                   style: TextStyle(color: Colors.white),
                 ),
               )
             ],
+
             // backgroundColor: ,
             flexibleSpace: Container(
-              // height: 100,
+              height: 400,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
                       colors: [Color.fromARGB(255, 117, 15, 7), Colors.black],
@@ -96,109 +104,131 @@ class _PlayerListState extends State<PlayerList> {
 
             title: const Text(
               'Player List',
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyle(
+                color: Colors.white,
+
+                // fontSize: 16
+              ),
             ),
             bottom: PreferredSize(
-              preferredSize: getx.add.value == 0
-                  ? Size.fromHeight(140)
-                  : Size.fromHeight(190),
+              // preferredSize: getx.add.value == 0
+              //     ? Size.fromHeight(140)
+              //     : Size.fromHeight(190),
+              preferredSize: const Size.fromHeight(200),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    // color: Colors.blue,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Card(
-                            elevation: 10,
-                            child: Container(
-                              height: 50,
-                              color: Colors.orange,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text('A1')],
+                  Row(
+                    children: [
+                      // TEAM 1
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              widget.match.team1Name,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color:
+                                    Colors.amber, // Adjust text style as needed
+                                //  Optional: background color with opacity
                               ),
                             ),
-                          ),
+                            Image.asset(
+                              'assets/team1_line.png',
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          // width: 80,
-                          height: 80,
-                          child: LottieBuilder.asset(
-                            'assets/animate.json',
-                            // width: 30,
-                          ),
+                      ),
+                      SizedBox(
+                        // width: 120,
+                        height: 70,
+                        child: LottieBuilder.asset(
+                          'assets/animate.json',
                         ),
-                        Expanded(
-                          child: Card(
-                            elevation: 20,
-                            child: Container(
-                              height: 50,
-                              color: Colors.amber,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text('A2')],
+                      ),
+                      // TEAM 2
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              widget.match.team2Name,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                color:
+                                    Colors.amber, // Adjust text style as needed
+                                //  Optional: background color with opacity
                               ),
                             ),
-                          ),
-                        )
-                      ],
-                    ),
+                            Image.asset(
+                              'assets/team2_line.png',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 5,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
                         Text(
-                          'Total selected player ${getx.add.value}/${widget.match.numberOfPlayers}',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 52, 194, 9),
-                              fontWeight: FontWeight.bold),
+                          'Total selected player ${getx.add.value}/22'
+                              .toUpperCase(),
+                          style: const TextStyle(
+                              fontSize: 13,
+                              color: Color.fromARGB(255, 241, 236, 236),
+                              fontWeight: FontWeight.normal),
                         ),
                       ],
                     ),
                   ),
-                  Visibility(
-                    visible: getx.add.value == 0 ? false : true,
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          // color: Colors.green,
-                          width: MediaQuery.sizeOf(context).width - 50,
-                          height: 20,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: getx.add.value,
-                            itemBuilder: (context, index) => Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Container(
-                                color: Colors.green,
-                                // margin: EdgeInsets.only(right: 2),
-                                width: 10,
-                                height: 3,
-                                // child: Text(getx.add.value.toString()),
+                  SizedBox(
+                    height: 40,
+                    child: Visibility(
+                      visible: getx.add.value == 0 ? false : true,
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            // color: Colors.green,
+                            width: MediaQuery.sizeOf(context).width - 50,
+                            height: 20,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: getx.add.value,
+                              itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: Container(
+                                  color: Colors.green,
+                                  // margin: EdgeInsets.only(right: 2),
+                                  width: 10,
+                                  height: 3,
+                                  // child: Text(getx.add.value.toString()),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              getx.add.value = 0;
-                              getx.isColor.value = true;
-                              setState(() {
-                                controllerAr.selectedIndices.clear();
-                                controllerBat.selectedIndices.clear();
-                                controllerBlow.selectedIndices.clear();
-                                controllerWk.selectedIndices.clear();
-                                getx.selectedplayer.clear();
-                              });
-                            },
-                            icon: const Icon(
-                              Icons.remove_circle,
-                              color: Colors.white,
-                            ))
-                      ],
+                          IconButton(
+                              onPressed: () {
+                                getx.add.value = 0;
+                                getx.isColor.value = true;
+                                setState(() {
+                                  controllerAr.selectedIndices.clear();
+                                  controllerBat.selectedIndices.clear();
+                                  controllerBlow.selectedIndices.clear();
+                                  controllerWk.selectedIndices.clear();
+                                  getx.selectedplayer.clear();
+                                });
+                              },
+                              icon: const Icon(
+                                Icons.remove_circle,
+                                color: Colors.white,
+                              ))
+                        ],
+                      ),
                     ),
                   ),
                   Container(
@@ -211,17 +241,16 @@ class _PlayerListState extends State<PlayerList> {
 
                     // color: Color.fromARGB(255, 1, 9, 37),
                     child: TabBar(
-                        overlayColor: MaterialStatePropertyAll(Colors.green),
+                        overlayColor:
+                            const MaterialStatePropertyAll(Colors.green),
                         tabAlignment: TabAlignment.center,
                         // unselectedLabelColor: Colors.red,
                         automaticIndicatorColorAdjustment: true,
                         dividerColor: Colors.red,
                         // indicatorColor: Colors.,
                         // indicator: BoxDecoration(color: Colors.red),
-                        // isScrollable: false,
                         isScrollable: true,
-                        // indicatorWeight: 10,
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle(color: Colors.white),
                         tabs: [
                           Tab(
                             text: 'WK(${getx.wk.length})',

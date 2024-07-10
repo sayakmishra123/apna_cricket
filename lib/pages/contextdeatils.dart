@@ -133,7 +133,7 @@ class _ContextDetailsState extends State<ContextDetails> {
         },
       ),
       appBar: AppBar(
-        title: const Text('Context details'),
+        title: const Text('Contest details'),
       ),
     );
   }
