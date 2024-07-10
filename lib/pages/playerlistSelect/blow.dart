@@ -15,38 +15,7 @@ class Blow extends StatefulWidget {
 
 class _BlowState extends State<Blow> {
   final SelectionControllerBlow controller = Get.put(SelectionControllerBlow());
-  List l = [
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan'
-  ];
+
   Getx getx = Get.put(Getx());
   @override
   Widget build(BuildContext context) {
@@ -65,7 +34,7 @@ class _BlowState extends State<Blow> {
                       showBanner: false,
                       bannerColor: Colors.red,
                       // bannerTextColor: Colors.,
-                      bannerText: l[index],
+
                       backgroundColor: isSelected
                           ? Colors.amber.withOpacity(0.2)
                           : Colors.transparent,

@@ -17,38 +17,7 @@ class _BatState extends State<Bat> {
   final SelectionControllerBat controllerBat =
       Get.put(SelectionControllerBat());
   // RxList<int> selectedIndices = <int>[].obs;
-  List l = [
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan'
-  ];
+
   Getx getx = Get.put(Getx());
   @override
   Widget build(BuildContext context) {
@@ -68,7 +37,7 @@ class _BatState extends State<Bat> {
                       showBanner: false,
                       bannerColor: Colors.red,
                       // bannerTextColor: Colors.,
-                      bannerText: l[index],
+
                       backgroundColor: isSelected
                           ? Colors.amber.withOpacity(0.2)
                           : Colors.transparent,

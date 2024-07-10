@@ -8,6 +8,7 @@ import 'package:apna_cricket/pages/playerlistSelect/blow.dart';
 import 'package:apna_cricket/pages/playerlistSelect/wk.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class PlayerList extends StatefulWidget {
@@ -127,11 +128,11 @@ class _PlayerListState extends State<PlayerList> {
                             Text(
                               widget.match.team1Name,
                               style: TextStyle(
-                                fontSize: 20,
-                                color:
-                                    Colors.amber, // Adjust text style as needed
-                                //  Optional: background color with opacity
-                              ),
+                                  fontSize: 20,
+                                  color: Colors.red,
+                                  shadows: [
+                                    Shadow(blurRadius: 40, color: Colors.red)
+                                  ]),
                             ),
                             Image.asset(
                               'assets/team1_line.png',
@@ -152,12 +153,12 @@ class _PlayerListState extends State<PlayerList> {
                           children: [
                             Text(
                               widget.match.team2Name,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                color:
-                                    Colors.amber, // Adjust text style as needed
-                                //  Optional: background color with opacity
-                              ),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.green,
+                                  shadows: [
+                                    Shadow(color: Colors.green, blurRadius: 40)
+                                  ]),
                             ),
                             Image.asset(
                               'assets/team2_line.png',
@@ -168,22 +169,21 @@ class _PlayerListState extends State<PlayerList> {
                     ],
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Total selected player ${getx.add.value}/22'
-                              .toUpperCase(),
-                          style: const TextStyle(
-                              fontSize: 13,
-                              color: Color.fromARGB(255, 241, 236, 236),
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ],
-                    ),
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'SELECTED PLAYERS  ${getx.add.value}/${widget.match.numberOfPlayers}',
+                        style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 40,
@@ -200,9 +200,9 @@ class _PlayerListState extends State<PlayerList> {
                               scrollDirection: Axis.horizontal,
                               itemCount: getx.add.value,
                               itemBuilder: (context, index) => Padding(
-                                padding: const EdgeInsets.only(right: 10),
+                                padding: const EdgeInsets.only(right: 4),
                                 child: Container(
-                                  color: Colors.green,
+                                  color: Colors.amber,
                                   // margin: EdgeInsets.only(right: 2),
                                   width: 10,
                                   height: 3,
@@ -224,33 +224,38 @@ class _PlayerListState extends State<PlayerList> {
                                 });
                               },
                               icon: const Icon(
-                                Icons.remove_circle,
+                                Icons.remove_circle_outline_rounded,
                                 color: Colors.white,
                               ))
                         ],
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     width: MediaQuery.sizeOf(context).width,
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                      Color.fromARGB(255, 194, 20, 7),
-                      Color.fromARGB(255, 0, 0, 0)
-                    ], transform: GradientRotation(2))),
+                    // decoration:  const BoxDecoration(
+                    //     gradient: LinearGradient(colors: [
+                    //   Color.fromARGB(255, 194, 20, 7),
+                    //   Color.fromARGB(255, 0, 0, 0)
+                    // ], transform: GradientRotation(2))),
 
                     // color: Color.fromARGB(255, 1, 9, 37),
                     child: TabBar(
-                        overlayColor:
-                            const MaterialStatePropertyAll(Colors.green),
+                        unselectedLabelColor: Colors.white54,
+                        // overlayColor:
+                        //     const MaterialStatePropertyAll(Colors.green),
                         tabAlignment: TabAlignment.center,
                         // unselectedLabelColor: Colors.red,
                         automaticIndicatorColorAdjustment: true,
-                        dividerColor: Colors.red,
-                        // indicatorColor: Colors.,
+                        indicatorColor: Colors.amber,
+                        indicatorWeight: 5,
                         // indicator: BoxDecoration(color: Colors.red),
                         isScrollable: true,
-                        labelStyle: const TextStyle(color: Colors.white),
+                        labelStyle: GoogleFonts.josefinSans()
+                            .copyWith(color: Colors.amber[200]),
                         tabs: [
                           Tab(
                             text: 'WK(${getx.wk.length})',
@@ -285,11 +290,6 @@ class _PlayerListState extends State<PlayerList> {
             onPressed: () {
               print(widget.match.numberOfPlayers);
               if (getx.selectedplayer.length == widget.match.numberOfPlayers) {
-                for (int i = 0; i < getx.selectedplayer.length; i++) {
-                  print(getx.selectedplayer[i].userId);
-                }
-                print(getx.selectedplayer);
-                print(getx.selectedplayer[2].contestId);
                 Get.to(() => Cpatainchoose(getx.selectedplayer, widget.match,
                     getx.ar, getx.bat, getx.blow, getx.wk));
               }

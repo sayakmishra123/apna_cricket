@@ -90,54 +90,53 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 50,
                     width: width,
-                    child: Obx(
-                      () => getx.allcontext.isNotEmpty
-                          ? ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: getx.allcontext.length,
-                              itemBuilder: (context, index) {
-                                // print(getx.allcontext[index].contestTypeId);
-                                return Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  child: MaterialButton(
+                    child: Obx(() => ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: getx.allcontext.isNotEmpty
+                              ? getx.allcontext.length
+                              : 4,
+                          itemBuilder: (context, index) {
+                            // print(getx.allcontext[index].contestTypeId);
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5),
+                              child: MaterialButton(
+                                color: _selectedIndex == index
+                                    ? Colors.blue
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    _selectedIndex = index;
+                                  });
+                                  print(getx.allcontext[index].contestTypeId);
+                                  tournamentListApi(
+                                      context,
+                                      getx.allcontext[index].contestTypeId
+                                          .toString());
+                                },
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
                                     color: _selectedIndex == index
                                         ? Colors.blue
-                                        : Colors.white,
-                                    onPressed: () {
-                                      setState(() {
-                                        _selectedIndex = index;
-                                      });
-                                      print(
-                                          getx.allcontext[index].contestTypeId);
-                                      tournamentListApi(
-                                          context,
-                                          getx.allcontext[index].contestTypeId
-                                              .toString());
-                                    },
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                        color: _selectedIndex == index
-                                            ? Colors.blue
-                                            : Colors.lightBlueAccent,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: Text(
-                                      getx.allcontext[index].contestTypeName,
-                                      style: TextStyle(
-                                        color: _selectedIndex == index
-                                            ? Colors.white
-                                            : Colors.black,
-                                      ),
-                                    ),
+                                        : Colors.lightBlueAccent,
+                                    width: 2.0,
                                   ),
-                                );
-                              },
-                            )
-                          : const Center(child: CircularProgressIndicator()),
-                    ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Text(
+                                  getx.allcontext.isNotEmpty
+                                      ? getx.allcontext[index].contestTypeName
+                                      : 'contest type name',
+                                  style: TextStyle(
+                                    color: _selectedIndex == index
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        )),
                   ),
                 ],
               ),

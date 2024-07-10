@@ -142,6 +142,7 @@ class Player {
   String playerName;
   int teamId;
   String teamName;
+  String playerTypeName;
   int playerTypeId;
   String? playerImagePath;
   int franchiseId;
@@ -176,6 +177,7 @@ class Player {
     required this.playerName,
     required this.teamId,
     required this.teamName,
+    required this.playerTypeName,
     required this.playerTypeId,
     this.playerImagePath,
     required this.franchiseId,
@@ -212,6 +214,7 @@ class Player {
       playerName: json['PlayerName'],
       teamId: json['TeamId'],
       teamName: json['TeamName'],
+      playerTypeName: json['PlayerTypeName'],
       playerTypeId: json['PlayerTypeId'],
       playerImagePath: json['PlayerImagePath'],
       franchiseId: json['FranchiseId'],
@@ -252,6 +255,7 @@ class Player {
       'PlayerName': playerName,
       'TeamId': teamId,
       'TeamName': teamName,
+      'PlayerTypeName': playerTypeName,
       'PlayerTypeId': playerTypeId,
       'PlayerImagePath': playerImagePath,
       'FranchiseId': franchiseId,
@@ -562,6 +566,7 @@ class MatchDetails {
   String matchStartDate;
   int entryMiles;
   int numberOfPlayers;
+  String contestId;
   int franchiseId;
   int sortedOrder;
   bool isActive;
@@ -595,6 +600,7 @@ class MatchDetails {
     required this.matchStartDate,
     required this.entryMiles,
     required this.numberOfPlayers,
+    required this.contestId,
     required this.franchiseId,
     required this.sortedOrder,
     required this.isActive,
@@ -630,6 +636,7 @@ class MatchDetails {
       matchStartDate: json['MatchStartDate'],
       entryMiles: json['EntryMiles'],
       numberOfPlayers: json['NumberOfPlayers'],
+      contestId: json['ContestId'].toString(),
       franchiseId: json['FranchiseId'],
       sortedOrder: json['SortedOrder'],
       isActive: json['IsActive'],
@@ -666,6 +673,7 @@ class MatchDetails {
       'MatchStartDate': matchStartDate,
       'EntryMiles': entryMiles,
       'NumberOfPlayers': numberOfPlayers,
+      'ContestId': contestId,
       'FranchiseId': franchiseId,
       'SortedOrder': sortedOrder,
       'IsActive': isActive,

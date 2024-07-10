@@ -76,7 +76,7 @@ class _DashBoardState extends State<DashBoard> {
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(100),
                                       child: Image.asset(
-                                        'assets/nodp.jpg',
+                                        'assets/logo.jpg',
                                         fit: BoxFit.cover,
                                       )),
                                 ),
@@ -194,7 +194,7 @@ class _DashBoardState extends State<DashBoard> {
                       width: 40,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Image.asset('assets/nodp.jpg'),
+                        child: Image.asset('assets/logo.jpg'),
                       ),
                     ),
                   ),

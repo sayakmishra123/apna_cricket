@@ -16,38 +16,7 @@ class Ar extends StatefulWidget {
 class _ArState extends State<Ar> {
   final SelectionControllerAr controllerAr = Get.put(SelectionControllerAr());
   // RxList<int> selectedIndices = <int>[].obs;
-  List l = [
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan',
-    'India',
-    'Pakistan'
-  ];
+
   Getx getx = Get.put(Getx());
   @override
   Widget build(BuildContext context) {
@@ -67,7 +36,7 @@ class _ArState extends State<Ar> {
                       showBanner: false,
                       bannerColor: Colors.red,
                       // bannerTextColor: Colors.,
-                      bannerText: l[index],
+
                       backgroundColor: isSelected
                           ? Colors.amber.withOpacity(0.2)
                           : Colors.transparent,

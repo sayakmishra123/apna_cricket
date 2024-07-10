@@ -48,13 +48,16 @@ class _CpatainchooseState extends State<Cpatainchoose> {
     return Scaffold(
       appBar: AppBar(
         // toolbarHeight: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Get.back();
+        //   },
+        //   icon: const Icon(
+        //     Icons.arrow_back,
+        //     color: Colors.white,
+        //   ),
+        // ),
+        iconTheme: IconThemeData(color: Colors.white),
         flexibleSpace: Container(
           // height: 100,
           decoration: const BoxDecoration(
@@ -199,9 +202,13 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                 ),
                 title: Text(
                   allplayerlist[index].playerName,
-                  style: const TextStyle(fontSize: 14),
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w600),
                 ),
-                subtitle: Text(allplayerlist[index].boundaries.toString()),
+                subtitle: Text(
+                  allplayerlist[index].playerTypeName.toString(),
+                  style: TextStyle(color: Colors.grey),
+                ),
                 trailing: SizedBox(
                   width: 100,
                   child: Row(
@@ -301,23 +308,23 @@ class _CpatainchooseState extends State<Cpatainchoose> {
       floatingActionButton: Obx(
         () => FloatingActionButton(
           disabledElevation: 50,
-          onPressed: () {
-            // print(widget.ar[0].playerID);
+          onPressed: () async {
             if (getx.captainindexvalue.value != -1 &&
                 getx.vicecaptainindexvalue.value != -1) {
+              print(match.tournamentMatchesId);
+              User? user = await UserPreferences().getUser();
               for (int i = 0; i < allplayerlist.length; i++) {
-                print(allplayerlist[i].contestId);
-
                 bool checktype1 = widget.allplayerlist[i].playerName ==
                     getx.captainchoose.value;
                 bool checktype2 = widget.allplayerlist[i].playerName ==
                     getx.vicecaptainchoose.value;
-                teamSaveListApi(
+
+                await teamSaveListApi(
                     context,
                     allplayerlist[i].playerID.toString(),
-                    allplayerlist[i].contestId.toString(),
-                    widget.match,
-                    // widget.allplayerlist[i].teamId.toString(),
+                    match.contestId,
+                    user!.userId.toString(),
+                    match.tournamentMatchesId.toString(),
                     checktype1.toString(),
                     checktype2.toString());
               }

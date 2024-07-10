@@ -4,10 +4,10 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class Getx extends GetxController {
-  RxBool loginvisible = false.obs;
+  RxBool loginvisible = true.obs;
   RxInt add = 0.obs;
   RxBool isColor = false.obs;
-  RxBool signupvisible = false.obs;
+  RxBool signupvisible = true.obs;
   RxBool oldPasswordVisible = true.obs;
   RxBool newPasswordVisible = true.obs;
   RxBool confirmNewPasswordVisible = true.obs;
