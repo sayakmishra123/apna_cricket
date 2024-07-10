@@ -281,7 +281,9 @@ class _PlayerListState extends State<PlayerList> {
               Blow(widget.match)
             ],
           ),
+        
           floatingActionButton: FloatingActionButton(
+
             backgroundColor: getx.add.value == widget.match.numberOfPlayers
                 ? Colors.green
                 : Colors.grey,
@@ -292,12 +294,13 @@ class _PlayerListState extends State<PlayerList> {
                     getx.ar, getx.bat, getx.blow, getx.wk));
               }
             },
-            child: getx.add.value == widget.match.numberOfPlayers
-                ? const Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white),
-                  )
-                : const Text('Next', style: TextStyle(color: Colors.white)),
+            // child: getx.add.value == widget.match.numberOfPlayers
+            //     ? const Text(
+            //         'Next',
+            //         style: TextStyle(color: Colors.white),
+            //       )
+            //     : const Text('Next', style: TextStyle(color: Colors.white)),
+            child: const Icon(Icons.arrow_forward_rounded),
           ),
         ),
       ),

@@ -132,9 +132,11 @@ class Contests extends StatelessWidget {
                                         ),
                                         current
                                             ? IconButton(
-                                                onPressed: () {},
-                                                icon: Icon(Icons.edit))
-                                            : SizedBox()
+                                                onPressed: () {
+                                                  
+                                                },
+                                                icon: const Icon(Icons.edit))
+                                            : const SizedBox()
                                       ],
                                     ),
                                     const SizedBox(

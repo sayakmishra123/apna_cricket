@@ -57,7 +57,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
         //     color: Colors.white,
         //   ),
         // ),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         flexibleSpace: Container(
           // height: 100,
           decoration: const BoxDecoration(
@@ -65,13 +65,13 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                   colors: [Color.fromARGB(255, 117, 15, 7), Colors.black],
                   transform: GradientRotation(2))),
         ),
-        title: Text(
+        title: const Text(
           'Create Team',
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
+          const Padding(
+            padding: EdgeInsets.only(right: 10),
             child: Text(
               '1h 53m left',
               style: TextStyle(color: Colors.white, fontSize: 16),
@@ -79,7 +79,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
           )
         ],
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(130),
+          preferredSize: const Size.fromHeight(130),
           child: Container(
             // color: Colors.yellow,
             child: Expanded(
@@ -95,7 +95,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                         Container(
                           alignment: Alignment.center,
                           width: MediaQuery.sizeOf(context).width - 50,
-                          child: Text(
+                          child: const Text(
                             'Choose your Captain and Vice Captain',
                             style: TextStyle(color: Colors.grey, fontSize: 14),
                           ),
@@ -122,10 +122,11 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                                         fontSize: 10, color: Colors.white),
                                   ),
                                 ),
+                                const SizedBox(width: 5,),
                                 Text(
                                   overflow: TextOverflow.ellipsis,
                                   getx.captainchoose.value.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white, fontSize: 12),
                                 )
                               ],
@@ -158,10 +159,12 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                                         fontSize: 10, color: Colors.white),
                                   ),
                                 ),
+                                const SizedBox(width: 5,),
+
                                 Text(
                                   overflow: TextOverflow.ellipsis,
                                   getx.vicecaptainchoose.value.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white, fontSize: 12),
                                 )
                               ],
@@ -207,7 +210,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                 ),
                 subtitle: Text(
                   allplayerlist[index].playerTypeName.toString(),
-                  style: TextStyle(color: Colors.grey),
+                  style: const TextStyle(color: Colors.grey),
                 ),
                 trailing: SizedBox(
                   width: 100,
@@ -328,6 +331,24 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                     checktype1.toString(),
                     checktype2.toString());
               }
+               showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Alert'),
+            content: const Text('Your team has been saved successfully!'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Get.back();
+                },
+              ),
+            ],
+          );
+        },
+      );
             }
           },
           backgroundColor: getx.captainindexvalue.value != -1 &&
