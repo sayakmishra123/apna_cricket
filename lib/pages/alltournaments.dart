@@ -15,13 +15,14 @@ class AllTournaments extends StatefulWidget {
 }
 
 class _AllTournamentsState extends State<AllTournaments> {
-    @override
+  @override
   void initState() {
     WidgetsBinding.instance
         .addPostFrameCallback((timeStamp) => contestListApi(context));
 
     super.initState();
   }
+
   List images = [
     'assets/match1.jpg',
     'assets/match2.jpg',
@@ -57,12 +58,10 @@ class _AllTournamentsState extends State<AllTournaments> {
             color: Colors.white,
             shadowColor: Colors.black12,
             child: ExpansionTile(
-             onExpansionChanged: (value) {
-               tournamentListApi(
-                                          context,
-                                          getx.allcontext[index].contestTypeId
-                                              .toString());
-             },
+              onExpansionChanged: (value) {
+                tournamentListApi(
+                    context, getx.allcontext[index].contestTypeId.toString());
+              },
               leading: SizedBox(
                 height: 40,
                 width: 40,
@@ -80,46 +79,60 @@ class _AllTournamentsState extends State<AllTournaments> {
               ),
               title: Text(widget.contests[index].contestTypeName.toString()),
               children: [
-                 Obx(
-                      () => getx.tournamentList.isNotEmpty
-                          ? 
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: getx.tournamentList.length,
-                  itemBuilder: (context, tournamentIndex) {
-                    return Card(
-                      elevation: 1,
-                      shadowColor: Colors.black12,
-                      color: MyColors.sixty,
-                      child: ListTile(
-                        onTap: () {
-                          allmatchListApi(
-                            context,
-                            getx.tournamentList[tournamentIndex].contestTypeId.toString(),
-                            getx.tournamentList[tournamentIndex].userId.toString(),
-                            getx.tournamentList[tournamentIndex].tournamentId.toString(),
-                          );
-                          Get.to(JoinTeam(
-                            heading: getx.tournamentList[tournamentIndex].tournamentName,
-                          ));
-                        },
-                        leading: SizedBox(
-                          width: 45,
-                          height: 45,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Image.asset(
-                              matchicons[tournamentIndex % matchicons.length],
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        title: Text(getx.tournamentList[tournamentIndex].tournamentName),
-                      ),
-                    );
-                  },
-                ):Container(),),
+                Obx(
+                  () => getx.tournamentList.isNotEmpty
+                      ? ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: getx.tournamentList.length,
+                          itemBuilder: (context, tournamentIndex) {
+                            return Card(
+                              elevation: 1,
+                              shadowColor: Colors.black12,
+                              color: MyColors.sixty,
+                              child: ListTile(
+                                onTap: () {
+                                  allmatchListApi(
+                                    context,
+                                    getx.tournamentList[tournamentIndex]
+                                        .contestTypeId
+                                        .toString(),
+                                    getx.tournamentList[tournamentIndex].userId
+                                        .toString(),
+                                    getx.tournamentList[tournamentIndex]
+                                        .tournamentId
+                                        .toString(),
+                                  );
+                                  Get.to(JoinTeam(
+                                    heading: getx
+                                        .tournamentList[tournamentIndex]
+                                        .tournamentName,
+                                    contestId: getx
+                                        .tournamentList[tournamentIndex]
+                                        .contestTypeId
+                                        .toString(),
+                                  ));
+                                },
+                                leading: SizedBox(
+                                  width: 45,
+                                  height: 45,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.asset(
+                                      matchicons[
+                                          tournamentIndex % matchicons.length],
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                title: Text(getx.tournamentList[tournamentIndex]
+                                    .tournamentName),
+                              ),
+                            );
+                          },
+                        )
+                      : Container(),
+                ),
               ],
             ),
           );

@@ -277,6 +277,10 @@ class _HomePageState extends State<HomePage> {
                                       Get.to(() => JoinTeam(
                                             heading: getx.tournamentList[index]
                                                 .tournamentName,
+                                            contestId: getx
+                                                .tournamentList[index]
+                                                .contestTypeId
+                                                .toString(),
                                           ));
                                     },
                                     // splashColor: MyColors.thirty.withOpacity(0.5),

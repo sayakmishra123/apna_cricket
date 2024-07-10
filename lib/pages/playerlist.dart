@@ -218,7 +218,9 @@ class _PlayerListState extends State<PlayerList> {
                         dividerColor: Colors.red,
                         // indicatorColor: Colors.,
                         // indicator: BoxDecoration(color: Colors.red),
-                        isScrollable: false,
+                        // isScrollable: false,
+                        isScrollable: true,
+                        // indicatorWeight: 10,
                         labelStyle: TextStyle(color: Colors.white),
                         tabs: [
                           Tab(
@@ -254,7 +256,13 @@ class _PlayerListState extends State<PlayerList> {
             onPressed: () {
               print(widget.match.numberOfPlayers);
               if (getx.selectedplayer.length == widget.match.numberOfPlayers) {
-                Get.to(() => Cpatainchoose(getx.selectedplayer));
+                for (int i = 0; i < getx.selectedplayer.length; i++) {
+                  print(getx.selectedplayer[i].userId);
+                }
+                print(getx.selectedplayer);
+                print(getx.selectedplayer[2].contestId);
+                Get.to(() => Cpatainchoose(getx.selectedplayer, widget.match,
+                    getx.ar, getx.bat, getx.blow, getx.wk));
               }
             },
             child: getx.add.value == widget.match.numberOfPlayers

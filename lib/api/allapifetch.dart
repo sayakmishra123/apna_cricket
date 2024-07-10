@@ -272,19 +272,18 @@ Future allteamplayersListApi(BuildContext context, MatchDetails match) async {
         builder: (context) {
           return const Center(child: CircularProgressIndicator());
         });
-    Map<String, String> data = {
-      'Team1Id': match.team1Id.toString(),
-      'Team2Id': match.team2Id.toString()
-    };
+    Map<String, String> data = {'tournamentid': match.tournamentId.toString()};
 
     final Uri uri =
-        Uri.https('apnacricket.dthlms.in', '/teamplayers/getTeamPlayerByTeamId')
+        Uri.https('apnacricket.dthlms.in', '/TeamPlayers/getTeamPlayer')
             .replace(queryParameters: data);
     var res = await http.get(
       uri,
     );
 
     var jsondata = jsonDecode(res.body);
+    print(data);
+    print(jsondata);
     if (jsondata['Result'] == true && res.statusCode == 200) {
       List jsonList1 = jsondata['Batsmans'];
       getx.bat.value = jsonList1.map((json) => Player.fromJson(json)).toList();
@@ -447,12 +446,13 @@ Future singlematchListApi(BuildContext context, String contestTypeId,
 Future currentcontextListApi(BuildContext context, String userid) async {
   // print(contestTypeId);
   Getx getx = Get.put(Getx());
+  User? user = await UserPreferences().getUser();
   // showDialog(
   //     context: context,
   //     builder: (context) {
   //       return const Center(child: CircularProgressIndicator());
   //     });
-  Map<String, dynamic> data = {'userid': userid};
+  Map<String, dynamic> data = {'userid': user?.userId};
   var res = await http.get(
     Uri.https('apnacricket.dthlms.in', '/ContestType/getMyContestType')
         .replace(queryParameters: data),
@@ -479,9 +479,10 @@ Future currentcontextListApi(BuildContext context, String userid) async {
 }
 
 Future teamSaveListApi(BuildContext context, String playerID, String contestId,
-    String userId, String matchId, String captain, String viceCaptain) async {
+    MatchDetails match, String captain, String viceCaptain) async {
   try {
     Getx getx = Get.put(Getx());
+    User? user = await UserPreferences().getUser();
     showDialog(
         context: context,
         builder: (context) {
@@ -490,8 +491,8 @@ Future teamSaveListApi(BuildContext context, String playerID, String contestId,
     Map<String, dynamic> data = {
       'PlayerID': playerID,
       'ContestId': contestId,
-      'UserId': userId,
-      'MatchId': matchId,
+      'UserId': user?.userId,
+      'MatchId': match.matchId,
       'Captain': captain,
       'ViceCaptain': viceCaptain
     };
@@ -503,7 +504,10 @@ Future teamSaveListApi(BuildContext context, String playerID, String contestId,
     print(res.body);
     var jsondata = jsonDecode(res.body);
     print(jsondata);
-  } catch (e) {}
+    Get.back();
+  } catch (e) {
+    Get.back();
+  }
 }
 
 // ContestHistory by shubha
