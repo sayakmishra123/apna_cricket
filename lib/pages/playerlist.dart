@@ -8,6 +8,7 @@ import 'package:apna_cricket/pages/playerlistSelect/blow.dart';
 import 'package:apna_cricket/pages/playerlistSelect/wk.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class PlayerList extends StatefulWidget {
@@ -179,23 +180,23 @@ class _PlayerListState extends State<PlayerList> {
     ),
   ],
 ),
-const SizedBox(height: 5,),
+const SizedBox(height: 10,),
 
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Total selected player ${getx.add.value}/22'
-                              .toUpperCase(),
-                          style: const TextStyle(
-                              fontSize: 13,
-                              color: Color.fromARGB(255, 241, 236, 236),
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ],
-                    ),
+                  Row(
+                    children: [
+                      SizedBox(width: 10,),
+                      Text(
+                        'SELECTED PLAYERS  ${getx.add.value}/22'
+                            ,
+                        style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ],
                   ),
+
+
                   SizedBox(
                     height: 40,
                     child: Visibility(
@@ -235,16 +236,18 @@ const SizedBox(height: 5,),
                                 });
                               },
                               icon: const Icon(
-                                Icons.remove_circle,
+                                Icons.remove_circle_outline_rounded,
                                 color: Colors.white,
                               ))
                         ],
                       ),
                     ),
                   ),
+const SizedBox(height: 10,),
+
                   Container(
                     width: MediaQuery.sizeOf(context).width,
-                    decoration: const BoxDecoration(
+                    decoration:  BoxDecoration(
                         gradient: LinearGradient(colors: [
                       Color.fromARGB(255, 194, 20, 7),
                       Color.fromARGB(255, 0, 0, 0)
@@ -252,16 +255,21 @@ const SizedBox(height: 5,),
 
                     // color: Color.fromARGB(255, 1, 9, 37),
                     child: TabBar(
+                      unselectedLabelColor: Colors.white54,
                         overlayColor:
                             const MaterialStatePropertyAll(Colors.green),
                         tabAlignment: TabAlignment.center,
                         // unselectedLabelColor: Colors.red,
                         automaticIndicatorColorAdjustment: true,
-                        dividerColor: Colors.red,
-                        // indicatorColor: Colors.,
+                       
+                        indicatorColor: Colors.amber,
+                        indicatorWeight: 5,
                         // indicator: BoxDecoration(color: Colors.red),
                         isScrollable: true,
-                        labelStyle: const TextStyle(color: Colors.white),
+                        labelStyle:  GoogleFonts.josefinSans(
+
+                        ).copyWith(color: Colors.amber[200]),
+
                         tabs: [
                           Tab(
                             text: 'WK(${getx.wk.length})',
