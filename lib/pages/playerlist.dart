@@ -6,9 +6,7 @@ import 'package:apna_cricket/pages/playerlistSelect/ar.dart';
 import 'package:apna_cricket/pages/playerlistSelect/bat.dart';
 import 'package:apna_cricket/pages/playerlistSelect/blow.dart';
 import 'package:apna_cricket/pages/playerlistSelect/wk.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
@@ -21,7 +19,9 @@ class PlayerList extends StatefulWidget {
 }
 
 class _PlayerListState extends State<PlayerList> {
+  late double vsLine = 170;
   Getx getx = Get.put(Getx());
+  TextStyle teamNameStyle=TextStyle(fontSize: 25,fontWeight: FontWeight.w800,);
   SelectionControllerWk controllerWk = Get.put(SelectionControllerWk());
   SelectionControllerBlow controllerBlow = Get.put(SelectionControllerBlow());
   SelectionControllerBat controllerBat = Get.put(SelectionControllerBat());
@@ -29,7 +29,6 @@ class _PlayerListState extends State<PlayerList> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((visibleForTesting) =>
         // Future.delayed(Duration(seconds: 3), () {
@@ -79,7 +78,9 @@ class _PlayerListState extends State<PlayerList> {
                 Icons.timer_outlined,
                 color: Colors.white,
               ),
-              SizedBox(width: 5,),
+              SizedBox(
+                width: 5,
+              ),
               Padding(
                 padding: EdgeInsets.only(right: 20),
                 child: Text(
@@ -88,7 +89,7 @@ class _PlayerListState extends State<PlayerList> {
                 ),
               )
             ],
-            
+
             // backgroundColor: ,
             flexibleSpace: Container(
               height: 400,
@@ -100,13 +101,13 @@ class _PlayerListState extends State<PlayerList> {
 
             title: const Text(
               'Player List',
-              style: TextStyle(color: Colors.white, 
-              
-              // fontSize: 16
+              style: TextStyle(
+                color: Colors.white,
+
+                // fontSize: 16
               ),
             ),
             bottom: PreferredSize(
-
               // preferredSize: getx.add.value == 0
               //     ? Size.fromHeight(140)
               //     : Size.fromHeight(190),
@@ -114,30 +115,71 @@ class _PlayerListState extends State<PlayerList> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      // TEAM 1
-                      Image.asset('assets/team1_line.png'),
-                      SizedBox(
-                        // width: 120, 
-                        height: 70,
-                        child: LottieBuilder.asset(
-                          'assets/animate.json',
-                  
-                        ),
-                      ),
-                    // TEAM 2
-                    ],
-                  ),
+                 Row(
+  children: [
+    // TEAM 1
+    Expanded(
+      child: Column(
+        children: [
+
+           Text(
+            'INDIA',
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.amber, // Adjust text style as needed
+            //  Optional: background color with opacity
+            ),
+          ),
+          Image.asset(
+            'assets/team1_line.png',
+          ),
+         
+        ],
+      ),
+    ),
+    SizedBox(
+      // width: 120,
+      height: 70,
+      child: LottieBuilder.asset(
+        'assets/animate.json',
+      ),
+    ),
+    // TEAM 2
+    Expanded(
+      child:  Column(
+        children: [
+      
+          Text(
+            'ENGLAND',
+            style: TextStyle(
+             
+              
+              fontSize: 20,
+              color: Colors.amber, // Adjust text style as needed
+            //  Optional: background color with opacity
+            ),
+          ),
+          Image.asset(
+            'assets/team2_line.png',
+          ),
+          
+        ],
+      ),
+    ),
+  ],
+),
+SizedBox(height: 5,),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
                         Text(
-                          'Total selected player ${getx.add.value}/22',
+                          'Total selected player ${getx.add.value}/22'.toUpperCase(),
                           style: const TextStyle(
-                              color: Color.fromARGB(255, 52, 194, 9),
-                              fontWeight: FontWeight.bold),
+                            fontSize: 13,
+                              color: Color.fromARGB(255, 241, 236, 236),
+                              fontWeight: FontWeight.normal),
                         ),
                       ],
                     ),
@@ -198,7 +240,8 @@ class _PlayerListState extends State<PlayerList> {
 
                     // color: Color.fromARGB(255, 1, 9, 37),
                     child: TabBar(
-                        overlayColor: const MaterialStatePropertyAll(Colors.green),
+                        overlayColor:
+                            const MaterialStatePropertyAll(Colors.green),
                         tabAlignment: TabAlignment.center,
                         // unselectedLabelColor: Colors.red,
                         automaticIndicatorColorAdjustment: true,
