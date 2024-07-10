@@ -147,6 +147,9 @@ class _DashBoardState extends State<DashBoard> {
                   )
                 : SizedBox()),
         appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(gradient: MyColors.appbargradient),
+          ),
           bottom: _selectedIndex.value == 1
               ? PreferredSize(
                   preferredSize: const Size.fromHeight(
@@ -177,14 +180,14 @@ class _DashBoardState extends State<DashBoard> {
                       48), // no height when TabBar is not present
                   child: Container(),
                 ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [MyColors.thirty, Colors.black87],
-                transform: const GradientRotation(2),
-              ),
-            ),
-          ),
+          // flexibleSpace: Container(
+          //   decoration: BoxDecoration(
+          //     gradient: LinearGradient(
+          //       colors: [MyColors.thirty, Colors.black87],
+          //       transform: const GradientRotation(2),
+          //     ),
+          //   ),
+          // ),
           shape:
               ContinuousRectangleBorder(borderRadius: BorderRadius.circular(8)),
           actions: [
