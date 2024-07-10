@@ -121,7 +121,25 @@ class _DashBoardState extends State<DashBoard> {
                     ListTile(
                       title: const Text('Log Out'),
                       leading: const Icon(Icons.logout_rounded),
-                      onTap: () {},
+                      onTap: () async {
+                        // showDialog(
+                        //     context: context,
+                        //     builder: (context) {
+                        //       return const CircularProgressIndicator();
+                        //     });
+                        await UserPreferences().removeUser();
+                        Get.defaultDialog(
+                          buttonColor: Colors.red,
+                          title: 'Logout',
+                          content: Text('Are you sure want to logout?'),
+                          onConfirm: () {
+                            Get.offAll(() => const LoginPage());
+                          },
+                          onCancel: () {
+                            Get.back();
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -135,8 +153,8 @@ class _DashBoardState extends State<DashBoard> {
                           unselectedLabelColor: Colors.white30,
                           labelColor: Colors.white,
                           indicatorColor: Colors.amber,
-                      //  indicatorPadding: EdgeInsets.all(10),
-                       indicatorWeight: 4,
+                          //  indicatorPadding: EdgeInsets.all(10),
+                          indicatorWeight: 4,
 
                           tabs: const [
                             Padding(

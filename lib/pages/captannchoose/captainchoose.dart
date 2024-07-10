@@ -12,14 +12,25 @@ import 'package:get/state_manager.dart';
 
 class Cpatainchoose extends StatefulWidget {
   RxList<Player> allplayerlist;
-  Cpatainchoose(this.allplayerlist, {super.key});
+  MatchDetails match;
+  RxList<Player> ar;
+  Cpatainchoose(this.allplayerlist, this.match, this.ar, RxList<Player> bat,
+      RxList<Player> blow, RxList<Player> wk,
+      {super.key});
 
   @override
-  State<Cpatainchoose> createState() => _CpatainchooseState();
+  State<Cpatainchoose> createState() =>
+      _CpatainchooseState(allplayerlist, match);
 }
 
 class _CpatainchooseState extends State<Cpatainchoose> {
   Getx getx = Get.put(Getx());
+  RxList<Player> allplayerlist;
+  MatchDetails match;
+  _CpatainchooseState(
+    this.allplayerlist,
+    this.match,
+  );
 
   @override
   void dispose() {
@@ -174,7 +185,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
         ),
       ),
       body: ListView.builder(
-        itemCount: widget.allplayerlist.length,
+        itemCount: allplayerlist.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
@@ -187,11 +198,10 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                   child: Icon(Icons.person),
                 ),
                 title: Text(
-                  widget.allplayerlist[index].playerName,
+                  allplayerlist[index].playerName,
                   style: const TextStyle(fontSize: 14),
                 ),
-                subtitle:
-                    Text(widget.allplayerlist[index].boundaries.toString()),
+                subtitle: Text(allplayerlist[index].boundaries.toString()),
                 trailing: SizedBox(
                   width: 100,
                   child: Row(
@@ -207,7 +217,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                               if (getx.captainindexvalue.value != index) {
                                 getx.captainindexvalue.value = index;
                                 getx.captainchoose.value =
-                                    widget.allplayerlist[index].playerName;
+                                    allplayerlist[index].playerName;
                                 if (getx.vicecaptainindexvalue.value == index) {
                                   getx.vicecaptainindexvalue.value =
                                       -1; // Deselect Vice Captain
@@ -249,7 +259,7 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                               if (getx.vicecaptainindexvalue.value != index) {
                                 getx.vicecaptainindexvalue.value = index;
                                 getx.vicecaptainchoose.value =
-                                    widget.allplayerlist[index].playerName;
+                                    allplayerlist[index].playerName;
                                 if (getx.captainindexvalue.value == index) {
                                   getx.captainindexvalue.value =
                                       -1; // Deselect Captain
@@ -292,19 +302,22 @@ class _CpatainchooseState extends State<Cpatainchoose> {
         () => FloatingActionButton(
           disabledElevation: 50,
           onPressed: () {
+            // print(widget.ar[0].playerID);
             if (getx.captainindexvalue.value != -1 &&
                 getx.vicecaptainindexvalue.value != -1) {
-              for (int i = 0; i < widget.allplayerlist.length; i++) {
+              for (int i = 0; i < allplayerlist.length; i++) {
+                print(allplayerlist[i].contestId);
+
                 bool checktype1 = widget.allplayerlist[i].playerName ==
                     getx.captainchoose.value;
                 bool checktype2 = widget.allplayerlist[i].playerName ==
                     getx.vicecaptainchoose.value;
                 teamSaveListApi(
                     context,
-                    widget.allplayerlist[i].playerID.toString(),
-                    widget.allplayerlist[i].contestId.toString(),
-                    widget.allplayerlist[i].userId.toString(),
-                    widget.allplayerlist[i].teamId.toString(),
+                    allplayerlist[i].playerID.toString(),
+                    allplayerlist[i].contestId.toString(),
+                    widget.match,
+                    // widget.allplayerlist[i].teamId.toString(),
                     checktype1.toString(),
                     checktype2.toString());
               }

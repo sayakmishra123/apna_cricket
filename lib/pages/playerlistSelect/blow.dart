@@ -58,41 +58,46 @@ class _BlowState extends State<Blow> {
                 itemBuilder: (context, index) {
                   bool isSelected = controller.selectedIndices.contains(index);
 
-                  return BannerListTile(
-                    bannerColor: Colors.red,
-                    // bannerTextColor: Colors.,
-                    bannerText: l[index],
-                    backgroundColor: isSelected
-                        ? Colors.amber.withOpacity(0.2)
-                        : Colors.transparent,
-                    onTap: () {
-                      controller.toggleSelection(index, getx.blow[index],
-                          widget.match.numberOfPlayers);
-                      setState(() {});
-                    },
-                    imageContainer: SizedBox(
-                      width: 10,
-                      height: 10,
-                      child: Image.asset(
-                        'assets/sixers.png',
-                        // width: 10,
-                        // height: 10,
-                        scale: 10,
+                  return Container(
+                    decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide(width: 0.3))),
+                    child: BannerListTile(
+                      showBanner: false,
+                      bannerColor: Colors.red,
+                      // bannerTextColor: Colors.,
+                      bannerText: l[index],
+                      backgroundColor: isSelected
+                          ? Colors.amber.withOpacity(0.2)
+                          : Colors.transparent,
+                      onTap: () {
+                        controller.toggleSelection(index, getx.blow[index],
+                            widget.match.numberOfPlayers);
+                        setState(() {});
+                      },
+                      imageContainer: SizedBox(
+                        width: 10,
+                        height: 10,
+                        child: Image.asset(
+                          'assets/sixers.png',
+                          // width: 10,
+                          // height: 10,
+                          scale: 10,
+                        ),
                       ),
-                    ),
-                    title: Text(
-                      getx.blow[index].playerName,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      'Self by 9.01%',
-                      style: TextStyle(
-                        color: Colors.grey,
+                      title: Text(
+                        getx.blow[index].playerName,
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                    ),
-                    trailing: Icon(
-                      isSelected ? Icons.remove : Icons.add,
-                      color: isSelected ? Colors.red : Colors.green,
+                      subtitle: Text(
+                        'Self by 9.01%',
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      trailing: Icon(
+                        isSelected ? Icons.remove : Icons.add,
+                        color: isSelected ? Colors.red : Colors.green,
+                      ),
                     ),
                   );
                 })

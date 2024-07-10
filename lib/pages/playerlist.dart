@@ -186,9 +186,10 @@ const SizedBox(height: 5,),
                     child: Row(
                       children: [
                         Text(
-                          'Total selected player ${getx.add.value}/22'.toUpperCase(),
+                          'Total selected player ${getx.add.value}/22'
+                              .toUpperCase(),
                           style: const TextStyle(
-                            fontSize: 13,
+                              fontSize: 13,
                               color: Color.fromARGB(255, 241, 236, 236),
                               fontWeight: FontWeight.normal),
                         ),
@@ -259,7 +260,7 @@ const SizedBox(height: 5,),
                         dividerColor: Colors.red,
                         // indicatorColor: Colors.,
                         // indicator: BoxDecoration(color: Colors.red),
-                        isScrollable: false,
+                        isScrollable: true,
                         labelStyle: const TextStyle(color: Colors.white),
                         tabs: [
                           Tab(
@@ -295,7 +296,13 @@ const SizedBox(height: 5,),
             onPressed: () {
               print(widget.match.numberOfPlayers);
               if (getx.selectedplayer.length == widget.match.numberOfPlayers) {
-                Get.to(() => Cpatainchoose(getx.selectedplayer));
+                for (int i = 0; i < getx.selectedplayer.length; i++) {
+                  print(getx.selectedplayer[i].userId);
+                }
+                print(getx.selectedplayer);
+                print(getx.selectedplayer[2].contestId);
+                Get.to(() => Cpatainchoose(getx.selectedplayer, widget.match,
+                    getx.ar, getx.bat, getx.blow, getx.wk));
               }
             },
             child: getx.add.value == widget.match.numberOfPlayers
