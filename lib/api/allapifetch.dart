@@ -146,6 +146,8 @@ Future contestListApi(BuildContext context) async {
       return const Center(child: CircularProgressIndicator());
     },
   );
+if(!getx.connectionStatus.value.contains(ConnectionState.none)){
+  
 
   try {
     var res = await http.get(
@@ -153,52 +155,35 @@ Future contestListApi(BuildContext context) async {
     );
 
     if (res.statusCode == 200) {
+        Get.back();
+
       var jsondata = jsonDecode(res.body);
       print(res.body);
       print(res.statusCode);
 
       if (jsondata['Result'] == true) {
-        Get.back();
+        
+       
 
         List jsonList1 = jsondata['Data'];
         getx.allcontext.value =
             jsonList1.map((json) => AllContest.fromJson(json)).toList();
         tournamentListApi(context, getx.allcontext[0].contestTypeId.toString());
         // Get.to(() => const DashBoard());
-      } else {
-        Get.back();
-        Get.rawSnackbar(
-          duration: const Duration(seconds: 1),
-          overlayBlur: 5,
-          barBlur: 5,
-          title: 'Invalid login',
-          message: jsondata['Data'] ?? 'An error occurred',
-          snackStyle: SnackStyle.GROUNDED,
-        );
-      }
-    } else {
-      Get.back();
-      Get.rawSnackbar(
-        duration: const Duration(seconds: 1),
-        overlayBlur: 5,
-        barBlur: 5,
-        title: 'Server Error',
-        message: 'Server error: ${res.statusCode}',
-        snackStyle: SnackStyle.GROUNDED,
-      );
-    }
+      } 
+    } 
   } catch (e) {
     Get.back();
     print(e);
-    Get.rawSnackbar(
-      duration: const Duration(seconds: 1),
-      overlayBlur: 5,
-      barBlur: 5,
-      title: 'Error',
-      message: 'An error occurred: $e',
-      snackStyle: SnackStyle.GROUNDED,
-    );
-  }
+    // Get.rawSnackbar(
+    //   duration: const Duration(seconds: 1),
+    //   overlayBlur: 5,
+    //   barBlur: 5,
+    //   title: 'Error',
+    //   message: 'An error occurred: $e',
+    //   snackStyle: SnackStyle.GROUNDED,
+    // );
+  }}
 }
 
 Future milesListApi(BuildContext context) async {

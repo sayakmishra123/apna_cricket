@@ -35,6 +35,8 @@ class Getx extends GetxController {
   RxList<Player> selectedplayer = <Player>[].obs;
   RxList<MatchDetails> matchdetails = <MatchDetails>[].obs;
   RxBool loaderoff = true.obs;
+  RxList<ConnectivityResult> connectionStatus = [ConnectivityResult.none].obs;
+
   // RxList<CurrentContest> currentcontext = <CurrentContest>[].obs;
 }
 
@@ -135,8 +137,9 @@ class SelectionControllerAr extends GetxController {
 }
 
 class NetworkController extends GetxController {
+  Getx getx = Get.put(Getx());
+
   RxBool isdialog = false.obs;
-  RxList<ConnectivityResult> _connectionStatus = [ConnectivityResult.none].obs;
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
   @override
@@ -164,19 +167,21 @@ class NetworkController extends GetxController {
   }
 
   Future<void> _updateConnectionStatus(List<ConnectivityResult> result) async {
-    _connectionStatus.value = result;
+    getx.connectionStatus.value = result;
 
-    if (_connectionStatus.value.contains(ConnectivityResult.none)) {
-      if (isdialog.value == false) {}
+    if (getx.connectionStatus.contains(ConnectivityResult.none)) {
+      if (isdialog.value == false) {
+
+      }
     }
 
-    Get.rawSnackbar(
-      duration: const Duration(seconds: 1),
-      // backgroundColor: ,
-      overlayBlur: 5,
-      barBlur: 5,
-      title: 'connection',
-      message: _connectionStatus.toString(),
-    );
+    // Get.rawSnackbar(
+    //   duration: const Duration(seconds: 1),
+    //   // backgroundColor: ,
+    //   overlayBlur: 5,
+    //   barBlur: 5,
+    //   title: 'connection',
+    //   message: 'Please connect to internet',
+    // );
   }
 }
