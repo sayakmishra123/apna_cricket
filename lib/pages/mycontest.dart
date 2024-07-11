@@ -6,10 +6,12 @@ import 'package:apna_cricket/colors/mycolor.dart';
 import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/contextdeatils.dart';
+import 'package:apna_cricket/pages/nodata/nodata.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+  final Getx getx = Get.put(Getx());
 
 class MyContest extends StatefulWidget {
   const MyContest({super.key});
@@ -19,18 +21,15 @@ class MyContest extends StatefulWidget {
 }
 
 class _MyContestState extends State<MyContest> {
-  User? userid;
+ 
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      userid = await UserPreferences().getUser();
-      await currentcontextListApi(context, userid!.userId.toString());
-      await contestHistoryListApi(context, userid!.userId.toString());
-    });
+   
 
     super.initState();
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +39,48 @@ class _MyContestState extends State<MyContest> {
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: TabBarView(
-          children: [
+        child:
+         TabBarView(
+            children: [
             Contests(current: true),
             Contests(current: false),
-          ],
+            ],
+          
         ),
       ),
     );
   }
 }
 
-class Contests extends StatelessWidget {
+class Contests extends StatefulWidget {
   final bool current;
   Contests({super.key, required this.current});
-  final Getx getx = Get.put(Getx());
+
+  @override
+  State<Contests> createState() => _ContestsState();
+}
+
+class _ContestsState extends State<Contests> {
   final double _teamiconsize = 50;
+   User? userid;
+  @override
+  void initState() {
+     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+contestdata();
+     
+    });
+   
+    super.initState();
+  }
+
+  contestdata()async{
+     userid = await UserPreferences().getUser();
+     if(widget.current==true) {
+       await currentcontextListApi(context, userid!.userId.toString());
+     }else{
+      await contestHistoryListApi(context, userid!.userId.toString());}
+     
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -64,8 +89,10 @@ class Contests extends StatelessWidget {
         children: [
           Expanded(
             child: Obx(
-              () => ListView.builder(
-                itemCount: current
+              () =>(widget.current?  getx.currentcontext.isNotEmpty&& getx.loaderoff.value :
+            getx.contesthistory.isNotEmpty&& getx.loaderoff.value )?
+               ListView.builder(
+                itemCount: widget.current
                     ? getx.currentcontext.length
                     : getx.contesthistory.length,
                 itemBuilder: (context, index) {
@@ -73,6 +100,7 @@ class Contests extends StatelessWidget {
                     onTap: () => Get.to(() => const ContextDetails()),
                     child: Column(
                       children: [
+                       widget.current? const Text('current'): const Text('History'),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -114,7 +142,7 @@ class Contests extends StatelessWidget {
                                                     padding:
                                                         const EdgeInsets.all(5),
                                                     child: Text(
-                                                      current
+                                                      widget.current
                                                           ? getx
                                                               .currentcontext[
                                                                   index]
@@ -130,7 +158,7 @@ class Contests extends StatelessWidget {
                                                     ))),
                                           ),
                                         ),
-                                        current
+                                        widget.current
                                             ? IconButton(
                                                 onPressed: () {
                                                   
@@ -165,7 +193,7 @@ class Contests extends StatelessWidget {
                                                     height: 5,
                                                   ),
                                                   Text(
-                                                    current
+                                                    widget.current
                                                         ? getx
                                                             .currentcontext[
                                                                 index]
@@ -250,7 +278,7 @@ class Contests extends StatelessWidget {
                                                     height: 5,
                                                   ),
                                                   Text(
-                                                    current
+                                                    widget.current
                                                         ? getx
                                                             .currentcontext[
                                                                 index]
@@ -298,7 +326,7 @@ class Contests extends StatelessWidget {
                                               MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              current
+                                              widget.current
                                                   ? getx.currentcontext[index]
                                                       .matchStartDate
                                                   : getx.contesthistory[index]
@@ -327,7 +355,8 @@ class Contests extends StatelessWidget {
                     ),
                   );
                 },
-              ),
+              ):Center(child:getx.loaderoff.value?CircularProgressIndicator():NoData() ,)
+            
             ),
           ),
         ],

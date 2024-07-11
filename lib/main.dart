@@ -5,6 +5,7 @@ import 'package:apna_cricket/login/login.dart';
 import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:apna_cricket/pages/captannchoose/captainchoose.dart';
 import 'package:apna_cricket/pages/contextdeatils.dart';
+import 'package:apna_cricket/pages/dependency_injection/dependency_injection.dart';
 // import 'package:apna_cricket/pages/mileshistory/mileshistory.dart';
 import 'package:apna_cricket/pages/playerlist.dart';
 import 'package:apna_cricket/splash.dart';
@@ -13,7 +14,8 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp( const MyApp());
+  DependencyInjection.init();
 }
 
 class MyApp extends StatefulWidget {

@@ -6,8 +6,7 @@ class NoData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120
-      ,
-      child: Image.asset('assets/nodata1.png'));
+      height: 150,
+      child: Image.asset('assets/nodata.png'));
   }
 }
