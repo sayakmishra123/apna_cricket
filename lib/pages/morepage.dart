@@ -13,11 +13,7 @@ class MorePage extends StatefulWidget {
 }
 
 class _MorePageState extends State<MorePage> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +26,13 @@ class _MorePageState extends State<MorePage> {
             child: ListTile(
               onTap: () => Get.to(() => FantasyPointSystem(),
                   transition: Transition.leftToRight),
-              leading: const Icon(Icons.point_of_sale),
+              leading: SizedBox(
+                height: 20,
+                child: Image.asset('assets/points.png')),
               title: const Text('Fantasy Point System'),
               trailing: IconButton(
+                iconSize: 20,
+
                 // color: Colors.red,
                 onPressed: () {
                   Get.to(() => FantasyPointSystem(),
@@ -50,10 +50,14 @@ class _MorePageState extends State<MorePage> {
             child: ListTile(
               onTap: () =>
                   Get.to(() => HowToPlay(), transition: Transition.leftToRight),
-              leading: const Icon(Icons.description),
+             leading: SizedBox(
+                height: 20,
+                child: Image.asset('assets/howtoplay.png')),
               title: const Text('How to Play'),
               trailing: IconButton(
                 // color: Colors.red,
+                iconSize: 20,
+
                 onPressed: () {
                   Get.to(() => HowToPlay(), transition: Transition.leftToRight);
                 },
@@ -69,10 +73,13 @@ class _MorePageState extends State<MorePage> {
             child: ListTile(
               onTap: () => Get.to(() => TermAndCondition(),
                   transition: Transition.leftToRight),
-              leading: const Icon(Icons.terminal),
+              leading: SizedBox(
+                height: 20,
+                child: Image.asset('assets/condition.png')),
               title: const Text('Term & Condition'),
               trailing: IconButton(
                 // color: Colors.red,
+                iconSize: 20,
                 onPressed: () {
                   Get.to(() => TermAndCondition(),
                       transition: Transition.leftToRight);

@@ -146,7 +146,7 @@ Future contestListApi(BuildContext context) async {
       return const Center(child: CircularProgressIndicator());
     },
   );
-if(!getx.connectionStatus.value.contains(ConnectionState.none)){
+
   
 
   try {
@@ -183,7 +183,7 @@ if(!getx.connectionStatus.value.contains(ConnectionState.none)){
     //   message: 'An error occurred: $e',
     //   snackStyle: SnackStyle.GROUNDED,
     // );
-  }}
+  }
 }
 
 Future milesListApi(BuildContext context) async {
