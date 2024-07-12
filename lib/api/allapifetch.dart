@@ -473,11 +473,6 @@ Future teamSaveListApi(BuildContext context, String playerID, String contestId,
   try {
     Getx getx = Get.put(Getx());
 
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(child: CircularProgressIndicator());
-        });
     Map<String, dynamic> data = {
       'PlayerID': playerID,
       'ContestId': contestId,
@@ -486,17 +481,21 @@ Future teamSaveListApi(BuildContext context, String playerID, String contestId,
       'Captain': captain,
       'ViceCaptain': viceCaptain
     };
-    print(data);
+    // print(data);
     var res = await http.get(
       Uri.https('apnacricket.dthlms.in', '/Team/CreateTeam')
           .replace(queryParameters: data),
     );
     print(res.body);
     var jsondata = jsonDecode(res.body);
-    print(jsondata);
-    Get.back();
+    // print(jsondata);
+    if (jsondata['Result'] == true && res.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (e) {
-    Get.back();
+    return false;
   }
 }
 

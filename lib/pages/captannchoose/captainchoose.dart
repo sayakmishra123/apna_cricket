@@ -1,6 +1,8 @@
 import 'package:apna_cricket/api/allapifetch.dart';
 import 'package:apna_cricket/getx/getx.dart';
 import 'package:apna_cricket/model/allmodelclass.dart';
+import 'package:apna_cricket/pages/milesbalance.dart';
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -309,24 +311,48 @@ class _CpatainchooseState extends State<Cpatainchoose> {
         () => FloatingActionButton(
           disabledElevation: 50,
           onPressed: () async {
+            bool status = false;
             if (getx.captainindexvalue.value != -1 &&
                 getx.vicecaptainindexvalue.value != -1) {
               print(match.tournamentMatchesId);
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const Center(child: CircularProgressIndicator());
+                  });
               User? user = await UserPreferences().getUser();
               for (int i = 0; i < allplayerlist.length; i++) {
-                bool checktype1 = widget.allplayerlist[i].playerName ==
-                    getx.captainchoose.value;
-                bool checktype2 = widget.allplayerlist[i].playerName ==
-                    getx.vicecaptainchoose.value;
+                bool checktype1 =
+                    allplayerlist[i].playerName == getx.captainchoose.value;
+                bool checktype2 =
+                    allplayerlist[i].playerName == getx.vicecaptainchoose.value;
 
-                await teamSaveListApi(
-                    context,
-                    allplayerlist[i].playerID.toString(),
-                    match.contestId,
-                    user!.userId.toString(),
-                    match.tournamentMatchesId.toString(),
-                    checktype1.toString(),
-                    checktype2.toString());
+                status = await teamSaveListApi(
+                        context,
+                        allplayerlist[i].playerID.toString(),
+                        match.contestId,
+                        user!.userId.toString(),
+                        match.tournamentMatchesId.toString(),
+                        checktype1.toString(),
+                        checktype2.toString())
+                    .then((value) => status = value);
+              }
+              print(status);
+              Get.back();
+              if (status) {
+                ElegantNotification.success(
+                  title: Text("Update"),
+                  description: Text("Your contest has been saved"),
+                  onDismiss: () {
+                    print('Message when the notification is dismissed');
+                  },
+                ).show(context);
+                Get.to(() => MilesBalance(
+                      allplayerlist,
+                      getx.vicecaptainchoose.value,
+                      getx.captainchoose.value,
+                      match,
+                    ));
               }
             }
           },

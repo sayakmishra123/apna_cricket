@@ -1,11 +1,22 @@
 import 'package:apna_cricket/colors/mycolor.dart';
+import 'package:apna_cricket/dashboard.dart';
+import 'package:apna_cricket/model/allmodelclass.dart';
+import 'package:apna_cricket/pages/mycontest.dart';
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class MilesBalance extends StatelessWidget {
-  const MilesBalance({super.key});
+  RxList<Player> allplayerlist;
+  String captainame;
+  String vicecaptain;
+
+  MatchDetails match;
+  MilesBalance(
+      this.allplayerlist, this.vicecaptain, this.captainame, this.match,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +37,9 @@ class MilesBalance extends StatelessWidget {
           'Miles Balance',
           style: TextStyle(fontSize: 16, color: Colors.white),
         ),
-        actions: const [
+        actions: [
           Text(
-            'Contest Entry: 49 miles',
+            'Contest Entry: ${match.entryMiles}',
             style: TextStyle(fontSize: 10, color: Colors.white),
           )
         ],
@@ -86,24 +97,24 @@ class MilesBalance extends StatelessWidget {
               ]),
             ),
           ),
-          const Expanded(
+          Expanded(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Match IND vs ENG',
+                'Match ${match.team1Name} vs ${match.team2Name}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                'Captai: ABC',
+                'Captain: $captainame',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                'Vice Captai: XYZ',
+                'Vice Captain: $vicecaptain',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -140,9 +151,20 @@ class MilesBalance extends StatelessWidget {
                       shape: ContinuousRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       color: Colors.green,
-                      onPressed: () {},
-                      child: const Text(
-                        'Confirm 49 points',
+                      onPressed: () {
+                        ElegantNotification.success(
+                          title: Text("Update"),
+                          description: Text("Miles payment successfully"),
+                        ).show(context);
+                        Future.delayed(Duration(seconds: 3), () {
+                          Get.to(
+                            () => const DashBoard(),
+                            transition: Transition.leftToRight,
+                          );
+                        });
+                      },
+                      child: Text(
+                        'Confirm ${match.entryMiles} points',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),

@@ -123,18 +123,19 @@ class _DashBoardState extends State<DashBoard> {
                       ListTile(
                         title: const Text('Log Out'),
                         leading: const Icon(Icons.logout_rounded),
-                        onTap: () async {
+                        onTap: () {
                           // showDialog(
                           //     context: context,
                           //     builder: (context) {
                           //       return const CircularProgressIndicator();
                           //     });
-                          await UserPreferences().removeUser();
+
                           Get.defaultDialog(
                             buttonColor: Colors.red,
                             title: 'Logout',
                             content: Text('Are you sure want to logout?'),
-                            onConfirm: () {
+                            onConfirm: () async {
+                              await UserPreferences().removeUser();
                               Get.offAll(() => const LoginPage());
                             },
                             onCancel: () {
