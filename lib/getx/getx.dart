@@ -1,7 +1,15 @@
+import 'dart:async';
+
 import 'package:apna_cricket/model/allmodelclass.dart';
+import 'package:apna_cricket/pages/nodata/nodata.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/src/widgets/basic.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/state_manager.dart';
 
 class Getx extends GetxController {
   RxBool loginvisible = true.obs;
@@ -26,6 +34,9 @@ class Getx extends GetxController {
   RxList<ContestHistory> contesthistory = <ContestHistory>[].obs;
   RxList<Player> selectedplayer = <Player>[].obs;
   RxList<MatchDetails> matchdetails = <MatchDetails>[].obs;
+  RxBool loaderoff = true.obs;
+  RxList<ConnectivityResult> connectionStatus = [ConnectivityResult.none].obs;
+
   // RxList<CurrentContest> currentcontext = <CurrentContest>[].obs;
 }
 
@@ -122,5 +133,53 @@ class SelectionControllerAr extends GetxController {
         getx.selectedplayer.add(ar);
       }
     }
+  }
+}
+
+class NetworkController extends GetxController {
+  Getx getx = Get.put(Getx());
+
+  RxBool isdialog = false.obs;
+  final Connectivity _connectivity = Connectivity();
+  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
+  @override
+  void onInit() {
+    super.onInit();
+    initConnectivity();
+
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+  }
+
+  Future<void> initConnectivity() async {
+    late List<ConnectivityResult> result;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = await _connectivity.checkConnectivity();
+    } on PlatformException catch (e) {
+      print(
+        'Couldn\'t check connectivity status',
+      );
+      return;
+    }
+
+    return _updateConnectionStatus(result);
+  }
+
+  Future<void> _updateConnectionStatus(List<ConnectivityResult> result) async {
+    getx.connectionStatus.value = result;
+
+    if (getx.connectionStatus.contains(ConnectivityResult.none)) {
+      if (isdialog.value == false) {}
+    }
+
+    // Get.rawSnackbar(
+    //   duration: const Duration(seconds: 1),
+    //   // backgroundColor: ,
+    //   overlayBlur: 5,
+    //   barBlur: 5,
+    //   title: 'connection',
+    //   message: 'Please connect to internet',
+    // );
   }
 }

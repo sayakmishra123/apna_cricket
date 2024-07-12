@@ -138,34 +138,48 @@ Future signUpApi(
 
 Future contestListApi(BuildContext context) async {
   Getx getx = Get.put(Getx());
+
+  // Show loading dialog
   showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(child: CircularProgressIndicator());
-      });
-  var res = await http.get(
-    Uri.https('apnacricket.dthlms.in', '/contesttype/getContestType'),
+    context: context,
+    builder: (context) {
+      return const Center(child: CircularProgressIndicator());
+    },
   );
-  var jsondata = jsonDecode(res.body);
-  print(res.body);
-  print(res.statusCode);
-  if (jsondata['Result'] == true && res.statusCode == 200) {
-    List jsonList1 = jsondata['Data'];
-    getx.allcontext.value =
-        jsonList1.map((json) => AllContest.fromJson(json)).toList();
-    Get.back();
-    tournamentListApi(context, getx.allcontext[0].contestTypeId.toString());
-    // Get.to(() => const DashBoard());
-  } else {
-    Get.back();
-    Get.rawSnackbar(
-        duration: const Duration(seconds: 1),
-        // backgroundColor: ,
-        overlayBlur: 5,
-        barBlur: 5,
-        title: 'Invalid login',
-        message: jsondata['Data'],
-        snackStyle: SnackStyle.GROUNDED);
+  if (!getx.connectionStatus.value.contains(ConnectionState.none)) {
+    try {
+      var res = await http.get(
+        Uri.https('apnacricket.dthlms.in', '/contesttype/getContestType'),
+      );
+
+      if (res.statusCode == 200) {
+        Get.back();
+
+        var jsondata = jsonDecode(res.body);
+        print(res.body);
+        print(res.statusCode);
+
+        if (jsondata['Result'] == true) {
+          List jsonList1 = jsondata['Data'];
+          getx.allcontext.value =
+              jsonList1.map((json) => AllContest.fromJson(json)).toList();
+          tournamentListApi(
+              context, getx.allcontext[0].contestTypeId.toString());
+          // Get.to(() => const DashBoard());
+        }
+      }
+    } catch (e) {
+      Get.back();
+      print(e);
+      // Get.rawSnackbar(
+      //   duration: const Duration(seconds: 1),
+      //   overlayBlur: 5,
+      //   barBlur: 5,
+      //   title: 'Error',
+      //   message: 'An error occurred: $e',
+      //   snackStyle: SnackStyle.GROUNDED,
+      // );
+    }
   }
 }
 
@@ -430,41 +444,43 @@ Future singlematchListApi(BuildContext context, String contestTypeId,
 }
 
 Future currentcontextListApi(BuildContext context, String userid) async {
-  // print(contestTypeId);
   Getx getx = Get.put(Getx());
   User? user = await UserPreferences().getUser();
+
+  getx.currentcontext.value = [];
   try {
-    // showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return const Center(child: CircularProgressIndicator());
-    //     });
     Map<String, dynamic> data = {'userid': user?.userId.toString()};
     var res = await http.get(
       Uri.https('apnacricket.dthlms.in', '/ContestType/getMyContestType')
           .replace(queryParameters: data),
     );
-    var jsondata = jsonDecode(res.body);
-    print(res.body);
-    print(res.statusCode);
-    if (jsondata['Result'] == true && res.statusCode == 200) {
-      List jsonList1 = jsondata['Data'] ?? [];
-      //  List jsonList2 = jsondata['UserTournament'];
-      getx.currentcontext.value =
-          jsonList1.map((json) => CurrentContest.fromJson(json)).toList();
+
+    if (res.statusCode == 200) {
+      var jsondata = jsonDecode(res.body);
+      print(res.body);
+      print(res.statusCode);
+
+      if (jsondata['Result'] == true) {
+        List jsonList1 = jsondata['Data'] ?? [];
+        getx.currentcontext.value =
+            jsonList1.map((json) => CurrentContest.fromJson(json)).toList();
+      }
+      getx.loaderoff.value = true;
     } else {
-      // Get.back();
-      Get.rawSnackbar(
-          duration: const Duration(seconds: 1),
-          // backgroundColor: ,
-          overlayBlur: 5,
-          barBlur: 5,
-          title: 'Invalid login',
-          message: jsondata['Data'],
-          snackStyle: SnackStyle.GROUNDED);
+      getx.loaderoff.value = false;
+      print('sayak');
     }
-  } catch (E) {
-    print(E);
+  } catch (e) {
+    getx.loaderoff.value = false;
+    print('sayak');
+    Get.rawSnackbar(
+      duration: const Duration(seconds: 1),
+      overlayBlur: 5,
+      barBlur: 5,
+      title: 'Error',
+      message: 'An error occurred: $e',
+      snackStyle: SnackStyle.GROUNDED,
+    );
   }
 }
 
@@ -499,39 +515,40 @@ Future teamSaveListApi(BuildContext context, String playerID, String contestId,
   }
 }
 
-// ContestHistory by shubha
 Future contestHistoryListApi(BuildContext context, String userid) async {
-  // print(contestTypeId);
   Getx getx = Get.put(Getx());
-  // showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return const Center(child: CircularProgressIndicator());
-  //     });
+
+  getx.contesthistory.value = [];
+
   Map<String, dynamic> data = {'userid': userid};
-  var res = await http.get(
-    Uri.https('apnacricket.dthlms.in', '/contestType/getMyContestHistory')
-// https://apnacricket.dthlms.in/contestType/getMyContestHistory?userid=20
-        .replace(queryParameters: data),
-  );
-  var jsondata = jsonDecode(res.body);
-  // print(res.body);
-  // print(res.statusCode);
-  if (jsondata['Result'] == true && res.statusCode == 200) {
-    List jsonList1 = jsondata['Data'] ?? [];
-    //  List jsonList2 = jsondata['UserTournament'];
-    getx.contesthistory.value =
-        jsonList1.map((json) => ContestHistory.fromJson(json)).toList();
-  } else {
+
+  try {
+    var res = await http.get(
+      Uri.https('apnacricket.dthlms.in', '/contestType/getMyContestHistory')
+          .replace(queryParameters: data),
+    );
+
+    if (res.statusCode == 200) {
+      var jsondata = jsonDecode(res.body);
+      if (jsondata['Result'] == true) {
+        List jsonList1 = jsondata['Data'] ?? [];
+        getx.contesthistory.value =
+            jsonList1.map((json) => ContestHistory.fromJson(json)).toList();
+      }
+
+      getx.loaderoff.value = true;
+    } else {
+      getx.loaderoff.value = false;
+      print('sayak');
+    }
+  } catch (e) {
+    getx.loaderoff.value = false;
     Get.back();
-    Get.rawSnackbar(
-        duration: const Duration(seconds: 1),
-        // backgroundColor: ,
-        overlayBlur: 5,
-        barBlur: 5,
-        title: 'Invalid login',
-        message: jsondata['Data'],
-        snackStyle: SnackStyle.GROUNDED);
+    Get.snackbar(
+      'Error',
+      'An error occurred: $e',
+      snackPosition: SnackPosition.BOTTOM,
+    );
   }
 }
 

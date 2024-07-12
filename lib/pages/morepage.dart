@@ -1,5 +1,6 @@
 import 'package:apna_cricket/pages/fantasypointandsystem.dart';
 import 'package:apna_cricket/pages/howtoplay.dart';
+import 'package:apna_cricket/pages/nodata/nodata.dart';
 import 'package:apna_cricket/pages/termandcondition.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -81,7 +82,9 @@ class _MorePageState extends State<MorePage> {
                 ),
               ),
             ),
-          )
+          ),
+
+       
         ],
       ),
     );

@@ -44,7 +44,6 @@ class _BatState extends State<Bat> {
                       onTap: () {
                         controllerBat.toggleSelection(index, getx.bat[index],
                             widget.match.numberOfPlayers);
-                        setState(() {});
                       },
                       imageContainer: SizedBox(
                         width: 10,

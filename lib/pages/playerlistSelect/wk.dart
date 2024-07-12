@@ -41,7 +41,6 @@ class WkState extends State<Wk> {
                       onTap: () {
                         controller.toggleSelection(index, getx.wk[index],
                             widget.match.numberOfPlayers);
-                        setState(() {});
                       },
                       title: Text(
                         getx.wk[index].playerName,

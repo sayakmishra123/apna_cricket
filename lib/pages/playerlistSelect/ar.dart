@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+// ignore: must_be_immutable
 class Ar extends StatefulWidget {
   MatchDetails match;
   Ar(this.match, {super.key});
@@ -30,7 +31,7 @@ class _ArState extends State<Ar> {
                       controllerAr.selectedIndices.contains(index);
 
                   return Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         border: Border(bottom: BorderSide(width: 0.3))),
                     child: BannerListTile(
                       showBanner: false,
@@ -43,7 +44,6 @@ class _ArState extends State<Ar> {
                       onTap: () {
                         controllerAr.toggleSelection(index, getx.ar[index],
                             widget.match.numberOfPlayers);
-                        setState(() {});
                       },
                       imageContainer: SizedBox(
                         width: 10,

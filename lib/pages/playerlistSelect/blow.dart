@@ -41,7 +41,6 @@ class _BlowState extends State<Blow> {
                       onTap: () {
                         controller.toggleSelection(index, getx.blow[index],
                             widget.match.numberOfPlayers);
-                        setState(() {});
                       },
                       imageContainer: SizedBox(
                         width: 10,

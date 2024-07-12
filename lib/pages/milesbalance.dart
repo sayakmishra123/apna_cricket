@@ -156,7 +156,7 @@ class MilesBalance extends StatelessWidget {
                           title: Text("Update"),
                           description: Text("Miles payment successfully"),
                         ).show(context);
-                        Future.delayed(Duration(seconds: 3), () {
+                        Future.delayed(Duration(seconds: 4), () {
                           Get.to(
                             () => const DashBoard(),
                             transition: Transition.leftToRight,
