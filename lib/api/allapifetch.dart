@@ -146,16 +146,11 @@ Future contestListApi(BuildContext context) async {
       return const Center(child: CircularProgressIndicator());
     },
   );
-<<<<<<< HEAD
-
-  
-=======
   if (!getx.connectionStatus.value.contains(ConnectionState.none)) {
     try {
       var res = await http.get(
         Uri.https('apnacricket.dthlms.in', '/contesttype/getContestType'),
       );
->>>>>>> f54c450977f35223b72cc6494c52394ab2f19c48
 
       if (res.statusCode == 200) {
         Get.back();
@@ -164,30 +159,6 @@ Future contestListApi(BuildContext context) async {
         print(res.body);
         print(res.statusCode);
 
-<<<<<<< HEAD
-      if (jsondata['Result'] == true) {
-        
-       
-
-        List jsonList1 = jsondata['Data'];
-        getx.allcontext.value =
-            jsonList1.map((json) => AllContest.fromJson(json)).toList();
-        tournamentListApi(context, getx.allcontext[0].contestTypeId.toString());
-        // Get.to(() => const DashBoard());
-      } 
-    } 
-  } catch (e) {
-    Get.back();
-    print(e);
-    // Get.rawSnackbar(
-    //   duration: const Duration(seconds: 1),
-    //   overlayBlur: 5,
-    //   barBlur: 5,
-    //   title: 'Error',
-    //   message: 'An error occurred: $e',
-    //   snackStyle: SnackStyle.GROUNDED,
-    // );
-=======
         if (jsondata['Result'] == true) {
           List jsonList1 = jsondata['Data'];
           getx.allcontext.value =
@@ -209,7 +180,6 @@ Future contestListApi(BuildContext context) async {
       //   snackStyle: SnackStyle.GROUNDED,
       // );
     }
->>>>>>> f54c450977f35223b72cc6494c52394ab2f19c48
   }
 }
 

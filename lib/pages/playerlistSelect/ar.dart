@@ -37,7 +37,7 @@ class _ArState extends State<Ar> {
                                     : 0.5
                                 : 1.0,
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           border: Border(bottom: BorderSide(width: 0.3))),
                       child: BannerListTile(
                         showBanner: false,
@@ -60,10 +60,7 @@ class _ArState extends State<Ar> {
                               widget.match.numberOfPlayers);
                           setState(() {});
                         },
-
-
-
-                    
+          
                         imageContainer: SizedBox(
                           width: 10,
                           height: 10,
@@ -76,11 +73,11 @@ class _ArState extends State<Ar> {
                         ),
                         title: Text(
                           getx.ar[index].playerName,
-                          style:  TextStyle(fontWeight: FontWeight.bold,
+                          style:  const TextStyle(fontWeight: FontWeight.bold,
                         
                           ),
                         ),
-                         subtitle:  Text(
+                         subtitle:  const Text(
                           'Self by 9.01%',
                           style: TextStyle(
                           color: Colors.black38
