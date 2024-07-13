@@ -3,7 +3,6 @@ import 'package:apna_cricket/model/allmodelclass.dart';
 import 'package:banner_listtile/banner_listtile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class Blow extends StatefulWidget {
   MatchDetails match;
@@ -27,45 +26,66 @@ class _BlowState extends State<Blow> {
                 itemBuilder: (context, index) {
                   bool isSelected = controller.selectedIndices.contains(index);
 
-                  return Container(
-                    decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(width: 0.3))),
-                    child: BannerListTile(
-                      showBanner: false,
-                      bannerColor: Colors.red,
-                      // bannerTextColor: Colors.,
+                  return Opacity(
+                    opacity: !isSelected
+                        ? getx.add.value != widget.match.numberOfPlayers
+                            ? 1.0
+                            : 0.2
+                        : 1.0,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          border: Border(bottom: BorderSide(width: 0.3))),
+                      child: BannerListTile(
+                        showBanner: false,
+                        bannerColor: Colors.red,
+                        // bannerTextColor: Colors.,
 
-                      backgroundColor: isSelected
-                          ? Colors.amber.withOpacity(0.2)
-                          : Colors.transparent,
-                      onTap: () {
-                        controller.toggleSelection(index, getx.blow[index],
-                            widget.match.numberOfPlayers);
-                        setState(() {});
-                      },
-                      imageContainer: SizedBox(
-                        width: 10,
-                        height: 10,
-                        child: Image.asset(
-                          'assets/sixers.png',
-                          // width: 10,
-                          // height: 10,
-                          scale: 10,
+                        backgroundColor: isSelected
+                            ? Colors.amber.withOpacity(0.2)
+                            : Colors.transparent,
+
+                        onTap: !isSelected
+                            ? getx.add.value != widget.match.numberOfPlayers
+                                ? () {
+                                    controller.toggleSelection(
+                                        index,
+                                        getx.blow[index],
+                                        widget.match.numberOfPlayers);
+                                    setState(() {});
+                                  }
+                                : null
+                            : () {
+                                controller.toggleSelection(
+                                    index,
+                                    getx.blow[index],
+                                    widget.match.numberOfPlayers);
+                                setState(() {});
+                              },
+
+                        imageContainer: SizedBox(
+                          width: 10,
+                          height: 10,
+                          child: Image.asset(
+                            'assets/sixers.png',
+                            // width: 10,
+                            // height: 10,
+                            scale: 10,
+                          ),
                         ),
-                      ),
-                      title: Text(
-                        getx.blow[index].playerName,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        'Self by 9.01%',
-                        style: TextStyle(
-                          color: Colors.grey,
+                        title: Text(
+                          getx.blow[index].playerName,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
-                      ),
-                      trailing: Icon(
-                        isSelected ? Icons.remove : Icons.add,
-                        color: isSelected ? Colors.red : Colors.green,
+                        subtitle: const Text(
+                          'Self by 9.01%',
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        trailing: Icon(
+                          isSelected ? Icons.remove : Icons.add,
+                          color: isSelected ? Colors.red : Colors.green,
+                        ),
                       ),
                     ),
                   );

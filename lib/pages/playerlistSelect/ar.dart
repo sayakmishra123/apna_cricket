@@ -29,45 +29,70 @@ class _ArState extends State<Ar> {
                   bool isSelected =
                       controllerAr.selectedIndices.contains(index);
 
-                  return Container(
-                    decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(width: 0.3))),
-                    child: BannerListTile(
-                      showBanner: false,
-                      bannerColor: Colors.red,
-                      // bannerTextColor: Colors.,
+                  return Opacity(
+                    opacity: !isSelected
+                                ? getx.add.value != widget.match.numberOfPlayers
+                                    ? 1.0
+                                    : 0.5
+                                : 1.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(width: 0.3))),
+                      child: BannerListTile(
+                        showBanner: false,
+                        bannerColor: Colors.red,
+                        // bannerTextColor: Colors.,
+                    
+                        backgroundColor: isSelected
+                            ? Colors.amber.withOpacity(0.2)
+                            : Colors.transparent,
 
-                      backgroundColor: isSelected
-                          ? Colors.amber.withOpacity(0.2)
-                          : Colors.transparent,
-                      onTap: () {
-                        controllerAr.toggleSelection(index, getx.ar[index],
-                            widget.match.numberOfPlayers);
-                        setState(() {});
-                      },
-                      imageContainer: SizedBox(
-                        width: 10,
-                        height: 10,
-                        child: Image.asset(
-                          'assets/sixers.png',
-                          // width: 10,
-                          // height: 10,
-                          scale: 10,
+                              onTap: !isSelected
+                                  ? getx.add.value != widget.match.numberOfPlayers
+                                      ?  () {
+                          controllerAr.toggleSelection(index, getx.ar[index],
+                              widget.match.numberOfPlayers);
+                          setState(() {});
+                        }: null
+                        : () {
+                          controllerAr.toggleSelection(index, getx.ar[index],
+                              widget.match.numberOfPlayers);
+                          setState(() {});
+                        },
+
+
+
+                    
+                        imageContainer: SizedBox(
+                          width: 10,
+                          height: 10,
+                          child: Image.asset(
+                            'assets/sixers.png',
+                            // width: 10,
+                            // height: 10,
+                            scale: 10,
+                          ),
                         ),
-                      ),
-                      title: Text(
-                        getx.ar[index].playerName,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: const Text(
-                        'Self by 9.01%',
-                        style: TextStyle(
-                          color: Colors.grey,
+                        title: Text(
+                          getx.ar[index].playerName,
+                          style:  TextStyle(fontWeight: FontWeight.bold,
+                        
+                          ),
                         ),
-                      ),
-                      trailing: Icon(
-                        isSelected ? Icons.remove : Icons.add,
-                        color: isSelected ? Colors.red : Colors.green,
+                         subtitle:  Text(
+                          'Self by 9.01%',
+                          style: TextStyle(
+                          color: Colors.black38
+                          ),
+                        ),
+                       trailing: Icon(
+                          isSelected ? Icons.remove : Icons.add,
+                          color: !isSelected
+                              ? getx.add.value != widget.match.numberOfPlayers
+                                  ? Colors.green
+                                  : Colors.black12
+                              : Colors.red,
+                        ),
                       ),
                     ),
                   );

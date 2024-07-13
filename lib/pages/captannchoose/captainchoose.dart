@@ -95,9 +95,9 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                         Container(
                           alignment: Alignment.center,
                           width: MediaQuery.sizeOf(context).width - 50,
-                          child: const Text(
+                          child:  Text(
                             'Choose your Captain and Vice Captain',
-                            style: TextStyle(color: Colors.grey, fontSize: 14),
+                            style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
                         )
                       ],
@@ -122,21 +122,21 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                                         fontSize: 10, color: Colors.white),
                                   ),
                                 ),
-                                const SizedBox(width: 5,),
+                                 const SizedBox(width: 5,),
                                 Text(
                                   overflow: TextOverflow.ellipsis,
                                   getx.captainchoose.value.toString(),
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 12),
+                                  style:  TextStyle(
+                                      color: Colors.white.withOpacity(0.8), fontSize: 13),
                                 )
                               ],
                             ),
-                            const Row(
+                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text('2X (double) points',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.white.withOpacity(0.75),
                                       fontSize: 10,
                                     ))
                               ],
@@ -164,18 +164,18 @@ class _CpatainchooseState extends State<Cpatainchoose> {
                                 Text(
                                   overflow: TextOverflow.ellipsis,
                                   getx.vicecaptainchoose.value.toString(),
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 12),
+                                  style:  TextStyle(
+                                      color: Colors.white.withOpacity(0.8), fontSize: 13),
                                 )
                               ],
                             ),
-                            const Row(
+                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   '1.5X points',
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 10),
+                                      color: Colors.white.withOpacity(0.75), fontSize: 10),
                                 )
                               ],
                             )
