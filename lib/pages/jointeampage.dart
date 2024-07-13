@@ -8,7 +8,12 @@ import 'package:get/get.dart';
 class JoinTeam extends StatelessWidget {
   final String heading;
   final String contestId;
-  JoinTeam({super.key, required this.heading, required this.contestId});
+
+  JoinTeam({
+    super.key,
+    required this.heading,
+    required this.contestId,
+  });
   final double _teamiconsize = 50.0;
   Getx getx = Get.put(Getx());
   @override

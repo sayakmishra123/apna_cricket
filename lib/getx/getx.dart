@@ -170,9 +170,7 @@ class NetworkController extends GetxController {
     getx.connectionStatus.value = result;
 
     if (getx.connectionStatus.contains(ConnectivityResult.none)) {
-      if (isdialog.value == false) {
-
-      }
+      if (isdialog.value == false) {}
     }
 
     // Get.rawSnackbar(

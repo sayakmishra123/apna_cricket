@@ -146,21 +146,25 @@ Future contestListApi(BuildContext context) async {
       return const Center(child: CircularProgressIndicator());
     },
   );
+<<<<<<< HEAD
 
   
+=======
+  if (!getx.connectionStatus.value.contains(ConnectionState.none)) {
+    try {
+      var res = await http.get(
+        Uri.https('apnacricket.dthlms.in', '/contesttype/getContestType'),
+      );
+>>>>>>> f54c450977f35223b72cc6494c52394ab2f19c48
 
-  try {
-    var res = await http.get(
-      Uri.https('apnacricket.dthlms.in', '/contesttype/getContestType'),
-    );
-
-    if (res.statusCode == 200) {
+      if (res.statusCode == 200) {
         Get.back();
 
-      var jsondata = jsonDecode(res.body);
-      print(res.body);
-      print(res.statusCode);
+        var jsondata = jsonDecode(res.body);
+        print(res.body);
+        print(res.statusCode);
 
+<<<<<<< HEAD
       if (jsondata['Result'] == true) {
         
        
@@ -183,6 +187,29 @@ Future contestListApi(BuildContext context) async {
     //   message: 'An error occurred: $e',
     //   snackStyle: SnackStyle.GROUNDED,
     // );
+=======
+        if (jsondata['Result'] == true) {
+          List jsonList1 = jsondata['Data'];
+          getx.allcontext.value =
+              jsonList1.map((json) => AllContest.fromJson(json)).toList();
+          tournamentListApi(
+              context, getx.allcontext[0].contestTypeId.toString());
+          // Get.to(() => const DashBoard());
+        }
+      }
+    } catch (e) {
+      Get.back();
+      print(e);
+      // Get.rawSnackbar(
+      //   duration: const Duration(seconds: 1),
+      //   overlayBlur: 5,
+      //   barBlur: 5,
+      //   title: 'Error',
+      //   message: 'An error occurred: $e',
+      //   snackStyle: SnackStyle.GROUNDED,
+      // );
+    }
+>>>>>>> f54c450977f35223b72cc6494c52394ab2f19c48
   }
 }
 
@@ -450,7 +477,7 @@ Future currentcontextListApi(BuildContext context, String userid) async {
   Getx getx = Get.put(Getx());
   User? user = await UserPreferences().getUser();
 
-getx.currentcontext.value = [];
+  getx.currentcontext.value = [];
   try {
     Map<String, dynamic> data = {'userid': user?.userId.toString()};
     var res = await http.get(
@@ -464,20 +491,17 @@ getx.currentcontext.value = [];
       print(res.statusCode);
 
       if (jsondata['Result'] == true) {
-      
         List jsonList1 = jsondata['Data'] ?? [];
         getx.currentcontext.value =
             jsonList1.map((json) => CurrentContest.fromJson(json)).toList();
-      } 
-      getx.loaderoff.value=true;
+      }
+      getx.loaderoff.value = true;
+    } else {
+      getx.loaderoff.value = false;
+      print('sayak');
     }
-    else{
-      getx.loaderoff.value=false;
-    print('sayak');
-    } 
   } catch (e) {
-    
-getx.loaderoff.value=false;
+    getx.loaderoff.value = false;
     print('sayak');
     Get.rawSnackbar(
       duration: const Duration(seconds: 1),
@@ -495,11 +519,6 @@ Future teamSaveListApi(BuildContext context, String playerID, String contestId,
   try {
     Getx getx = Get.put(Getx());
 
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(child: CircularProgressIndicator());
-        });
     Map<String, dynamic> data = {
       'PlayerID': playerID,
       'ContestId': contestId,
@@ -508,24 +527,28 @@ Future teamSaveListApi(BuildContext context, String playerID, String contestId,
       'Captain': captain,
       'ViceCaptain': viceCaptain
     };
-    print(data);
+    // print(data);
     var res = await http.get(
       Uri.https('apnacricket.dthlms.in', '/Team/CreateTeam')
           .replace(queryParameters: data),
     );
     print(res.body);
     var jsondata = jsonDecode(res.body);
-    print(jsondata);
-    Get.back();
+    // print(jsondata);
+    if (jsondata['Result'] == true && res.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (e) {
-    Get.back();
+    return false;
   }
 }
 
 Future contestHistoryListApi(BuildContext context, String userid) async {
   Getx getx = Get.put(Getx());
 
-       getx.contesthistory.value = [];
+  getx.contesthistory.value = [];
 
   Map<String, dynamic> data = {'userid': userid};
 
@@ -538,22 +561,18 @@ Future contestHistoryListApi(BuildContext context, String userid) async {
     if (res.statusCode == 200) {
       var jsondata = jsonDecode(res.body);
       if (jsondata['Result'] == true) {
-
-   
         List jsonList1 = jsondata['Data'] ?? [];
         getx.contesthistory.value =
             jsonList1.map((json) => ContestHistory.fromJson(json)).toList();
-      } 
-      
-getx.loaderoff.value=true;
-    } 
-     else{
-      getx.loaderoff.value=false;
-    print('sayak');
-    } 
+      }
+
+      getx.loaderoff.value = true;
+    } else {
+      getx.loaderoff.value = false;
+      print('sayak');
+    }
   } catch (e) {
-    
-getx.loaderoff.value=false;
+    getx.loaderoff.value = false;
     Get.back();
     Get.snackbar(
       'Error',
