@@ -183,7 +183,7 @@ List<Map<String, dynamic>> indianCricketPlayers = [
                   ExpansionTile(
                       
                     // collapsedShape: const ContinuousRectangleBorder(side: BorderSide(width: 0.2),),
-                    backgroundColor: Colors.blueGrey[200],
+                    backgroundColor: Colors.amberAccent[100],
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(
@@ -306,7 +306,7 @@ List<Map<String, dynamic>> indianCricketPlayers = [
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     height: 0.2,color: Colors.black,),
-                    const SizedBox(height: 10,),
+                    // const SizedBox(height: 10,),
                 ],
               ));
         },
